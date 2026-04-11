@@ -1,13 +1,21 @@
 "use client";
 import React, { useState } from 'react';
 import { 
-  Menu, X, Github, Linkedin, Mail, ExternalLink, ArrowRight, whatsapp, 
+  Menu, X, Github, Linkedin, Mail, ExternalLink, ArrowRight, 
   GraduationCap, Trophy, Briefcase, Folder, Award, ChevronRight, FileText
 } from 'lucide-react';
 
 const Portfolio = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+
+  // Smooth Scroll Function
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  };
 
   const projects = [
     {
@@ -22,7 +30,7 @@ const Portfolio = () => {
       category: "Robotics",
       description: "Annual Fire Festival - Ministry of Interior & Civil Defense Partnership. Autonomous firefighter robot with thermal imaging, obstacle detection, and autonomous navigation.",
       technologies: ["PID", "LIDAR", "Computer Vision", "Thermal Imaging", "C++"],
-      highlight: " Government Partnership"
+      highlight: "🔥 Government Partnership"
     },
     {
       title: "AMR Warehouse Robot",
@@ -50,7 +58,7 @@ const Portfolio = () => {
       category: "Web",
       description: "Complete e-commerce and web applications with modern frameworks and responsive design.",
       technologies: ["React", "Node.js", "MongoDB", "Shopify Liquid"],
-      highlight: "✓ Full-Stack"
+      highlight: "💻 Full-Stack"
     }
   ];
 
@@ -84,201 +92,134 @@ const Portfolio = () => {
     }
   ];
 
-  const stats = [
-    { label: "National Ranking", value: "Top 10" },
-    { label: "Experience", value: "1.5+ Years" },
-    { label: "Certifications", value: "12+" },
-    { label: "Projects", value: "15+" }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white font-sans">
+
       {/* Navigation */}
       <nav className="fixed w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            <div className="text-xl font-bold tracking-tight">
-              ABDALLA ELSIDDIG<span className="text-teal-400"></span>
+            <div className="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              ABDALLA ELSIDDIG
             </div>
-            
+
+            {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-10">
-              {['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'].map((item) => (
+              {['home','projects','skills','experience','contact'].map((item) => (
                 <button
                   key={item}
-                  onClick={() => setActiveSection(item.toLowerCase())}
-                  className="text-gray-400 hover:text-white transition-all text-sm font-medium tracking-wide uppercase"
+                  onClick={() => scrollToSection(item)}
+                  className="text-gray-400 hover:text-white transition-all text-sm font-medium tracking-wide uppercase hover:scale-105"
                 >
                   {item}
                 </button>
               ))}
             </div>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-400"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {/* Mobile Menu Toggle */}
+            <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={28}/> : <Menu size={28}/>}
             </button>
           </div>
         </div>
+        
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-950 border-b border-white/10 p-6 flex flex-col space-y-4">
+            {['home','projects','skills','experience','contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item)}
+                className="text-gray-300 text-left py-2 text-lg capitalize"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24 pb-20 px-6 overflow-hidden bg-[#020617]">
-        {/* Ambient Glows */}
-        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute -bottom-1/4 -left-20 w-[400px] h-[400px] bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div className="text-left order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-900/50 border border-slate-800 rounded-full mb-8 shadow-sm">
-                <GraduationCap className="text-teal-400" size={16} />
-                <span className="text-gray-300 text-xs font-semibold tracking-wide uppercase">Senior Informatics Engineering Student</span>
-              </div>
-              
-              <h1 className="text-6xl md:text-7xl font-extrabold mb-4 tracking-tight">
-                Abdalla Elsiddig
+      <section id="home" className="min-h-screen flex items-center pt-24 px-6">
+        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-blue-400 font-medium tracking-widest uppercase">Robotics & AI Engineer</h2>
+              <h1 className="text-6xl md:text-7xl font-bold tracking-tighter leading-none">
+                Abdalla <br/><span className="text-slate-400">Elsiddig</span>
               </h1>
-              
-              <div className="relative inline-block mb-10">
-                <h2 className="text-2xl md:text-3xl font-medium text-gray-300 leading-tight">
-                  Informatics Engineer  <span className="text-teal-400 font-bold">&</span>  AI & Computer Vision | Robotics
-                </h2>
-                <div className="absolute -bottom-4 left-0 w-32 h-1 bg-gradient-to-r from-teal-400 to-transparent rounded-full shadow-[0_0_15px_rgba(45,212,191,0.5)]" />
-              </div>
-              
-              <p className="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl">
-                Building intelligent systems that solve real-world problems through innovation and technical excellence.
+              <p className="text-lg text-gray-400 max-w-lg leading-relaxed">
+                Specializing in Autonomous Mobile Robots (AMR), Computer Vision, and AI-driven systems. President of the IoT Club with a passion for building innovative solutions.
               </p>
-
-              <div className="flex flex-wrap gap-4 mb-16">
-                <button className="px-8 py-3.5 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white rounded-xl font-bold transition-all flex items-center gap-2.5 shadow-[0_4px_20px_rgba(20,184,166,0.3)] hover:shadow-[0_4px_25px_rgba(20,184,166,0.4)] hover:-translate-y-0.5">
-                  <Mail size={18} /> Get In Touch
-                </button>
-                <button className="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold transition-all flex items-center gap-2.5 backdrop-blur-sm group">
-                  <ChevronRight className="text-teal-400 group-hover:translate-x-1 transition-transform" size={18} /> View My Work
-                </button>
-                <button className="px-8 py-3.5 bg-slate-900 border border-slate-800 hover:border-teal-500/50 text-gray-300 rounded-xl font-bold transition-all flex items-center gap-2.5">
-                  <FileText size={18} /> Download Resume
-                </button>
-              </div>
-
-              {/* Stats Row */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { icon: Trophy, value: "Top 10", label: "National Ranking" },
-                  { icon: Briefcase, value: "1.5+", label: "Years Experience" },
-                  { icon: Award, value: "12+", label: "Certifications" },
-                  { icon: Folder, value: "15+", label: "Projects" }
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-slate-900/40 border border-white/5 rounded-2xl p-5 hover:border-teal-500/30 transition-all group backdrop-blur-sm">
-                    <item.icon className="text-teal-400 mb-3 group-hover:scale-110 transition-transform" size={20} />
-                    <div className="text-xl font-bold text-white mb-0.5">{item.value}</div>
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-gray-500">{item.label}</div>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* Right Side - Image & Tech Glow */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-              <div className="relative w-[340px] h-[340px] md:w-[480px] md:h-[480px]">
-                {/* Glow & Particles */}
-                <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-[80px]" />
-                
-                {/* The Tech Circle Surround */}
-                <div className="absolute inset-[-40px] border border-teal-500/10 rounded-full" />
-                <div className="absolute inset-[-20px] border border-teal-500/20 rounded-full animate-[spin_20s_linear_infinite] opacity-50" style={{ borderStyle: 'dashed' }} />
-                
-                {/* Visual Elements from Image */}
-                <div className="absolute inset-[-60px] flex items-center justify-center">
-                   <svg width="120%" height="120%" viewBox="0 0 100 100" className="opacity-40 overflow-visible">
-                      <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.1" className="text-teal-400" />
-                      <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.05" strokeDasharray="1 3" className="text-teal-400" />
-                      <path d="M50 2 L50 8 M50 92 L50 98 M2 50 L8 50 M92 50 L98 50" stroke="currentColor" strokeWidth="0.5" className="text-teal-400" />
-                      {/* Add some circuit-like decorations */}
-                      <path d="M85 25 L90 20 M90 20 L95 20 M95 20 L95 15" stroke="currentColor" strokeWidth="0.3" fill="none" className="text-teal-400" />
-                      <path d="M15 75 L10 80 M10 80 L5 80 M5 80 L5 85" stroke="currentColor" strokeWidth="0.3" fill="none" className="text-teal-400" />
-                   </svg>
-                </div>
-                
-                {/* Main Image Container */}
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-teal-500/50 p-2 bg-slate-900 shadow-[0_0_50px_rgba(45,212,191,0.2)]">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-slate-800">
-                    <img 
-                      src="/profile.png" 
-                      alt="Abdalla Elsiddig" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-wrap gap-4">
+              <button 
+                onClick={() => scrollToSection('projects')}
+                className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold flex items-center gap-2 hover:bg-gray-200 transition-all active:scale-95"
+              >
+                View My Work <ArrowRight size={18}/>
+              </button>
+              
+              <a 
+                href="https://github.com/a-elradi" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-slate-800 border border-white/10 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-700 transition-all"
+              >
+                <Github size={20}/> Full Code
+              </a>
             </div>
+
+            <div className="flex gap-6 items-center pt-4">
+               <a href="https://linkedin.com/in/abdalla-elradi" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Linkedin size={24}/>
+               </a>
+               <a href="https://github.com/a-elradi" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  <Github size={24}/>
+               </a>
+               <a href="mailto:Abdallaelsiddig.m@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  <Mail size={24}/>
+               </a>
+            </div>
+          </div>
+          
+          <div className="hidden lg:block relative">
+             <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full"></div>
+             <div className="relative border border-white/10 bg-slate-800/50 backdrop-blur-2xl rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="grid grid-cols-2 gap-4">
+                   {skills.slice(0, 4).map((s, idx) => (
+                      <div key={idx} className="bg-slate-900/50 p-4 rounded-xl border border-white/5">
+                         <div className="text-blue-400 mb-2 font-bold">{s.category}</div>
+                         <div className="text-xs text-gray-500">{s.items.join(", ")}</div>
+                      </div>
+                   ))}
+                </div>
+             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/50">
+      {/* Projects Section */}
+      <section id="projects" className="py-32 px-6 bg-slate-950/30">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">About Me</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                Final-year Informatics Engineering student with demonstrated expertise in artificial intelligence, computer vision, IoT, and robotics. With 1.5+ years of professional experience and a passion for emerging technologies, I combine academic excellence with real-world problem-solving.
-              </p>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                I've led the IoT Club at my university for 3 years, mentoring 160+ students and organizing innovation challenges. My work consistently demonstrates the ability to take complex technical problems and deliver innovative, production-ready solutions.
-              </p>
-            </div>
-            <div className="bg-slate-700/50 border border-teal-500/20 rounded-lg p-6">
-              <h3 className="font-bold mb-4 text-teal-400">Key Specialties</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center gap-2">✓ Autonomous Systems</li>
-                <li className="flex items-center gap-2">✓ Deep Learning</li>
-                <li className="flex items-center gap-2">✓ Robotics Design</li>
-                <li className="flex items-center gap-2">✓ IoT Solutions</li>
-                <li className="flex items-center gap-2">✓ Computer Vision</li>
-                <li className="flex items-center gap-2">✓ Full-Stack Development</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Featured Projects</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project, idx) => (
-              <div key={idx} className="bg-slate-800/50 border border-teal-500/20 rounded-lg p-6 hover:border-teal-500/50 transition-all group">
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-teal-400 text-sm font-bold bg-teal-500/10 px-3 py-1 rounded">
-                    {project.category}
-                  </span>
-                  <span className="text-lg">{project.highlight}</span>
-                </div>
-                
-                <h3 className="text-xl font-bold mb-3 group-hover:text-teal-400 transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-400 mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, tidx) => (
-                    <span key={tidx} className="text-xs bg-slate-700 text-gray-300 px-2 py-1 rounded">
+          <h2 className="text-4xl font-bold mb-16 flex items-center gap-4">
+            <Folder className="text-blue-500"/> Featured Projects
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div key={index} className="group bg-slate-800/40 border border-white/5 rounded-2xl p-8 hover:bg-slate-800/60 hover:border-blue-500/30 transition-all hover:-translate-y-2">
+                <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">{project.category}</div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">{project.title}</h3>
+                <p className="text-gray-400 text-sm mb-6 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.map((tech, i) => (
+                    <span key={i} className="text-[10px] px-2 py-1 bg-white/5 border border-white/10 rounded-md text-gray-300">
                       {tech}
                     </span>
                   ))}
                 </div>
+                <div className="text-sm font-medium text-slate-300 italic">{project.highlight}</div>
               </div>
             ))}
           </div>
@@ -286,19 +227,19 @@ const Portfolio = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/50">
+      <section id="skills" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Technical Skills</h2>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {skills.map((skill, idx) => (
-              <div key={idx} className="bg-slate-700/50 border border-teal-500/20 rounded-lg p-6">
-                <h3 className="font-bold text-teal-400 mb-4">{skill.category}</h3>
-                <div className="space-y-2">
-                  {skill.items.map((item, iidx) => (
-                    <div key={iidx} className="text-gray-300 text-sm flex items-center gap-2">
-                      <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
-                      {item}
+          <h2 className="text-4xl font-bold mb-16 flex items-center gap-4">
+            <Trophy className="text-yellow-500"/> Core Expertise
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {skills.map((skillGroup, index) => (
+              <div key={index} className="space-y-4">
+                <h3 className="text-lg font-bold text-slate-300 border-l-2 border-blue-500 pl-4">{skillGroup.category}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {skillGroup.items.map((skill, i) => (
+                    <div key={i} className="px-4 py-2 bg-slate-800/50 border border-white/5 rounded-lg text-sm hover:border-blue-500/50 transition-all cursor-default">
+                      {skill}
                     </div>
                   ))}
                 </div>
@@ -309,26 +250,29 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="experience" className="py-32 px-6 bg-slate-950/30">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Professional Experience</h2>
-          
+          <h2 className="text-4xl font-bold mb-16 flex items-center gap-4">
+            <Briefcase className="text-green-500"/> Professional Journey
+          </h2>
           <div className="space-y-8">
-            {experiences.map((exp, idx) => (
-              <div key={idx} className="border-l-2 border-teal-500 pl-8 relative">
-                <div className="absolute -left-3 top-0 w-4 h-4 bg-teal-500 rounded-full"></div>
-                
-                <h3 className="text-2xl font-bold text-teal-400 mb-1">{exp.title}</h3>
-                <p className="text-gray-400 mb-4">{exp.company} • {exp.period}</p>
-                
-                <ul className="space-y-2">
-                  {exp.highlights.map((highlight, hidx) => (
-                    <li key={hidx} className="text-gray-300 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-teal-400 rounded-full"></span>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
+            {experiences.map((exp, index) => (
+              <div key={index} className="relative pl-8 border-l border-white/10 pb-12 last:pb-0 group">
+                <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-blue-500 group-hover:scale-150 transition-all"></div>
+                <div className="grid md:grid-cols-4 gap-4">
+                  <div className="text-gray-500 font-medium">{exp.period}</div>
+                  <div className="md:col-span-3 space-y-2">
+                    <h3 className="text-2xl font-bold">{exp.title}</h3>
+                    <div className="text-blue-400 font-medium">{exp.company}</div>
+                    <ul className="mt-4 space-y-2">
+                      {exp.highlights.map((h, i) => (
+                        <li key={i} className="text-gray-400 flex items-center gap-2">
+                          <ChevronRight size={14} className="text-blue-500"/> {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -336,35 +280,57 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-teal-600/20 to-cyan-600/20 border-t border-teal-500/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
-          <p className="text-gray-300 mb-8 text-lg">
-            Open to exciting opportunities in AI, computer vision, and robotics
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="mailto:Abdallaelsiddig.m@gmail.com" className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-lg font-semibold transition-all flex items-center gap-2">
-              <Mail size={20} /> Get In Touch
+      <section id="contact" className="py-32 px-6 text-center">
+        <div className="max-w-3xl mx-auto space-y-12">
+          <div className="space-y-4">
+            <h2 className="text-5xl font-bold">Let's Connect</h2>
+            <p className="text-gray-400 text-lg">Interested in Robotics, AI, or IOT? I'm always open to discussing new projects and opportunities.</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-6">
+            <a 
+              href="mailto:Abdallaelsiddig.m@gmail.com"
+              className="px-10 py-5 bg-blue-600 rounded-2xl font-bold text-xl flex items-center gap-3 hover:bg-blue-500 transition-all active:scale-95 shadow-xl shadow-blue-900/20"
+            >
+              <Mail size={24}/> Send Message
             </a>
-            <div className="flex gap-4">
-              <a href="#" className="p-3 bg-slate-800/50 border border-teal-500/20 rounded-lg hover:border-teal-500/50 transition-colors">
-                <Github size={24} />
+
+            <div className="flex gap-8 pt-6">
+              <a 
+                href="https://github.com/a-elradi" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="p-4 bg-slate-800 rounded-full group-hover:bg-slate-700 transition-colors">
+                  <Github size={32}/>
+                </div>
+                <span className="text-xs text-gray-500">GitHub</span>
               </a>
-              <a href="#" className="p-3 bg-slate-800/50 border border-teal-500/20 rounded-lg hover:border-teal-500/50 transition-colors">
-                <Linkedin size={24} />
+              
+              <a 
+                href="https://www.linkedin.com/in/abdalla-elradi" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group flex flex-col items-center gap-2"
+              >
+                <div className="p-4 bg-slate-800 rounded-full group-hover:bg-slate-700 transition-colors">
+                  <Linkedin size={32} className="text-blue-400"/>
+                </div>
+                <span className="text-xs text-gray-500">LinkedIn</span>
               </a>
             </div>
           </div>
-
-          <div className="mt-12 pt-8 border-t border-teal-500/20 text-gray-400 text-sm">
-            <p>✉️ Abdallaelsiddig.m@gmail.com 
-              • 📞 +973 35025445 
-              • 📍 Riffa, Bahrain</p>
-            <p className="mt-4">© 2026 Abdalla Elsiddig. All rights reserved.</p>
-          </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <div className="max-w-7xl mx-auto px-6">
+          © {new Date().getFullYear()} Abdalla Elsiddig. Built with React & Lucide.
+        </div>
+      </footer>
+
     </div>
   );
 };

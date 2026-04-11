@@ -102,11 +102,18 @@ const Portfolio = () => {
                 </button>
                 
                 <a 
-                  href="/Abdalla-Elsiddig-Resume.pdf" 
+                  href="/Abdalla-Elsiddig.Resume.pdf" 
                   download 
                   className="px-8 py-3.5 bg-slate-900 border border-slate-800 hover:border-teal-500/50 text-gray-300 rounded-xl font-bold transition-all flex items-center gap-2.5"
                 >
                   <FileText size={18} /> Download Resume
+                </a>
+                <a 
+                  href="/Abdalla-Elsiddig.Resume.pdf" 
+                  target="_blank"
+                  className="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold transition-all flex items-center gap-2.5"
+                >
+                  <FileText size={18} /> Preview Resume
                 </a>
               </div>
 

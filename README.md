@@ -1,4 +1,4 @@
-# Abdalla Elsiddig's Portfolio Website
+# Abdalla Elsiddig Portfolio Website
 
 ## Project Structure
 

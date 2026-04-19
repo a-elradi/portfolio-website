@@ -21,17 +21,17 @@ const Portfolio = () => {
 
   const projects = [
     { title: "AI-Powered Rehabilitation & Educational System (TECHTRAP)", category: "AI/ML", description: "Huawei ICT Competition - Top 10 National Ranking. Developed intelligent system for children with special needs using ML and adaptive algorithms.", technologies: ["Python", "OpenCV", "Machine Learning", "Signal Processing"], highlight: "🏆 Top 10 National Ranking" },
-    { title: "Advanced Firefighter Robot", category: "Robotics", description: "Annual Fire Festival - Ministry of Interior & Civil Defense Partnership. Autonomous firefighter robot with thermal imaging, obstacle detection, and autonomous navigation.", technologies: ["PID", "LIDAR", "Computer Vision", "Thermal Imaging", "C++"], highlight: " Government Partnership" },
+    { title: "Advanced Firefighter Robot", category: "Robotics", description: "Annual Fire Festival - Ministry of Interior & Civil Defense Partnership. Autonomous firefighter robot with thermal imaging, obstacle detection, and autonomous navigation.", technologies: ["PID",  "Computer Vision", "Thermal Imaging", "C++"], highlight: " Government Partnership" },
     { title: "AMR Warehouse Robot", category: "Robotics", description: "Capstone Project - Shifa National Medical Supply. Autonomous mobile robot with SLAM navigation, computer vision, reducing manual operations by 40%.", technologies: ["ROS", "SLAM", "Python", "OpenCV", "YOLO"], highlight: "📦 60% Efficiency Gain" },
-    { title: "Advanced Computer Vision Projects", category: "Computer Vision", description: "Real-time object detection, image processing, and visual analysis systems using state-of-the-art techniques.", technologies: ["OpenCV", "PyTorch", "YOLO", "Python"], highlight: "✓ 95%+ Accuracy" },
+    { title: "Advanced Computer Vision Projects", category: "Computer Vision", description: "Real-time object detection, image processing, and visual analysis systems using state-of-the-art techniques.", technologies: ["OpenCV", "PyTorch", "YOLO", "Python"],
     { title: "IoT-Based Automation Systems", category: "IoT", description: "Scalable IoT solutions for academic and industrial applications with real-time monitoring and control.", technologies: ["Arduino", "Embedded Systems", "MQTT", "IoT"], highlight: "✓ Production Deployed" },
-    { title: "Full-Stack Web Platforms", category: "Web", description: "Complete e-commerce and web applications with modern frameworks and responsive design.", technologies: ["React", "Node.js", "MongoDB", "Shopify Liquid"], highlight: "✓ Full-Stack" }
+    { title: "Full-Stack Web Platforms", category: "Web", description: "Complete e-commerce and web applications with modern frameworks and responsive design.", technologies: ["React", "Node.js", "MongoDB", "Shopify"], highlight: "✓ Full-Stack" }
   ];
 
   const skills = [
     { category: "AI & ML", items: ["Python", "TensorFlow", "PyTorch", "Deep Learning"] },
     { category: "Computer Vision", items: ["OpenCV", "YOLO", "Image Processing", "Object Detection"] },
-    { category: "Robotics & IoT", items: ["ROS", "Esp32", "Arduino", "Embedded Systems"] },
+    { category: "Robotics & IoT", items: ["Esp32", "Arduino", "Embedded Systems"] },
     { category: "Web Development", items: ["React", "Node.js", "Shopify", "Full-Stack"] },
     { category: "Languages", items: ["Python", "C/C++", "JavaScript", "Java"] },
     { category: "Cloud & DevOps", items: ["Docker", "Git", "Linux", "Cloud Platforms"] }
@@ -39,8 +39,8 @@ const Portfolio = () => {
 
   const experiences = [
     { title: "President & Founder – IoT Club", company: "University of Technology Bahrain", period: "2023 - Present (3 Years)", highlights: ["Led 130+ active members", "Organized quarterly innovation challenges", "Award-winning projects"] },
-    { title: "IT Technical Support & Web Developer", company: "Glam Moda & Almahmoudia Company", period: "2024 - 2025", highlights: ["Shopify specialization", "System optimization"] },
-    { title: "Robotics Workshop Instructor", company: "University of Technology Bahrain", period: "2023 - Present", highlights: ["Led workshops", "Sumo Robot Competition Winner", "Mentored 20+ students"] }
+    { title: "IT Technical Support & Web Developer", company: "Glam Moda", period: "2024 - 2025", highlights: ["Shopify specialization", "System optimization","Digital Marketing"] },
+    { title: "Robotics& IoT Workshop Instructor", company: "University of Technology Bahrain", period: "2023 - Present", highlights: ["Led workshops", " Robot Competition ", "Mentored 40+ students"] }
   ];
 
   return (
@@ -49,7 +49,7 @@ const Portfolio = () => {
       <nav className="fixed w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            <div className="text-xl font-bold tracking-tight"> ABDALLA ELSIDDIG </div>
+            <div className="text-xl font-bold tracking-tight"> AE </div>
             <div className="hidden md:flex items-center space-x-10">
               {['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'].map((item) => (
                 <button 
@@ -274,8 +274,8 @@ const Portfolio = () => {
             </div>
           </div>
           <div className="mt-16 pt-8 border-t border-white/5 text-gray-500 text-xs tracking-widest uppercase">
-            <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com • 📍 Riffa, Bahrain</p>
-            <p>© 2026 Abdalla Elsiddig. All rights reserved.</p>
+            <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com •  Bahrain</p>
+            <p>© 2026 Abdalla Elradi. All rights reserved.</p>
           </div>
         </div>
       </section>

@@ -178,13 +178,51 @@ const Portfolio = () => {
                      </div>
                 </div>
 
-                {/* AI-Powered Rehabilitation & Educational System (TECHTRAP) */}
-                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — AI/ML</p>
-                    <h3 className="text-3xl font-black mb-4">TECHTRAP AI-Powered Rehabilitation & Educational System</h3>
-                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
-                        <img src="/2.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
-                    </div>
+
+         {/* AI-Powered Rehabilitation & Educational System (TECHTRAP) */}
+<div className="group">
+
+  {/* Top Small Label */}
+  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
+    02 — AI Healthcare
+  </p>
+
+  {/* Title */}
+  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+    TECHTRAP
+  </h3>
+
+  {/* Main Card */}
+  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+
+    {/* Description */}
+    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
+      TECHTRAP AI-Powered Rehabilitation & Educational System.
+    </p>
+
+    {/* Image Box */}
+    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+      <img
+        src="/2.png"
+        alt="TECHTRAP"
+        className="w-full h-[280px] object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Tech Tags */}
+  <div className="flex flex-wrap gap-3 mt-5">
+    {["Machine Learning", "MindSpore", "PYTHON", "OPENCV", "AI"].map((tech) => (
+      <span
+        key={tech}
+        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
+      >
+        {tech}
+      </span>
+    ))}
+  
+
+                     </div>
                 </div>
                 {/* Advanced Firefighter Robot */}
                 <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
@@ -218,9 +256,9 @@ const Portfolio = () => {
                         <img src="/6.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
                     </div>
                 </div>
-            </div>
-        </section>
-      </main>
+             </div>
+         </section>
+       </main>
 
       {/* FOOTER */}
       <footer className="border-t border-white/5 bg-[#030014] py-16 px-6 text-center">

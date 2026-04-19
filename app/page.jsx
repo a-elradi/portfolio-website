@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { 
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, Menu,
-  ArrowUpRight, BookOpen, Sparkles, Dribbble ,X, Github, Linkedin, Mail, ExternalLink, ArrowRight,
-  GraduationCap, Trophy, Briefcase, Folder, Award, ChevronRight, FileText 
+  ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
+  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText 
 } from 'lucide-react';
 
 const Portfolio = () => {

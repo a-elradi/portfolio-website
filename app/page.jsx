@@ -121,7 +121,7 @@ const Portfolio = () => {
     </div>
   </div>
 </div>
-
+</section>
         {/* PROJECTS SECTION */}
         <section className="mb-32">
             <div className="text-center mb-16">

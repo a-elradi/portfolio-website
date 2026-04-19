@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import { 
   Github, Linkedin, Mail, MapPin, 
-  Cpu, Brain, Trophy, MessageSquare, 
-  ArrowUpRight, BookOpen, Sparkles, Dribbble 
+  Cpu, Brain, Trophy, MessageSquare, Menu,
+  ArrowUpRight, BookOpen, Sparkles, Dribbble ,X, Github, Linkedin, Mail, ExternalLink, ArrowRight,
+  GraduationCap, Trophy, Briefcase, Folder, Award, ChevronRight, FileText 
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -51,7 +52,7 @@ const Portfolio = () => {
           <div className="md:col-span-4 h-[400px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden group relative">
             <img 
                 src="/profile.png" 
-                className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                className="w-full h-full object-cover" 
                 alt="Abdalla Elsiddig" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -86,23 +87,40 @@ const Portfolio = () => {
             </div>
             <div className="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden border border-white/10 relative">
                 <img 
-                    src="/image_977cb4.jpg" 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
+                    src="/bball.png" 
+                    className="w-full h-full object-cover grayscale brightness-0 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     alt="Basketball" 
                 />
             </div>
           </div>
+           {/* LOCATION (Manama) */}
+           <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group">
+  
+  {/* Background Glow */}
+  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
 
-          {/* LOCATION (Manama) */}
-          <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
-            <MapPin className="text-purple-500 z-10" size={24} />
-            <div className="z-10">
-                <h3 className="text-2xl font-black uppercase tracking-tighter">Manama</h3>
-                <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">Bahrain (Riffa)</p>
-            </div>
-          </div>
-        </section>
+  {/* Background Image */}
+  <img
+    src="/manama.png"
+    alt="Manama"
+    className="absolute inset-0 w-full h-full object-cover opacity-20"
+  />
+
+  {/* Content */}
+  <div className="relative z-10 flex flex-col justify-between h-full">
+    <MapPin className="text-purple-500" size={24} />
+
+    <div>
+      <h3 className="text-2xl font-black uppercase tracking-tighter">
+        Manama
+      </h3>
+
+      <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">
+        Bahrain (Riffa)
+      </p>
+    </div>
+  </div>
+</div>
 
         {/* PROJECTS SECTION */}
         <section className="mb-32">
@@ -121,12 +139,44 @@ const Portfolio = () => {
                     </div>
                 </div>
 
-                {/* AI Project */}
+                {/* AI-Powered Rehabilitation & Educational System (TECHTRAP) */}
                 <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — AI</p>
-                    <h3 className="text-3xl font-black mb-4">TECHTRAP AI</h3>
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — AI/ML</p>
+                    <h3 className="text-3xl font-black mb-4">TECHTRAP AI-Powered Rehabilitation & Educational System</h3>
                     <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
                         <img src="/2.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+                    </div>
+                </div>
+                {/* Advanced Firefighter Robot */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">03 — Robotics</p>
+                    <h3 className="text-3xl font-black mb-4">smart Firefighter Robot</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/3.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+                    </div>
+                </div>
+                {/* Advanced Computer Vision Projects */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">04 — AI/MV</p>
+                    <h3 className="text-3xl font-black mb-4">Advanced Computer Vision Projects</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/4.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+                    </div>
+                </div>
+                {/* IoT-Based Automation Systems */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">05 — IoT</p>
+                    <h3 className="text-3xl font-black mb-4">IoT-Based Automation Systems</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/5.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+                    </div>
+                </div>
+                {/* Full-Stack Web Platforms */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">06 — Full-Stack Web</p>
+                    <h3 className="text-3xl font-black mb-4">Full-Stack Web Platforms</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/6.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
                     </div>
                 </div>
             </div>

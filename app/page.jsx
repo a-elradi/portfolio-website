@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { 
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, 
-  ArrowUpRight, BookOpen, Sparkles, Basketball
+  ArrowUpRight, BookOpen, Sparkles, Dribbble
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -47,7 +47,7 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {/* MAIN PHOTO: Grayscale with hover effect */}
+          {/* MAIN PHOTO */}
           <div className="md:col-span-4 h-[400px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden group relative">
             <img 
                 src="/profile.png" 
@@ -57,7 +57,7 @@ const Portfolio = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
 
-          {/* CRAFT: Technical Summary */}
+          {/* CRAFT */}
           <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between">
             <div>
                 <h3 className="text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2">
@@ -74,17 +74,16 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {/* MINDSET: Basketball Section (Using your images) */}
+          {/* MINDSET: Basketball Section - FIXED ICON HERE */}
           <div className="md:col-span-8 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col md:flex-row gap-10 overflow-hidden group">
             <div className="flex-1 flex flex-col justify-center">
                 <h3 className="text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2 text-orange-500">
-                    <Basketball size={20} /> MINDSET
+                    <Dribbble size={20} /> MINDSET
                 </h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                    Excellence is a habit. As a <span className="text-white font-medium italic">Basketball Player</span>, I bring the same discipline, teamwork, and tactical focus to engineering that I do to the court. Mastering body and mind is my path to professional excellence.
+                    Excellence is a habit. As a <span className="text-white font-medium italic">Basketball Player</span>, I bring the same discipline and tactical focus to engineering that I do to the court.
                 </p>
             </div>
-            {/* Action shot transition */}
             <div className="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden border border-white/10 relative">
                 <img 
                     src="image_977cb4.jpg" 
@@ -94,7 +93,7 @@ const Portfolio = () => {
             </div>
           </div>
 
-          {/* LOCATION: Manama, Bahrain */}
+          {/* LOCATION */}
           <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between relative group overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10 group-hover:bg-purple-500/20 transition-all"></div>
             <div className="flex justify-between items-start z-10">
@@ -103,20 +102,19 @@ const Portfolio = () => {
             </div>
             <div className="z-10">
                 <h3 className="text-2xl font-black uppercase tracking-tighter">Manama</h3>
-                <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">GMT +3 (Riffa District)</p>
+                <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">GMT +3 (Riffa)</p>
             </div>
           </div>
         </section>
 
-        {/* 3. FEATURED PROJECTS (Pszostak Layout) */}
+        {/* 3. FEATURED PROJECTS */}
         <section className="mb-32">
             <div className="text-center mb-16">
                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">SELECTED WORKS</p>
-                <h2 className="text-5xl font-black mt-4">Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Projects</span></h2>
+                <h2 className="text-5xl font-black mt-4 text-white">Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Projects</span></h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-                {/* AMR Project */}
                 <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500">
                     <div className="p-12 pb-0">
                         <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">01 — ROBOTICS</p>
@@ -128,21 +126,20 @@ const Portfolio = () => {
                     </div>
                 </div>
 
-                {/* TECHTRAP AI */}
                 <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500">
                     <div className="p-12 pb-0">
-                        <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — ARTIFICIAL INTELLIGENCE</p>
+                        <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — AI</p>
                         <h3 className="text-3xl font-black mb-4">TECHTRAP AI</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-8">Top 10 Huawei ICT Competition entry. Adaptive rehabilitation monitoring system.</p>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-8">Top 10 Huawei ICT entry. Adaptive rehabilitation monitoring system.</p>
                     </div>
                     <div className="mx-8 mb-8 h-72 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-8">
-                        <img src="2.png" className="w-full h-full object-contain rounded-xl opacity-80 group-hover:scale-105 transition-transform duration-700" alt="AI Project" />
+                        <img src="2.png" className="w-full h-full object-contain rounded-xl opacity-80 group-hover:scale-105 transition-transform duration-700" alt="AI" />
                     </div>
                 </div>
             </div>
         </section>
 
-        {/* 4. ACHIEVEMENTS & EXPLORE */}
+        {/* 4. ACHIEVEMENTS */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
                 { icon: Trophy, title: "Awards", color: "text-orange-500", desc: "Top 10 National ICT ranking and Mavericks Robotics team honors." },
@@ -161,7 +158,6 @@ const Portfolio = () => {
                 </div>
             ))}
         </section>
-
       </main>
 
       {/* FOOTER */}

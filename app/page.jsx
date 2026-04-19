@@ -1,284 +1,151 @@
 "use client";
 import React, { useState } from 'react';
 import { 
-  Menu, X, Github, Linkedin, Mail, ExternalLink, ArrowRight,
-  GraduationCap, Trophy, Briefcase, Folder, Award, ChevronRight, FileText 
+  Github, Linkedin, Mail, MapPin, 
+  Cpu, Brain, Trophy, MessageSquare, 
+  ArrowUpRight, BookOpen, Sparkles, Dribbble 
 } from 'lucide-react';
 
 const Portfolio = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
-  // Function to handle smooth scrolling to sections
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id.toLowerCase());
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(id.toLowerCase());
-      setMobileMenuOpen(false);
-    }
-  };
-
-  const projects = [
-    { title: "AI-Powered Rehabilitation & Educational System (TECHTRAP)", category: "AI/ML", description: "Huawei ICT Competition - Top 10 National Ranking. Developed intelligent system for children with special needs using ML and adaptive algorithms.", technologies: ["Python", "OpenCV", "Machine Learning", "Signal Processing"], highlight: "🏆 Top 10 National Ranking" },
-    { title: "Advanced Firefighter Robot", category: "Robotics", description: "Annual Fire Festival - Ministry of Interior & Civil Defense Partnership. Autonomous firefighter robot with thermal imaging, obstacle detection, and autonomous navigation.", technologies: ["PID",  "Computer Vision", "Thermal Imaging", "C++"], highlight: " Government Partnership" },
-    { title: "AMR Warehouse Robot", category: "Robotics", description: "Capstone Project - Shifa National Medical Supply. Autonomous mobile robot with SLAM navigation, computer vision, reducing manual operations by 40%.", technologies: ["ROS", "SLAM", "Python", "OpenCV", "YOLO"], highlight: "📦 60% Efficiency Gain" },
-    { title: "Advanced Computer Vision Projects", category: "Computer Vision", description: "Real-time object detection, image processing, and visual analysis systems using state-of-the-art techniques.", technologies: ["OpenCV", "PyTorch", "YOLO", "Python"],
-    { title: "IoT-Based Automation Systems", category: "IoT", description: "Scalable IoT solutions for academic and industrial applications with real-time monitoring and control.", technologies: ["Arduino", "Embedded Systems", "MQTT", "IoT"], highlight: "✓ Production Deployed" },
-    { title: "Full-Stack Web Platforms", category: "Web", description: "Complete e-commerce and web applications with modern frameworks and responsive design.", technologies: ["React", "Node.js", "MongoDB", "Shopify"], highlight: "✓ Full-Stack" }
-  ];
-
-  const skills = [
-    { category: "AI & ML", items: ["Python", "TensorFlow", "PyTorch", "Deep Learning"] },
-    { category: "Computer Vision", items: ["OpenCV", "YOLO", "Image Processing", "Object Detection"] },
-    { category: "Robotics & IoT", items: ["Esp32", "Arduino", "Embedded Systems"] },
-    { category: "Web Development", items: ["React", "Node.js", "Shopify", "Full-Stack"] },
-    { category: "Languages", items: ["Python", "C/C++", "JavaScript", "Java"] },
-    { category: "Cloud & DevOps", items: ["Docker", "Git", "Linux", "Cloud Platforms"] }
-  ];
-
-  const experiences = [
-    { title: "President & Founder – IoT Club", company: "University of Technology Bahrain", period: "2023 - Present (3 Years)", highlights: ["Led 130+ active members", "Organized quarterly innovation challenges", "Award-winning projects"] },
-    { title: "IT Technical Support & Web Developer", company: "Glam Moda", period: "2024 - 2025", highlights: ["Shopify specialization", "System optimization","Digital Marketing"] },
-    { title: "Robotics& IoT Workshop Instructor", company: "University of Technology Bahrain", period: "2023 - Present", highlights: ["Led workshops", " Robot Competition ", "Mentored 40+ students"] }
-  ];
+  const [activeTab, setActiveTab] = useState('Home');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Navigation */}
-      <nav className="fixed w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            <div className="text-xl font-bold tracking-tight"> AE </div>
-            <div className="hidden md:flex items-center space-x-10">
-              {['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'].map((item) => (
-                <button 
-                  key={item} 
-                  onClick={() => scrollToSection(item)}
-                  className="text-gray-400 hover:text-white transition-all text-sm font-medium tracking-wide uppercase"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-gray-400">
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
+    <div className="min-h-screen bg-[#030014] text-white font-sans selection:bg-purple-500/30 overflow-x-hidden">
+      {/* BACKGROUND: Dot Pattern */}
+      <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+      </div>
+
+      {/* FLOATING NAV */}
+      <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 bg-[#0a0a0f]/80 backdrop-blur-2xl border border-white/5 rounded-full shadow-2xl">
+        {['Home', 'About', 'Projects', 'Skills'].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all ${
+              activeTab === tab ? 'bg-white/10 text-white shadow-inner' : 'text-gray-500 hover:text-gray-300'
+            }`}
+          >
+            {tab}
+          </button>
+        ))}
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center pt-24 pb-20 px-6 overflow-hidden bg-[#020617]">
-        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute -bottom-1/4 -left-20 w-[400px] h-[400px] bg-cyan-500/5 blur-[100px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="text-left order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-900/50 border border-slate-800 rounded-full mb-8 shadow-sm">
-                <GraduationCap className="text-teal-400" size={16} />
-                <span className="text-gray-300 text-xs font-semibold tracking-wide uppercase">Senior Informatics Engineering Student</span>
-              </div>
-              <h1 className="text-6xl md:text-7xl font-extrabold mb-4 tracking-tight"> Abdalla Elsiddig </h1>
-              <div className="relative inline-block mb-10">
-                <h2 className="text-2xl md:text-3xl font-medium text-gray-300 leading-tight"> Informatics Engineer <span className="text-teal-400 font-bold">&</span> AI & Computer Vision | Robotics </h2>
-                <div className="absolute -bottom-4 left-0 w-32 h-1 bg-gradient-to-r from-teal-400 to-transparent rounded-full" />
-              </div>
-              <p className="text-lg text-gray-400 mb-10 leading-relaxed max-w-xl"> Building intelligent systems that solve real-world problems through innovation and technical excellence. </p>
-              
-              <div className="flex flex-wrap gap-4 mb-16">
-                <a 
-                  href="mailto:Abdallaelsiddig.m@gmail.com" 
-                  className="px-8 py-3.5 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white rounded-xl font-bold transition-all flex items-center gap-2.5 shadow-[0_4px_20px_rgba(20,184,166,0.3)] hover:-translate-y-0.5"
-                >
-                  <Mail size={18} /> Get In Touch
-                </a>
-                
-                <button 
-                  onClick={() => scrollToSection('projects')}
-                  className="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold transition-all flex items-center gap-2.5 backdrop-blur-sm group"
-                >
-                  <ChevronRight className="text-teal-400 group-hover:translate-x-1 transition-transform" size={18} /> View My Work
-                </button>
-                
-                <a 
-                  href="/Abdalla-Elsiddig.Resume.pdf" 
-                  download 
-                  className="px-8 py-3.5 bg-slate-900 border border-slate-800 hover:border-teal-500/50 text-gray-300 rounded-xl font-bold transition-all flex items-center gap-2.5"
-                >
-                  <FileText size={18} /> Download Resume
-                </a>
-                <a 
-                  href="/Abdalla-Elsiddig.Resume.pdf" 
-                  target="_blank"
-                  className="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold transition-all flex items-center gap-2.5"
-                >
-                  <FileText size={18} /> Preview Resume
-                </a>
-              </div>
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
+        
+        {/* HERO GRID */}
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
+          
+          {/* NAME CARD */}
+          <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-center items-center text-center">
+            <h1 className="text-4xl font-black uppercase tracking-tighter leading-none mb-1">
+              ABDALLA<br/><span className="text-gray-600">ELSIDDIG</span>
+            </h1>
+            <div className="mt-4 flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1bd1e3] animate-pulse"></span>
+              <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em]">Informatics Engineer</p>
+            </div>
+          </div>
 
-              {/* Stats Row */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { icon: Trophy, value: "Top 10", label: "National Ranking" },
-                  { icon: Briefcase, value: "1.5+", label: "Years Experience" },
-                  { icon: Award, value: "12+", label: "Certifications" },
-                  { icon: Folder, value: "15+", label: "Projects" }
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-slate-900/40 border border-white/5 rounded-2xl p-5 group backdrop-blur-sm">
-                    <item.icon className="text-teal-400 mb-3 group-hover:scale-110 transition-transform" size={20} />
-                    <div className="text-xl font-bold text-white mb-0.5">{item.value}</div>
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-gray-500">{item.label}</div>
-                  </div>
+          {/* MAIN PHOTO */}
+          <div className="md:col-span-4 h-[400px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden group relative">
+            <img 
+                src="/profile.png" 
+                className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                alt="Abdalla Elsiddig" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          </div>
+
+          {/* CRAFT */}
+          <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between">
+            <div>
+                <h3 className="text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2">
+                    <Cpu size={20} className="text-[#1bd1e3]" /> CRAFT
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                    Specializing in <span className="text-white font-medium">Autonomous Robotics (AMR)</span> and <span className="text-white font-medium">Computer Vision</span>.
+                </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+                {['ROS2', 'Python', 'OpenCV', 'TensorFlow'].map(t => (
+                    <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[9px] font-black text-gray-500 uppercase">{t}</span>
                 ))}
-              </div>
-            </div>
-
-            {/* Right Side - Profile Image */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-              <div className="relative w-[340px] h-[340px] md:w-[480px] md:h-[480px]">
-                <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-[80px]" />
-                <div className="absolute inset-[-20px] border border-teal-500/20 rounded-full animate-[spin_20s_linear_infinite] opacity-50" style={{ borderStyle: 'dashed' }} />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-teal-500/50 p-2 bg-slate-900 shadow-[0_0_50px_rgba(45,212,191,0.2)]">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-slate-800">
-                    <img src="/profile.png" alt="Abdalla Elsiddig" className="w-full h-full object-cover" />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">About Me</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <p className="text-gray-300 text-lg leading-relaxed mb-6"> Final-year Informatics Engineering student with demonstrated expertise in artificial intelligence, computer vision, IoT, and robotics. With 1.5+ years of professional experience and a passion for emerging technologies, I combine academic excellence with real-world problem-solving. </p>
-              <p className="text-gray-300 text-lg leading-relaxed"> I've led the IoT Club at my university for 3 years, mentoring 160+ students and organizing innovation challenges. My work consistently demonstrates the ability to take complex technical problems and deliver innovative, production-ready solutions. </p>
+          {/* MINDSET (Basketball) - FIXED ICON */}
+          <div className="md:col-span-8 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col md:flex-row gap-10 overflow-hidden group">
+            <div className="flex-1 flex flex-col justify-center">
+                <h3 className="text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2 text-orange-500">
+                    <Dribbble size={20} /> MINDSET
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                    Excellence is a habit. As a <span className="text-white font-medium italic">Basketball Player</span>, I bring the same discipline and tactical focus to my engineering projects.
+                </p>
             </div>
-            <div className="bg-slate-700/50 border border-teal-500/20 rounded-xl p-6">
-              <h3 className="font-bold mb-4 text-teal-400 uppercase text-sm tracking-widest">Key Specialties</h3>
-              <ul className="space-y-3 text-gray-300 text-sm">
-                <li className="flex items-center gap-2">✓ Autonomous Systems</li>
-                <li className="flex items-center gap-2">✓ Deep Learning</li>
-                <li className="flex items-center gap-2">✓ Robotics Design</li>
-                <li className="flex items-center gap-2">✓ IoT Solutions</li>
-                <li className="flex items-center gap-2">✓ Computer Vision</li>
-                <li className="flex items-center gap-2">✓ Full-Stack Development</li>
-              </ul>
+            <div className="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden border border-white/10 relative">
+                <img 
+                    src="/image_977cb4.jpg" 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
+                    alt="Basketball" 
+                />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Featured Projects</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project, idx) => (
-              <div key={idx} className="bg-slate-800/50 border border-teal-500/20 rounded-xl p-6 hover:border-teal-500/50 transition-all group">
-                <div className="flex items-start justify-between mb-4">
-                  <span className="text-teal-400 text-xs font-bold bg-teal-500/10 px-3 py-1 rounded-full tracking-wider uppercase"> {project.category} </span>
-                  <span className="text-lg">{project.highlight}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-teal-400 transition-colors"> {project.title} </h3>
-                <p className="text-gray-400 mb-4 text-sm leading-relaxed"> {project.description} </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, tidx) => (
-                    <span key={tidx} className="text-[10px] uppercase font-bold bg-slate-700 text-gray-300 px-2 py-1 rounded"> {tech} </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+          {/* LOCATION (Manama) */}
+          <div className="md:col-span-4 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
+            <MapPin className="text-purple-500 z-10" size={24} />
+            <div className="z-10">
+                <h3 className="text-2xl font-black uppercase tracking-tighter">Manama</h3>
+                <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">Bahrain (Riffa)</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Technical Skills</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {skills.map((skill, idx) => (
-              <div key={idx} className="bg-slate-700/50 border border-teal-500/20 rounded-xl p-6">
-                <h3 className="font-bold text-teal-400 mb-4 uppercase text-xs tracking-widest">{skill.category}</h3>
-                <div className="space-y-2">
-                  {skill.items.map((item, iidx) => (
-                    <div key={iidx} className="text-gray-300 text-sm flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-teal-400 rounded-full shadow-[0_0_5px_rgba(45,212,191,0.5)]"></div> {item}
+        {/* PROJECTS SECTION */}
+        <section className="mb-32">
+            <div className="text-center mb-16">
+                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">PORTFOLIO</p>
+                <h2 className="text-5xl font-black mt-4">Selected <span className="text-purple-500">Works</span></h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* AMR Project */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">01 — Robotics</p>
+                    <h3 className="text-3xl font-black mb-4">AMR Warehouse Robot</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/1.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AMR" />
                     </div>
-                  ))}
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Professional Experience</h2>
-          <div className="space-y-8">
-            {experiences.map((exp, idx) => (
-              <div key={idx} className="border-l-2 border-teal-500 pl-8 relative">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 bg-teal-500 rounded-full border-4 border-[#020617]"></div>
-                <h3 className="text-2xl font-bold text-teal-400 mb-1">{exp.title}</h3>
-                <p className="text-gray-400 mb-4 text-sm uppercase tracking-wider">{exp.company} • {exp.period}</p>
-                <ul className="space-y-2">
-                  {exp.highlights.map((highlight, hidx) => (
-                    <li key={hidx} className="text-gray-300 text-sm flex items-start gap-2">
-                      <ChevronRight size={14} className="mt-1 text-teal-500 min-w-[14px]" /> {highlight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-gradient-to-r from-teal-600/10 to-transparent border-t border-teal-500/20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-4 uppercase tracking-wide">Let's Work Together</h2>
-          <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto"> Open to exciting opportunities in AI, computer vision, and robotics. Let's build the future together. </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
-              href="mailto:Abdallaelsiddig.m@gmail.com" 
-              className="bg-teal-500 hover:bg-teal-600 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20"
-            >
-              <Mail size={20} /> Get In Touch
-            </a>
-            <div className="flex gap-4">
-              <a 
-                href="https://github.com/a-elradi" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-800 border border-teal-500/20 rounded-xl hover:border-teal-500/50 transition-colors"
-              >
-                <Github size={24} />
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/abdalla-elradi" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-3 bg-slate-800 border border-teal-500/20 rounded-xl hover:border-teal-500/50 transition-colors"
-              >
-                <Linkedin size={24} />
-              </a>
+                {/* AI Project */}
+                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
+                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">02 — AI</p>
+                    <h3 className="text-3xl font-black mb-4">TECHTRAP AI</h3>
+                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
+                        <img src="/2.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="mt-16 pt-8 border-t border-white/5 text-gray-500 text-xs tracking-widest uppercase">
-            <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com •  Bahrain</p>
-            <p>© 2026 Abdalla Elradi. All rights reserved.</p>
-          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/5 bg-[#030014] py-16 px-6 text-center">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-xs font-black uppercase tracking-[0.2em] text-gray-500">
+                © 2026 Abdalla Elsiddig
+            </div>
+            <div className="flex gap-8">
+                <Github size={20} className="text-gray-500 hover:text-white cursor-pointer" />
+                <Linkedin size={20} className="text-gray-500 hover:text-white cursor-pointer" />
+                <Mail size={20} className="text-gray-500 hover:text-white cursor-pointer" />
+            </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 };

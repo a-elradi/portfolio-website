@@ -87,7 +87,7 @@ const Portfolio = () => {
             </div>
             <div className="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden border border-white/10 relative">
                 <img 
-                    src="/bball.png" 
+                    src="/bball.Jpg" 
                     className="w-full h-full object-cover grayscale brightness-0 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     alt="Basketball" 
                 />

@@ -10,6 +10,39 @@ import {
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
 
+  const skills = [
+    { category: 'Languages', items: ['Python', 'C++', 'JavaScript', 'SQL'] },
+    { category: 'Robotics', items: ['MQTT', 'Embedded Systems Development', 'Automation'] },
+    { category: 'AI & CV', items: ['OpenCV', 'TensorFlow', 'YOLO', 'MindSpore'] },
+  ];
+
+  const experiences = [
+    {
+      title: 'IT Technical Support & Web Developer',
+      company: 'Glam Moda',
+      period: '2024 - 2026',
+      highlights: [
+        '"Shopify specialization", "System optimization","Digital Marketing"',
+      ],
+    },
+    {
+      title: 'President & Founder – IoT Club',
+      company: 'University of Technology Bahrain',
+      period: '2023 - Present (3 Years)',
+      highlights: [
+        'Led 130+ active members", "Organized quarterly innovation challenges", "Award-winning projects',
+      ],
+    },
+    {
+      title: 'Robotics& IoT Workshop Instructor',
+      company: 'University of Technology Bahrain',
+      period: '2023 - Present (3 Years)',
+      highlights: [
+        '"Led workshops", " Robot Competition ", "Mentored 40+ students"',
+      ],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#030014] text-white font-sans selection:bg-purple-500/30 overflow-x-hidden">
       {/* BACKGROUND: Dot Pattern */}
@@ -116,7 +149,7 @@ const Portfolio = () => {
       </h3>
 
       <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">
-        Bahrain (Riffa)
+        MANAMA, BAHRAIN
       </p>
     </div>
   </div>
@@ -203,7 +236,7 @@ const Portfolio = () => {
     {/* Image Box */}
     <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
       <img
-        src="/2.png"
+        src="/Huawie.png"
         alt="TECHTRAP"
         className="w-full h-[280px] object-cover"
       />
@@ -222,43 +255,264 @@ const Portfolio = () => {
     ))}
   
 
+         {/* Advanced Firefighter Robot */}
+<div className="group">
+
+  {/* Top Small Label */}
+  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
+    03 — Robotics
+  </p>
+
+  {/* Title */}
+  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+    FireX Robot
+  </h3>
+
+  {/* Main Card */}
+  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+
+    {/* Description */}
+    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
+      Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.
+    </p>
+
+    {/* Image Box */}
+    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+      <img
+        src="/7.jpeg"
+        alt="FireX Robot"
+        className="w-full h-[280px] object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Tech Tags */}
+  <div className="flex flex-wrap gap-3 mt-5">
+    {["ESP32", "C++", "UI Dashboard", "MQTT", "AI"].map((tech) => (
+      <span
+        key={tech}
+        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
+      >
+        {tech}
+      </span>
+    ))}
+  
+
                      </div>
                 </div>
-                {/* Advanced Firefighter Robot */}
-                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">03 — Robotics</p>
-                    <h3 className="text-3xl font-black mb-4">smart Firefighter Robot</h3>
-                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
-                        <img src="/3.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
+
+                         {/* Advanced Computer Vision Projects */}
+<div className="group">
+
+  {/* Top Small Label */}
+  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
+    04 — Computer Vision
+  </p>
+
+  {/* Title */}
+  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+    Advanced Computer Vision Projects
+  </h3>
+
+  {/* Main Card */}
+  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+
+    {/* Description */}
+    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
+      Advanced Computer Vision Projects with AI-powered image processing and analysis.
+    </p>
+
+    {/* Image Box */}
+    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+      <img
+        src="/MV.jpeg"
+        alt="CV Projects"
+        className="w-full h-[280px] object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Tech Tags */}
+  <div className="flex flex-wrap gap-3 mt-5">
+    {["Computer Vision", "Deep Learning", "PYTHON", "OPENCV", "TensorFlow"].map((tech) => (
+      <span
+        key={tech}
+        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
+      >
+        {tech}
+      </span>
+    ))}
+    </div>
+  </div>
+
+                         {/* IoT-Based Automation Systems */}
+<div className="group">
+
+  {/* Top Small Label */}
+  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
+    05 — IoT Systems
+  </p>
+
+  {/* Title */}
+  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+    IoT-Based Automation Systems
+  </h3>
+
+  {/* Main Card */}
+  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+
+    {/* Description */}
+    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
+      IoT-Based Automation Systems with real-time monitoring and control capabilities.
+    </p>
+
+    {/* Image Box */}
+    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+      <img
+        src="/8.jpeg"
+        alt="IoT Projects"
+        className="w-full h-[280px] object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Tech Tags */}
+  <div className="flex flex-wrap gap-3 mt-5">
+    {["Embedded Systems Development", "Automation", "PLC Basics", "Cloud IoT Platform", "Sensor Integration"].map((tech) => (
+      <span
+        key={tech}
+        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
+      >
+        {tech}
+      </span>
+    ))}
+    </div>
+  </div>
+                           {/* Robonexus */}
+<div className="group">
+
+  {/* Top Small Label */}
+  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
+    06 — World champion Robotics Competition
+  </p>
+
+  {/* Title */}
+  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
+    World champion Robotics Competition
+  </h3>
+
+  {/* Main Card */}
+  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+
+    {/* Description */}
+    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
+      Combat Robotics Competition with innovative robot design and battle strategies.
+    </p>
+
+    {/* Image Box */}
+    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+      <img
+        src="/9.jpeg"
+        alt="Robotics Projects"
+        className="w-full h-[280px] object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Tech Tags */}
+  <div className="flex flex-wrap gap-3 mt-5">
+    {["Embedded Systems ", "PCB Design", "Battle Tactics", "Combat Robotics", "Mechanical Engineering"].map((tech) => (
+      <span
+        key={tech}
+        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
+      >
+        {tech}
+      </span>
+    ))}
+    </div>
+  </div>
+ </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-6 bg-slate-800/50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Technical Skills</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {skills.map((skill, idx) => (
+              <div key={idx} className="bg-slate-700/50 border border-teal-500/20 rounded-xl p-6">
+                <h3 className="font-bold text-teal-400 mb-4 uppercase text-xs tracking-widest">{skill.category}</h3>
+                <div className="space-y-2">
+                  {skill.items.map((item, iidx) => (
+                    <div key={iidx} className="text-gray-300 text-sm flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-teal-400 rounded-full shadow-[0_0_5px_rgba(45,212,191,0.5)]"></div> {item}
                     </div>
+                  ))}
                 </div>
-                {/* Advanced Computer Vision Projects */}
-                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">04 — AI/MV</p>
-                    <h3 className="text-3xl font-black mb-4">Advanced Computer Vision Projects</h3>
-                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
-                        <img src="/4.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
-                    </div>
-                </div>
-                {/* IoT-Based Automation Systems */}
-                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">05 — IoT</p>
-                    <h3 className="text-3xl font-black mb-4">IoT-Based Automation Systems</h3>
-                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
-                        <img src="/5.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
-                    </div>
-                </div>
-                {/* Full-Stack Web Platforms */}
-                <div className="group bg-[#0a0a0f] border border-white/5 rounded-[3rem] overflow-hidden hover:border-white/20 transition-all duration-500 p-10">
-                    <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">06 — Full-Stack Web</p>
-                    <h3 className="text-3xl font-black mb-4">Full-Stack Web Platforms</h3>
-                    <div className="mt-8 h-64 bg-gradient-to-br from-purple-500/20 to-pink-600/20 rounded-[2rem] border border-white/5 flex items-center justify-center p-6">
-                        <img src="/6.png" className="w-full h-full object-contain opacity-80 group-hover:scale-105 transition-transform" alt="AI" />
-                    </div>
-                </div>
-             </div>
-         </section>
-       </main>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Professional Experience</h2>
+          <div className="space-y-8">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="border-l-2 border-teal-500 pl-8 relative">
+                <div className="absolute -left-[9px] top-0 w-4 h-4 bg-teal-500 rounded-full border-4 border-[#020617]"></div>
+                <h3 className="text-2xl font-bold text-teal-400 mb-1">{exp.title}</h3>
+                <p className="text-gray-400 mb-4 text-sm uppercase tracking-wider">{exp.company} • {exp.period}</p>
+                <ul className="space-y-2">
+                  {exp.highlights.map((highlight, hidx) => (
+                    <li key={hidx} className="text-gray-300 text-sm flex items-start gap-2">
+                      <ChevronRight size={14} className="mt-1 text-teal-500 min-w-[14px]" /> {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-6 bg-gradient-to-r from-teal-600/10 to-transparent border-t border-teal-500/20 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 uppercase tracking-wide">Let's Work Together</h2>
+          <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto"> Open to exciting opportunities in AI, computer vision, and robotics. Let's build the future together. </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="mailto:Abdallaelsiddig.m@gmail.com" 
+              className="bg-teal-500 hover:bg-teal-600 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20"
+            >
+              <Mail size={20} /> Get In Touch
+            </a>
+            <a
+              href="/Abdalla-Elsiddig.Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 hover:bg-white/20 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-white/10 shadow-lg shadow-white/10"
+            >
+              <ExternalLink size={20} /> Review Resume
+            </a>
+            <a
+              href="/Abdalla-Elsiddig.Resume.pdf"
+              download
+              className="bg-slate-800 hover:bg-slate-700 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-teal-500/20 shadow-lg shadow-teal-500/20"
+            >
+              <FileText size={20} /> Download Resume
+            </a>
+          </div>
+          <div className="mt-16 pt-8 border-t border-white/5 text-gray-500 text-xs tracking-widest uppercase">
+            <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com •  Bahrain</p>
+            <p>© 2026 Abdalla Elradi. All rights reserved.</p>
+          </div>
+        </div>
+      </section>
 
       {/* FOOTER */}
       <footer className="border-t border-white/5 bg-[#030014] py-16 px-6 text-center">

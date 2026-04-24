@@ -4,7 +4,7 @@ import {
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, Menu,
   ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
-  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText 
+  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote 
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -123,92 +123,88 @@ const Portfolio = () => {
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         
         {/* HERO GRID */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 auto-rows-min">
           
           {/* NAME CARD */}
-          <div className="md:col-span-4 bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-center items-center text-center shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">
-            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-1 text-cyan-200 drop-shadow-[0_0_28px_rgba(56,_189,_248,_0.90)]">
-              ABDALLA<br/><span className="text-gray-400">ELSIDDIG</span>
-            </h1>
-            <div className="mt-4 flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-400/15 rounded-full">
-              <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_12px_rgba(56,_189,_248,_0.6)]"></span>
-              <p className="text-[10px] text-cyan-200 font-bold uppercase tracking-[0.2em]">Informatics Engineer</p>
+          <div className="md:col-span-4 bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-cyan-200 drop-shadow-[0_0_28px_rgba(56,_189,_248,_0.90)]">
+                ABDALLA<br />
+                <span className="text-gray-400">ELSIDDIG</span>
+              </h1>
+              <p className="text-sm text-gray-400 leading-relaxed">Informatics engineer with a passion for intelligent systems, robotics, and automation.</p>
+            </div>
+            <div className="mt-8 flex flex-col gap-4">
+              <div className="flex items-center gap-2 px-3 py-2 bg-cyan-500/10 border border-cyan-400/15 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_12px_rgba(56,_189,_248,_0.6)]"></span>
+                <p className="text-[10px] text-cyan-200 font-black uppercase tracking-[0.2em]">Informatics Engineer</p>
+              </div>
+              <div className="rounded-[1.75rem] overflow-hidden border border-white/10 bg-[#06070d] shadow-inner">
+                <img src={mindsetSources[mindsetIndex]} alt={`Mindset image ${mindsetIndex + 1}`} className="w-full h-56 object-cover" />
+              </div>
             </div>
           </div>
 
           {/* MAIN PHOTO */}
-          <div className="md:col-span-4 h-[400px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden group relative">
-            <img 
-                src={photoSources[photoIndex]} 
-                className="w-full h-full object-cover" 
-                alt={`Profile image ${photoIndex + 1}`} 
+          <div className="md:col-span-4 md:row-span-2 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)]">
+            <img
+              src={photoSources[photoIndex]}
+              className="w-full h-full object-cover"
+              alt={`Profile image ${photoIndex + 1}`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
           </div>
 
           {/* CRAFT */}
-          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between min-h-[540px] shadow-[0_0_30px_rgba(59,_130,_246,_0.12)]">
+          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_0_30px_rgba(59,_130,_246,_0.12)]">
             <div>
-                <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2">
-                    <Cpu size={22} className="text-[#1bd1e3]" /> CRAFT
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-8">
-                    Demonstrated expertise in <span className="text-white font-medium">artificial intelligence, computer vision, IoT, and robotics</span> with <span className="text-white font-medium">1.5+ years of professional experience</span> and a drive for emerging technologies.
-                </p>
+              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-cyan-300">
+                <Cpu size={22} className="text-cyan-300" /> CRAFT
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-8">
+                Demonstrated expertise in <span className="text-white font-medium">artificial intelligence, computer vision, IoT, and robotics</span>, with <span className="text-white font-medium">1.5+ years of professional experience</span> building innovative systems.
+              </p>
             </div>
-            <div className="flex flex-wrap gap-3 mt-4">
-                {['AI', 'Python', 'OpenCV', 'Automation'].map(t => (
-                    <span key={t} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-gray-300 uppercase">{t}</span>
-                ))}
-            </div>
-          </div>
-
-          {/* MINDSET (Basketball) */}
-          <div className="md:col-span-8 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col md:flex-row gap-10 overflow-hidden group">
-            <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-2 text-orange-400">
-                    <Dribbble size={22} /> MINDSET
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                    Excellence is a habit. As a <span className="text-white font-medium italic">Basketball Player</span>, I bring the same discipline and tactical focus to my engineering projects.
-                </p>
-            </div>
-            <div className="w-full md:w-[420px] aspect-square rounded-[2.5rem] border border-white/10 bg-[#06070d] p-4 flex items-center justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
-              <div className="w-full h-full rounded-[2rem] overflow-hidden border border-white/5 bg-black shadow-inner">
-                <img
-                  src={mindsetSources[mindsetIndex]}
-                  className="w-full h-full object-cover transition-all duration-700"
-                  alt={`Mindset image ${mindsetIndex + 1}`}
-                />
-              </div>
+            <div className="flex flex-wrap gap-3">
+              {['AI', 'Python', 'OpenCV', 'Automation'].map((t) => (
+                <span key={t} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-gray-300 uppercase">{t}</span>
+              ))}
             </div>
           </div>
 
-          {/* LOCATION (Manama) */}
-          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden group min-h-[360px]">
-            {/* Background Glow */}
+          {/* MINDSET */}
+          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+            <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
+              <Dribbble size={22} /> MINDSET
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Excellence is a habit. <span className="text-white font-medium italic">Basketball</span> taught me discipline, focus, and leadership — qualities I apply to every engineering challenge.
+            </p>
+          </div>
+
+          {/* QUOTE */}
+          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+            <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-300">
+              <Quote size={28} />
+            </div>
+            <p className="text-white text-xl md:text-2xl font-black leading-tight">
+              “Build with purpose. Lead with vision.”
+            </p>
+          </div>
+
+          {/* LOCATION */}
+          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)]">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
-
-            {/* Background Image */}
-            <img
-              src="/manama.png"
-              alt="Manama"
-              className="absolute inset-0 w-full h-full object-cover opacity-15"
-            />
-
-            {/* Content */}
-            <div className="relative z-10 flex flex-col justify-between h-full">
-              <MapPin className="text-purple-400" size={22} />
-
-              <div>
-                <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight">
-                  Manama, Bahrain
-                </h3>
-
-                <p className="text-[12px] md:text-[13px] text-gray-400 uppercase mt-2 font-semibold tracking-[0.25em]">
-                  26.2235° N, 50.5876° E
-                </p>
+            <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
+                <MapPin className="text-purple-400" size={22} />
+                <span className="text-[10px] uppercase tracking-[0.35em] text-gray-500">Location</span>
               </div>
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3">Manama, Bahrain</h3>
+              <p className="text-[12px] md:text-[13px] text-gray-400 uppercase font-semibold tracking-[0.25em]">
+                26.2235°N, 50.5876°E
+              </p>
             </div>
           </div>
         </section>
@@ -270,7 +266,7 @@ const Portfolio = () => {
 
             <div className="group">
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">04 — Computer Vision</p>
-              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">Advanced Computer Vision Projects</h3>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight"> Computer Vision Projects</h3>
               <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
                 <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Advanced Computer Vision Projects with AI-powered image processing and analysis.</p>
                 <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
@@ -302,7 +298,7 @@ const Portfolio = () => {
 
             <div className="group">
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">06 — World champion Robotics Competition</p>
-              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">World champion Robotics Competition</h3>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">Robotics Competition(Robonexus)</h3>
               <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
                 <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Combat Robotics Competition with innovative robot design and battle strategies.</p>
                 <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">

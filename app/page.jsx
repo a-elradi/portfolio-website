@@ -157,283 +157,109 @@ const Portfolio = () => {
 </section>
         {/* PROJECTS SECTION */}
         <section className="mb-32">
-            <div className="text-center mb-16">
-                <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">PORTFOLIO</p>
-                <h2 className="text-5xl font-black mt-4">Featured<span className="text-purple-500">projects</span></h2>
+          <div className="text-center mb-16">
+            <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">PORTFOLIO</p>
+            <h2 className="text-5xl font-black mt-4">Featured <span className="text-purple-500">projects</span></h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">01 — Robotics</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">AMR Warehouse Robot</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/1.png" alt="AMR Warehouse Robot" className="w-full h-[280px] object-cover" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['ROS', 'SLAM', 'PYTHON', 'OPENCV', 'YOLO'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
             </div>
 
-           <div className="grid md:grid-cols-2 gap-8">
-
-               {/* AMR Project */}
-               <div className="group">
-
-               {/* Top Small Label */}
-               <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-               01 — Robotics
-                 </p>
-
-         {/* Title */}
-         <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-         AMR Warehouse Robot
-         </h3>
-
-        {/* Main Card */}
-         <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-        {/* Description */}
-         <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-          Autonomous mobile robot with SLAM navigation, computer vision,
-          and warehouse automation for smart logistics.
-          </p>
-
-         {/* Image Box */}
-         <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-          <img
-          src="/1.png"
-          alt="AMR Warehouse Robot"
-          className="w-full h-[280px] object-cover"
-         />
-       </div>
-     </div>
-
-    {/* Tech Tags */}
-    <div className="flex flex-wrap gap-3 mt-5">
-      {["ROS", "SLAM", "PYTHON", "OPENCV", "YOLO"].map((tech) => (
-        <span
-          key={tech}
-          className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-        >
-          {tech}
-        </span>
-      ))}
-    
-
-                     </div>
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">02 — AI Healthcare</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">TECHTRAP</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">TECHTRAP AI-Powered Rehabilitation & Educational System.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/Huawie.png" alt="TECHTRAP" className="w-full h-[280px] object-cover" />
                 </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['Machine Learning', 'MindSpore', 'PYTHON', 'OPENCV', 'AI'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
+            </div>
 
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">03 — Robotics</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">FireX Robot</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/7.jpeg" alt="FireX Robot" className="w-full h-[280px] object-cover" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['ESP32', 'C++', 'UI Dashboard', 'MQTT', 'AI'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
+            </div>
 
-         {/* AI-Powered Rehabilitation & Educational System (TECHTRAP) */}
-<div className="group">
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">04 — Computer Vision</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">Advanced Computer Vision Projects</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Advanced Computer Vision Projects with AI-powered image processing and analysis.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/MV.jpeg" alt="CV Projects" className="w-full h-[280px] object-cover" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['Computer Vision', 'Deep Learning', 'PYTHON', 'OPENCV', 'TensorFlow'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
+            </div>
 
-  {/* Top Small Label */}
-  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-    02 — AI Healthcare
-  </p>
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">05 — IoT Systems</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">IoT-Based Automation Systems</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">IoT-Based Automation Systems with real-time monitoring and control capabilities.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/8.jpeg" alt="IoT Projects" className="w-full h-[280px] object-cover" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['Embedded Systems Development', 'Automation', 'PLC Basics', 'Cloud IoT Platform', 'Sensor Integration'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
+            </div>
 
-  {/* Title */}
-  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-    TECHTRAP
-  </h3>
-
-  {/* Main Card */}
-  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-    {/* Description */}
-    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-      TECHTRAP AI-Powered Rehabilitation & Educational System.
-    </p>
-
-    {/* Image Box */}
-    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-      <img
-        src="/Huawie.png"
-        alt="TECHTRAP"
-        className="w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-  {/* Tech Tags */}
-  <div className="flex flex-wrap gap-3 mt-5">
-    {["Machine Learning", "MindSpore", "PYTHON", "OPENCV", "AI"].map((tech) => (
-      <span
-        key={tech}
-        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-      >
-        {tech}
-      </span>
-    ))}
-  </div>
-</div>
-
-         {/* Advanced Firefighter Robot */}
-<div className="group">
-
-  {/* Top Small Label */}
-  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-    03 — Robotics
-  </p>
-
-  {/* Title */}
-  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-    FireX Robot
-  </h3>
-
-  {/* Main Card */}
-  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-    {/* Description */}
-    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-      Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.
-    </p>
-
-    {/* Image Box */}
-    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-      <img
-        src="/7.jpeg"
-        alt="FireX Robot"
-        className="w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-  {/* Tech Tags */}
-  <div className="flex flex-wrap gap-3 mt-5">
-    {["ESP32", "C++", "UI Dashboard", "MQTT", "AI"].map((tech) => (
-      <span
-        key={tech}
-        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-      >
-        {tech}
-      </span>
-    ))}
-  
-</div>
-</div>
-
-                         {/* Advanced Computer Vision Projects */}
-<div className="group">
-
-  {/* Top Small Label */}
-  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-    04 — Computer Vision
-  </p>
-
-  {/* Title */}
-  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-    Advanced Computer Vision Projects
-  </h3>
-
-  {/* Main Card */}
-  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-    {/* Description */}
-    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-      Advanced Computer Vision Projects with AI-powered image processing and analysis.
-    </p>
-
-    {/* Image Box */}
-    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-      <img
-        src="/MV.jpeg"
-        alt="CV Projects"
-        className="w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-  {/* Tech Tags */}
-  <div className="flex flex-wrap gap-3 mt-5">
-    {["Computer Vision", "Deep Learning", "PYTHON", "OPENCV", "TensorFlow"].map((tech) => (
-      <span
-        key={tech}
-        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-      >
-        {tech}
-      </span>
-    ))}
-    </div>
-  </div>
-
-                         {/* IoT-Based Automation Systems */}
-<div className="group">
-
-  {/* Top Small Label */}
-  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-    05 — IoT Systems
-  </p>
-
-  {/* Title */}
-  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-    IoT-Based Automation Systems
-  </h3>
-
-  {/* Main Card */}
-  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-    {/* Description */}
-    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-      IoT-Based Automation Systems with real-time monitoring and control capabilities.
-    </p>
-
-    {/* Image Box */}
-    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-      <img
-        src="/8.jpeg"
-        alt="IoT Projects"
-        className="w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-  {/* Tech Tags */}
-  <div className="flex flex-wrap gap-3 mt-5">
-    {["Embedded Systems Development", "Automation", "PLC Basics", "Cloud IoT Platform", "Sensor Integration"].map((tech) => (
-      <span
-        key={tech}
-        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-      >
-        {tech}
-      </span>
-    ))}
-    </div>
-  </div>
-                           {/* Robonexus */}
-<div className="group">
-
-  {/* Top Small Label */}
-  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">
-    06 — World champion Robotics Competition
-  </p>
-
-  {/* Title */}
-  <h3 className="text-4xl font-black text-white mb-6 tracking-tight">
-    World champion Robotics Competition
-  </h3>
-
-  {/* Main Card */}
-  <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
-
-    {/* Description */}
-    <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">
-      Combat Robotics Competition with innovative robot design and battle strategies.
-    </p>
-
-    {/* Image Box */}
-    <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
-      <img
-        src="/9.jpeg"
-        alt="Robotics Projects"
-        className="w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-  {/* Tech Tags */}
-  <div className="flex flex-wrap gap-3 mt-5">
-    {["Embedded Systems ", "PCB Design", "Battle Tactics", "Combat Robotics", "Mechanical Engineering"].map((tech) => (
-      <span
-        key={tech}
-        className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide"
-      >
-        {tech}
-      </span>
-    ))}
-    </div>
-  </div>
- </div>
-        </div>
-      </section>
+            <div className="group">
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">06 — World champion Robotics Competition</p>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">World champion Robotics Competition</h3>
+              <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
+                <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Combat Robotics Competition with innovative robot design and battle strategies.</p>
+                <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">
+                  <img src="/9.jpeg" alt="Robotics Projects" className="w-full h-[280px] object-cover" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-5">
+                {['Embedded Systems', 'PCB Design', 'Battle Tactics', 'Combat Robotics', 'Mechanical Engineering'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 rounded-full bg-[#111118] border border-white/5 text-[11px] font-bold text-gray-400 uppercase tracking-wide">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6 bg-slate-800/50">
@@ -513,6 +339,7 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+    </main>
 
       {/* FOOTER */}
       <footer className="border-t border-white/5 bg-[#030014] py-16 px-6 text-center">

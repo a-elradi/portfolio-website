@@ -169,7 +169,7 @@ const Portfolio = () => {
           </div>
 
           {/* MINDSET */}
-          <div className="md:col-span-4 md:row-start-2 h-[550px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+          <div className="md:col-span-4 md:row-start-1 h-[550px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
             <div>
               <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
                 <Dribbble size={22} /> MINDSET
@@ -198,7 +198,7 @@ const Portfolio = () => {
           </div>
 
           {/* LOCATION */}
-          <div className="md:col-span-4 md:col-start-9 md:row-start-2 min-h-[170px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)]">
+          <div className="md:col-span-4 md:col-start-9 md:row-start-2 min-h-[160px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)]">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
             <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">

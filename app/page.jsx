@@ -12,7 +12,7 @@ const Portfolio = () => {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [mindsetIndex, setMindsetIndex] = useState(0);
 
-  const photoSources = ['/p1.png', '/p2.png', '/p3.png', '/p4.png', '/p5.png'];
+  const photoSources = ['/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
   const mindsetSources = ['/c1.jpeg', '/c2.jpeg', '/c3.jpeg', '/c4.jpeg'];
   const sectionIds = {
     Home: 'home',
@@ -175,7 +175,7 @@ const Portfolio = () => {
             </div>
             <div className="w-full md:w-80 aspect-square rounded-2xl overflow-hidden border border-white/10 relative">
                 <img 
-                    src="/bball.Jpg" 
+                    src={mindsetSources[mindsetIndex]} 
                     className="w-full h-full object-cover grayscale brightness-0 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     alt={`Mindset image ${mindsetIndex + 1}`} 
                 />

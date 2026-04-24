@@ -123,7 +123,7 @@ const Portfolio = () => {
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         
         {/* HERO GRID */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 items-start">
           
           {/* NAME CARD */}
           <div className="md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">

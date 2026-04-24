@@ -123,7 +123,7 @@ const Portfolio = () => {
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         
         {/* HERO GRID */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 auto-rows-min">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
           
           {/* NAME CARD */}
           <div className="md:col-span-4 bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">
@@ -134,19 +134,16 @@ const Portfolio = () => {
               </h1>
               <p className="text-sm text-gray-400 leading-relaxed">Informatics engineer with a passion for intelligent systems, robotics, and automation.</p>
             </div>
-            <div className="mt-8 flex flex-col gap-4">
-              <div className="flex items-center gap-2 px-3 py-2 bg-cyan-500/10 border border-cyan-400/15 rounded-full">
-                <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_12px_rgba(56,_189,_248,_0.6)]"></span>
-                <p className="text-[10px] text-cyan-200 font-black uppercase tracking-[0.2em]">Informatics Engineer</p>
-              </div>
-              <div className="rounded-[1.75rem] overflow-hidden border border-white/10 bg-[#06070d] shadow-inner">
-                <img src={mindsetSources[mindsetIndex]} alt={`Mindset image ${mindsetIndex + 1}`} className="w-full h-56 object-cover" />
-              </div>
+            <div className="mt-8 flex items-center justify-center px-4 py-3 bg-[#02050c] border border-white/10 rounded-[1.75rem]">
+              <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-cyan-200 font-black">
+                <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_12px_rgba(56,_189,_248,_0.6)]" />
+                Informatics Engineer
+              </span>
             </div>
           </div>
 
           {/* MAIN PHOTO */}
-          <div className="md:col-span-4 md:row-span-2 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)]">
+          <div className="md:col-span-4 md:row-span-2 bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)] relative">
             <img
               src={photoSources[photoIndex]}
               className="w-full h-full object-cover"
@@ -173,13 +170,22 @@ const Portfolio = () => {
           </div>
 
           {/* MINDSET */}
-          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
-            <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
-              <Dribbble size={22} /> MINDSET
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Excellence is a habit. <span className="text-white font-medium italic">Basketball</span> taught me discipline, focus, and leadership — qualities I apply to every engineering challenge.
-            </p>
+          <div className="md:col-span-4 bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+            <div>
+              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
+                <Dribbble size={22} /> MINDSET
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Excellence is a habit. <span className="text-white font-medium italic">Basketball</span> taught me discipline, focus, and leadership — qualities I apply to every engineering challenge.
+              </p>
+            </div>
+            <div className="rounded-[2rem] overflow-hidden border border-white/10 bg-[#06070d] shadow-inner">
+              <img
+                src={mindsetSources[mindsetIndex]}
+                alt={`Mindset image ${mindsetIndex + 1}`}
+                className="w-full h-72 object-cover"
+              />
+            </div>
           </div>
 
           {/* QUOTE */}

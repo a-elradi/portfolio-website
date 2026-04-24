@@ -126,7 +126,7 @@ const Portfolio = () => {
         <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
           
           {/* NAME CARD */}
-          <div className="md:col-span-4 md:col-start-1 md:row-span-1 min-h-[250px] bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">
+          <div className="md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] bg-[#04050b] border border-cyan-400/10 rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)]">
             <div>
               <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-cyan-200 drop-shadow-[0_0_28px_rgba(56,_189,_248,_0.90)]">
                 ABDALLA<br />
@@ -142,7 +142,7 @@ const Portfolio = () => {
           </div>
 
           {/* MAIN PHOTO */}
-          <div className="md:col-span-4 md:col-start-5 md:row-span-1 h-[610px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)] relative">
+          <div className="md:col-span-4 md:col-start-5 md:row-span-1 h-[550px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)] relative">
             <img
               src={photoSources[photoIndex]}
               className="w-full h-full object-cover"
@@ -152,7 +152,7 @@ const Portfolio = () => {
           </div>
 
           {/* CRAFT */}
-          <div className="md:col-span-4 md:col-start-9 md:row-span-1 min-h-[590px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_0_30px_rgba(59,_130,_246,_0.12)]">
+          <div className="md:col-span-4 md:col-start-9 md:row-span-1 min-h-[550px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_0_30px_rgba(59,_130,_246,_0.12)]">
             <div>
               <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-cyan-300">
                 <Cpu size={22} className="text-cyan-300" /> CRAFT
@@ -188,7 +188,7 @@ const Portfolio = () => {
           </div>
 
           {/* QUOTE */}
-          <div className="md:col-span-4 md:col-start-9 md:row-span-1 min-h-[170px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+          <div className="md:col-span-4 md:col-start-5md:row-span-1 min-h-[170px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
             <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-300">
               <Quote size={28} />
             </div>
@@ -198,7 +198,7 @@ const Portfolio = () => {
           </div>
 
           {/* LOCATION */}
-          <div className="md:col-span-4 md:col-start-9 md:row-start-2 min-h-[210px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)]">
+          <div className="md:col-span-4 md:col-start-9 md:row-start-2 min-h-[170px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)]">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
             <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">

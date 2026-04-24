@@ -253,7 +253,8 @@ const Portfolio = () => {
         {tech}
       </span>
     ))}
-  
+  </div>
+</div>
 
          {/* Advanced Firefighter Robot */}
 <div className="group">
@@ -297,9 +298,8 @@ const Portfolio = () => {
       </span>
     ))}
   
-
-                     </div>
-                </div>
+</div>
+</div>
 
                          {/* Advanced Computer Vision Projects */}
 <div className="group">

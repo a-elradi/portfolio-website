@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, Menu,
@@ -9,6 +9,61 @@ import {
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [mindsetIndex, setMindsetIndex] = useState(0);
+
+  const photoSources = ['/p1.png', '/p2.png', '/p3.png', '/p4.png', '/p5.png'];
+  const mindsetSources = ['/c1.jpeg', '/c2.jpeg', '/c3.jpeg', '/c4.jpeg'];
+  const sectionIds = {
+    Home: 'home',
+    Projects: 'projects',
+    Skills: 'skills',
+    Experience: 'experience',
+    Contact: 'contact',
+  };
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setPhotoIndex((current) => (current + 1) % photoSources.length);
+    }, 3000);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const mindsetInterval = window.setInterval(() => {
+      setMindsetIndex((current) => (current + 1) % mindsetSources.length);
+    }, 2000);
+    return () => window.clearInterval(mindsetInterval);
+  }, []);
+
+  useEffect(() => {
+    const sections = Object.entries(sectionIds);
+    const handleScroll = () => {
+      const entries = sections
+        .map(([tab, id]) => {
+          const el = document.getElementById(id);
+          if (!el) return null;
+          return { tab, top: el.getBoundingClientRect().top };
+        })
+        .filter(Boolean);
+      if (entries.length === 0) return;
+      const nearest = entries.reduce((closest, entry) => {
+        return Math.abs(entry.top - 120) < Math.abs(closest.top - 120) ? entry : closest;
+      }, entries[0]);
+      setActiveTab(nearest.tab);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (tab) => {
+    setActiveTab(tab);
+    const target = document.getElementById(sectionIds[tab]);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const skills = [
     { category: 'Languages', items: ['Python', 'C++', 'JavaScript', 'SQL'] },
@@ -52,10 +107,10 @@ const Portfolio = () => {
 
       {/* FLOATING NAV */}
       <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 bg-[#0a0a0f]/80 backdrop-blur-2xl border border-white/5 rounded-full shadow-2xl">
-        {['Home', 'About', 'Projects', 'Skills'].map((tab) => (
+        {['Home', 'Projects', 'Skills', 'Experience', 'Contact'].map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleNavClick(tab)}
             className={`px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all ${
               activeTab === tab ? 'bg-white/10 text-white shadow-inner' : 'text-gray-500 hover:text-gray-300'
             }`}
@@ -65,7 +120,7 @@ const Portfolio = () => {
         ))}
       </nav>
 
-      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
+      <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
         
         {/* HERO GRID */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24">
@@ -84,9 +139,9 @@ const Portfolio = () => {
           {/* MAIN PHOTO */}
           <div className="md:col-span-4 h-[400px] bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] overflow-hidden group relative">
             <img 
-                src="/profile.png" 
+                src={photoSources[photoIndex]} 
                 className="w-full h-full object-cover" 
-                alt="Abdalla Elsiddig" 
+                alt={`Profile image ${photoIndex + 1}`} 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
@@ -118,11 +173,11 @@ const Portfolio = () => {
                     Excellence is a habit. As a <span className="text-white font-medium italic">Basketball Player</span>, I bring the same discipline and tactical focus to my engineering projects.
                 </p>
             </div>
-            <div className="w-full md:w-64 h-48 md:h-auto rounded-2xl overflow-hidden border border-white/10 relative">
+            <div className="w-full md:w-80 aspect-square rounded-2xl overflow-hidden border border-white/10 relative">
                 <img 
-                    src="/bball.png" 
+                    src="/bball.Jpg" 
                     className="w-full h-full object-cover grayscale brightness-0 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                    alt="Basketball" 
+                    alt={`Mindset image ${mindsetIndex + 1}`} 
                 />
             </div>
           </div>
@@ -145,18 +200,18 @@ const Portfolio = () => {
 
     <div>
       <h3 className="text-2xl font-black uppercase tracking-tighter">
-        Manama
+        Manama,Bahrain
       </h3>
 
       <p className="text-[10px] text-gray-500 uppercase mt-1 font-bold tracking-[0.3em]">
-        MANAMA, BAHRAIN
+        26.2235° N, 50.5876° E
       </p>
     </div>
   </div>
 </div>
 </section>
         {/* PROJECTS SECTION */}
-        <section className="mb-32">
+        <section id="projects" className="mb-32">
           <div className="text-center mb-16">
             <p className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-500">PORTFOLIO</p>
             <h2 className="text-5xl font-black mt-4">Featured <span className="text-purple-500">projects</span></h2>
@@ -262,17 +317,17 @@ const Portfolio = () => {
         </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Technical Skills</h2>
+      <section id="skills" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10">
+          <h2 className="text-4xl font-black mb-12 uppercase tracking-wide text-white">Technical Skills</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {skills.map((skill, idx) => (
-              <div key={idx} className="bg-slate-700/50 border border-teal-500/20 rounded-xl p-6">
-                <h3 className="font-bold text-teal-400 mb-4 uppercase text-xs tracking-widest">{skill.category}</h3>
+              <div key={idx} className="bg-[#0f0f14] border border-white/10 rounded-[2rem] p-6">
+                <h3 className="font-bold text-white mb-4 uppercase text-xs tracking-widest">{skill.category}</h3>
                 <div className="space-y-2">
                   {skill.items.map((item, iidx) => (
                     <div key={iidx} className="text-gray-300 text-sm flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-teal-400 rounded-full shadow-[0_0_5px_rgba(45,212,191,0.5)]"></div> {item}
+                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_5px_rgba(139,92,246,0.45)]"></div> {item}
                     </div>
                   ))}
                 </div>
@@ -284,18 +339,17 @@ const Portfolio = () => {
 
       {/* Experience Section */}
       <section id="experience" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 uppercase tracking-wide">Professional Experience</h2>
+        <div className="max-w-7xl mx-auto bg-[#0a0a0f] border border-white/5 rounded-[2.5rem] p-10">
+          <h2 className="text-4xl font-black mb-12 uppercase tracking-wide text-white">Professional Experience</h2>
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="border-l-2 border-teal-500 pl-8 relative">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 bg-teal-500 rounded-full border-4 border-[#020617]"></div>
-                <h3 className="text-2xl font-bold text-teal-400 mb-1">{exp.title}</h3>
+              <div key={idx} className="bg-[#0f0f14] border border-white/10 rounded-[2rem] p-6">
+                <h3 className="text-2xl font-bold text-white mb-1">{exp.title}</h3>
                 <p className="text-gray-400 mb-4 text-sm uppercase tracking-wider">{exp.company} • {exp.period}</p>
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight, hidx) => (
                     <li key={hidx} className="text-gray-300 text-sm flex items-start gap-2">
-                      <ChevronRight size={14} className="mt-1 text-teal-500 min-w-[14px]" /> {highlight}
+                      <ChevronRight size={14} className="mt-1 text-purple-500 min-w-[14px]" /> {highlight}
                     </li>
                   ))}
                 </ul>

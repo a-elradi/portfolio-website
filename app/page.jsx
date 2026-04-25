@@ -169,7 +169,7 @@ const Portfolio = () => {
           </div>
 
           {/* MINDSET */}
-          <div className="md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-100 h-[550px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
+          <div className="md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-16 h-[550px] bg-[#04050b] border border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)]">
             <div>
               <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
                 <Dribbble size={22} /> MINDSET

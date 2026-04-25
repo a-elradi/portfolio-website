@@ -4,7 +4,7 @@ import {
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, Menu,
   ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
-  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Video 
+  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote 
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -111,8 +111,14 @@ const Portfolio = () => {
     { title: 'Microsoft Certificate', file: 'Microsoft Certificate.pdf', type: 'pdf' },
     { title: 'Professional Networking for Career Growth', file: 'Professional Networking for Career Growth.pdf', type: 'pdf' },
     { title: 'Python Essentials', file: 'PythonEssentials1.pdf', type: 'pdf' },
-    { title: 'Python Essentials Preview', file: 'python-essentials-1.1.png', type: 'image' },
+    { title: 'Altaawon Secondary School', file: 'Altaawon Secondary School.pdf', type: 'pdf' },
+    { title: 'RAS WORKSHOP', file: 'RAS WORKSHOP.pdf', type: 'pdf' },
   ];
+
+  const getCertificateBadgePath = (certificate) => {
+    const badgeName = `${certificate.title}.png`;
+    return `/certificates/${encodeURIComponent(badgeName)}`;
+  };
 
   return (
     <div className="min-h-screen bg-[#030014] text-white font-sans selection:bg-purple-500/30 overflow-x-hidden">
@@ -136,17 +142,9 @@ const Portfolio = () => {
         ))}
         <a
           href="#certificates"
-          className="ml-3 inline-flex items-center gap-2 rounded-full bg-white/5 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-200 border border-white/10 shadow-sm transition hover:bg-white/10"
+          className="ml-3 inline-flex items-center rounded-full bg-white/5 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-200 border border-white/10 shadow-sm transition hover:bg-white/10"
         >
-          <FileText size={14} />
           Certificates
-        </a>
-        <a
-          href="mailto:Abdallaelsiddig.m@gmail.com?subject=Book%20a%20Call"
-          className="ml-3 inline-flex items-center gap-2 rounded-full bg-purple-500 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg shadow-purple-500/20 transition hover:bg-purple-400"
-        >
-          <Video size={14} />
-          Book a Call
         </a>
       </nav>
 
@@ -169,13 +167,6 @@ const Portfolio = () => {
                 Informatics Engineer
               </span>
             </div>
-            <a
-              href="mailto:Abdallaelsiddig.m@gmail.com?subject=Book%20a%20Call"
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-purple-500 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-lg shadow-purple-500/20 transition hover:bg-purple-400"
-            >
-              <Video size={18} />
-              Book a Call
-            </a>
           </div>
 
           {/* MAIN PHOTO */}
@@ -393,13 +384,17 @@ const Portfolio = () => {
                 {certificate.type === 'image' ? (
                   <img src={`/certificates/${certificate.file}`} alt={certificate.title} className="h-64 w-full object-cover" />
                 ) : (
-                  <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-slate-900 via-[#06070d] to-slate-800">
-                    <div className="text-center">
-                      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/15 text-red-300 shadow-lg shadow-red-500/10">
-                        <FileText size={32} />
-                      </div>
-                      <p className="text-sm font-semibold text-white">PDF Certificate</p>
-                    </div>
+                  <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-slate-900 via-[#06070d] to-slate-800 p-6">
+                    <img
+                      src={getCertificateBadgePath(certificate)}
+                      alt={`${certificate.title} badge`}
+                      className="max-h-36 max-w-full object-contain"
+                      onError={(event) => {
+                        const target = event.currentTarget;
+                        target.onerror = null;
+                        target.src = getCertificateBadgePath(certificate).replace(/\.png$/i, '.jpg');
+                      }}
+                    />
                   </div>
                 )}
                 <div className="p-5">

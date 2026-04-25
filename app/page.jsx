@@ -140,12 +140,6 @@ const Portfolio = () => {
             {tab}
           </button>
         ))}
-        <a
-          href="#certificates"
-          className="ml-3 inline-flex items-center rounded-full bg-white/5 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-200 border border-white/10 shadow-sm transition hover:bg-white/10"
-        >
-          Certificates
-        </a>
       </nav>
 
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
@@ -331,7 +325,7 @@ const Portfolio = () => {
 
             <div className="group">
               <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.35em] mb-3">06 — World champion Robotics Competition</p>
-              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">Robotics Competition(Robonexus)</h3>
+              <h3 className="text-4xl font-black text-white mb-6 tracking-tight">Robonexus</h3>
               <div className="relative bg-[#0f0f14] border-[4px] border-[#111] rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500">
                 <p className="text-white text-lg font-medium leading-relaxed max-w-[480px] mb-8">Combat Robotics Competition with innovative robot design and battle strategies.</p>
                 <div className="rounded-[1.5rem] overflow-hidden border border-black/30 shadow-2xl">

@@ -4,7 +4,7 @@ import {
   Github, Linkedin, Mail, MapPin, 
   Cpu, Brain, Trophy, MessageSquare, Menu,
   ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
-  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, FilePdf, Video 
+  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Video 
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -138,7 +138,7 @@ const Portfolio = () => {
           href="#certificates"
           className="ml-3 inline-flex items-center gap-2 rounded-full bg-white/5 px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-gray-200 border border-white/10 shadow-sm transition hover:bg-white/10"
         >
-          <FilePdf size={14} />
+          <FileText size={14} />
           Certificates
         </a>
         <a
@@ -396,7 +396,7 @@ const Portfolio = () => {
                   <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-slate-900 via-[#06070d] to-slate-800">
                     <div className="text-center">
                       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/15 text-red-300 shadow-lg shadow-red-500/10">
-                        <FilePdf size={32} />
+                        <FileText size={32} />
                       </div>
                       <p className="text-sm font-semibold text-white">PDF Certificate</p>
                     </div>

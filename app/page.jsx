@@ -112,6 +112,8 @@ const Portfolio = () => {
   ];
 
   const certificateFiles = [
+    { title: ' Networking ', file: 'Networking.pdf', type: 'pdf' },
+    { title: 'IP Network Foundamental', file: 'IP Network Foundamental.pdf', type: 'pdf' },
     { title: '1 MILLION PROMPTERS', file: '1 MILLION PROMPTERS.pdf', type: 'pdf' },
     { title: 'First Aid Training', file: 'First Aid Training.pdf', type: 'pdf' },
     { title: 'Gemini Certified University Student', file: 'Gemini Certified University Student.pdf', type: 'pdf' },

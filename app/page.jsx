@@ -98,7 +98,7 @@ const Portfolio = () => {
       company: 'University of Technology Bahrain',
       period: '2023 - Present (3 Years)',
       highlights: [
-        'Led 130+ active members", "Organized quarterly innovation challenges", "Award-winning projects',
+        'Led 150+ active members", "Organized quarterly innovation challenges", "Award-winning projects',
       ],
     },
     {
@@ -190,7 +190,7 @@ const Portfolio = () => {
             <div>
               <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-cyan-200 drop-shadow-[0_0_28px_rgba(56,_189,_248,_0.90)]">
                 ABDALLA<br />
-                <span className="text-gray-400">ELSIDDIG</span>
+                <span className="text-gray-400">Elradi</span>
               </h1>
             </div>
             <div className="mt-8 flex items-center justify-center px-4 py-3 bg-[#02050c] border border-white/10 rounded-[1.75rem]">

@@ -112,8 +112,8 @@ const Portfolio = () => {
   ];
 
   const certificateFiles = [
-    { title: ' Hardware and Upgrade Support ', file: 'Hardware and Upgrade Support.pdf', type: 'pdf' },
-    { title: ' Getting Started with Cisco Packet Tracer ', file: 'Getting Started with Cisco Packet Tracer.pdf', type: 'pdf' },
+    { title: 'Hardware and Upgrade Support', file: 'Hardware and Upgrade Support.pdf', type: 'pdf' },
+    { title: 'Getting Started with Cisco Packet Tracer', file: 'Getting Started with Cisco Packet Tracer.pdf', type: 'pdf' },
     { title: 'Networking', file: 'Networking.pdf', type: 'pdf' },
     { title: 'IP Network Foundamental', file: 'IP Network Foundamental.pdf', type: 'pdf' },
     { title: '1 MILLION PROMPTERS', file: '1 MILLION PROMPTERS.pdf', type: 'pdf' },

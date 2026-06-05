@@ -112,6 +112,7 @@ const Portfolio = () => {
   ];
 
   const certificateFiles = [
+    { title: '1 MILLION PROMPTERS', file: '1 MILLION PROMPTERS.pdf', type: 'pdf' },
     { title: 'First Aid Training', file: 'First Aid Training.pdf', type: 'pdf' },
     { title: 'Gemini Certified University Student', file: 'Gemini Certified University Student.pdf', type: 'pdf' },
     { title: 'Google Ads Creative Certification', file: 'Google Ads Creative Certification.pdf', type: 'pdf' },
@@ -509,7 +510,7 @@ const Portfolio = () => {
       <footer className={`border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#030014]' : 'border-slate-200 bg-slate-50'}`}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className={`${isDarkMode ? 'text-gray-500' : 'text-slate-500'} text-xs font-black uppercase tracking-[0.2em]`}>
-                © 2026 Abdalla Elsiddig
+                © 2026 Abdalla Elradi
             </div>
             <div className="flex gap-8">
                 <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-slate-500 hover:text-slate-900'} cursor-pointer`} />

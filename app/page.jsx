@@ -6,12 +6,14 @@ import {
   ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
   GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Sun, Moon 
 } from 'lucide-react';
+import { IntroScreen } from './components/ui/intro-screen';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
   const [photoIndex, setPhotoIndex] = useState(0);
   const [mindsetIndex, setMindsetIndex] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
 
   const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
   const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
@@ -152,7 +154,9 @@ const Portfolio = () => {
   const tagClass = isDarkMode ? 'bg-[#111118] border border-white/5 text-gray-400' : 'bg-slate-100 border border-slate-300 text-slate-700';
 
   return (
-    <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-purple-500/30 overflow-x-hidden`}>
+    <>
+      {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
+      <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-purple-500/30 overflow-x-hidden`}>
       {/* BACKGROUND: Dot Pattern */}
       <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none" 
            style={{ backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
@@ -523,7 +527,8 @@ const Portfolio = () => {
             </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -131,7 +131,7 @@ function generateRandomPos(x, y, mag, width, height) {
 
 // Shrinks the font until `text` fits within maxWidth.
 function fitFontSize(ctx, text, maxWidth, maxHeight) {
-  let fontSize = Math.floor(maxHeight * 0.32);
+  let fontSize = Math.floor(maxHeight * 0.2);
   ctx.font = `900 ${fontSize}px Arial, sans-serif`;
   while (ctx.measureText(text).width > maxWidth && fontSize > 10) {
     fontSize -= 2;
@@ -160,8 +160,15 @@ export function ParticleTextEffect({
   const onCompleteRef = useRef(onComplete);
   const mouseRef = useRef({ x: 0, y: 0, isPressed: false, isRightClick: false });
 
-  const pixelSteps = 6;
   const drawAsPoints = true;
+  // Reference density tuned against a 1000x500 canvas; scale sampling
+  // spacing with canvas area so full-screen text stays legible instead
+  // of collapsing into a dense blob of particles.
+  const REFERENCE_AREA = 1000 * 500;
+  const getPixelSteps = (width, height) => {
+    const scale = Math.sqrt((width * height) / REFERENCE_AREA);
+    return Math.max(6, Math.round(6 * scale));
+  };
 
   onCompleteRef.current = onComplete;
 
@@ -191,6 +198,7 @@ export function ParticleTextEffect({
       const particles = particlesRef.current;
       let particleIndex = 0;
 
+      const pixelSteps = getPixelSteps(targetCanvas.width, targetCanvas.height);
       const coordsIndexes = [];
       for (let i = 0; i < pixels.length; i += pixelSteps * 4) {
         coordsIndexes.push(i);

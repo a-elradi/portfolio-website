@@ -10,6 +10,7 @@ export function IntroScreen({ onFinish }) {
 
   const finish = () => {
     setIsFading(true);
+    document.body.style.overflow = "";
     window.setTimeout(() => {
       onFinish();
     }, 600);

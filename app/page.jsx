@@ -8,6 +8,10 @@ import {
 } from 'lucide-react';
 import { IntroScreen } from './components/ui/intro-screen';
 import TubesCursorBackground from './components/ui/tubes-cursor-background';
+import ChatAgent from './components/ui/chat-agent';
+import AvailabilityCalendar from './components/ui/availability-calendar';
+import ServicesGrid from './components/ui/services-grid';
+import RequestModal from './components/ui/request-modal';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
@@ -15,6 +19,7 @@ const Portfolio = () => {
   const [mindsetIndex, setMindsetIndex] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
+  const [request, setRequest] = useState(null);
 
   const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
   const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
@@ -22,9 +27,16 @@ const Portfolio = () => {
     Home: 'home',
     Projects: 'projects',
     Skills: 'skills',
+    Services: 'services',
+    Availability: 'availability',
     Certificates: 'certificates',
     Experience: 'experience',
     Contact: 'contact',
+  };
+
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   useEffect(() => {
@@ -169,7 +181,7 @@ const Portfolio = () => {
 
       {/* FLOATING NAV */}
       <nav className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
-        {['Home', 'Projects', 'Skills', 'Certificates', 'Experience', 'Contact'].map((tab) => (
+        {['Home', 'Projects', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
           <button
             key={tab}
             onClick={() => handleNavClick(tab)}
@@ -411,6 +423,36 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>WHAT I OFFER</p>
+            <h2 className={`text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Services</h2>
+          </div>
+          <ServicesGrid
+            isDarkMode={isDarkMode}
+            themeClasses={themeClasses}
+            onRequestService={(serviceName) => setRequest({ type: 'service', serviceName })}
+          />
+        </div>
+      </section>
+
+      {/* Availability Section */}
+      <section id="availability" className="py-20 px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
+          <div className="mb-8">
+            <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>SCHEDULE</p>
+            <h2 className={`text-4xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Availability</h2>
+          </div>
+          <AvailabilityCalendar
+            isDarkMode={isDarkMode}
+            themeClasses={themeClasses}
+            onRequestDate={(date) => setRequest({ type: 'booking', date })}
+          />
+        </div>
+      </section>
+
       {/* Certificates Section */}
       <section id="certificates" className="py-20 px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
@@ -522,7 +564,7 @@ const Portfolio = () => {
     </main>
 
       {/* FOOTER */}
-      <footer className={`border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#030014]' : 'border-neutral-200 bg-neutral-50'}`}>
+      <footer className={`border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#0a0a0a]' : 'border-neutral-200 bg-neutral-50'}`}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className={`${isDarkMode ? 'text-gray-500' : 'text-neutral-500'} text-xs font-black uppercase tracking-[0.2em]`}>
                 © 2026 Abdalla Elradi
@@ -534,6 +576,14 @@ const Portfolio = () => {
             </div>
         </div>
       </footer>
+
+      <ChatAgent isDarkMode={isDarkMode} themeClasses={themeClasses} onNavigate={scrollToSection} />
+      <RequestModal
+        request={request}
+        onClose={() => setRequest(null)}
+        isDarkMode={isDarkMode}
+        themeClasses={themeClasses}
+      />
       </div>
     </>
   );

@@ -195,19 +195,21 @@ const Portfolio = () => {
         <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 items-start">
           
           {/* NAME CARD */}
-          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-white">
-                ABDALLA<br />
-                <span className="text-gray-400">Elradi</span>
-              </h1>
-            </div>
-            <div className="mt-8 flex items-center justify-center px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-[1.75rem]">
-              <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-black">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_12px_rgba(16,_185,_129,_0.6)]" />
+          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
+            <span aria-hidden="true" className={`pointer-events-none select-none absolute -right-4 -bottom-12 text-[9rem] font-black leading-none ${isDarkMode ? 'text-white/[0.04]' : 'text-neutral-900/[0.04]'}`}>
+              AE
+            </span>
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-emerald-400 font-black mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Informatics Engineer
               </span>
+              <h1 className={`text-4xl md:text-5xl font-black uppercase tracking-tighter leading-[0.95] ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
+                ABDALLA<br />
+                <span className="text-gray-400">ELRADI</span>
+              </h1>
             </div>
+            <div className={`relative z-10 mt-8 h-px w-full bg-gradient-to-r from-emerald-500/70 ${isDarkMode ? 'via-white/10' : 'via-neutral-900/10'} to-transparent`} />
           </div>
 
           {/* MAIN PHOTO */}

@@ -491,8 +491,8 @@ const Portfolio = () => {
             </a>
           </div>
           <div className={`mt-16 pt-8 border-t ${isDarkMode ? 'border-white/5 text-gray-500' : 'border-neutral-200 text-neutral-500'} text-xs tracking-widest uppercase`}>
-            <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com • Bahrain</p>
-            <p>© 2026 Abdalla Elradi. All rights reserved.</p>
+            <p className="mb-2 tracking-normal text-sm lowercase"> Abdallaelsiddig.m@gmail.com</p>
+            <p>© 2026 Abdalla Elradi.</p>
           </div>
         </div>
       </section>

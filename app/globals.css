@@ -47,3 +47,24 @@ button {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
+@keyframes gentle-float {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-6px, -10px); }
+  50% { transform: translate(4px, -4px); }
+  75% { transform: translate(-4px, 6px); }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 7s ease-in-out infinite;
+}
+
+@keyframes letter-wave {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.loader-letter {
+  display: inline-block;
+  animation: letter-wave 1.4s ease-in-out infinite;
+}
+

@@ -151,12 +151,12 @@ const Portfolio = () => {
 
   const themeClasses = {
     root: isDarkMode ? 'bg-[#0a0a0a] text-white' : 'bg-neutral-50 text-neutral-900',
-    nav: isDarkMode ? 'bg-[#121212]/80 border border-white/5 text-white' : 'bg-white/80 border border-neutral-200 text-neutral-900',
-    card: isDarkMode ? 'bg-[#111111] border border-white/10 text-white' : 'bg-white border border-neutral-200 text-neutral-900',
-    panel: isDarkMode ? 'bg-[#161616] border border-white/5 text-white' : 'bg-neutral-100 border border-neutral-200 text-neutral-900',
+    nav: isDarkMode ? 'bg-[#121212]/70 backdrop-blur-xl border border-white/5 text-white' : 'bg-white/80 border border-neutral-200 text-neutral-900',
+    card: isDarkMode ? 'bg-[#111111]/60 backdrop-blur-xl border border-white/10 text-white' : 'bg-white border border-neutral-200 text-neutral-900',
+    panel: isDarkMode ? 'bg-[#161616]/60 backdrop-blur-xl border border-white/5 text-white' : 'bg-neutral-100 border border-neutral-200 text-neutral-900',
     accentText: isDarkMode ? 'text-emerald-400' : 'text-emerald-600',
     mutedText: isDarkMode ? 'text-gray-400' : 'text-neutral-600',
-    subCard: isDarkMode ? 'bg-[#1c1c1c] border border-white/10' : 'bg-neutral-200 border border-neutral-300',
+    subCard: isDarkMode ? 'bg-[#1c1c1c]/60 backdrop-blur-md border border-white/10' : 'bg-neutral-200 border border-neutral-300',
     navButtonText: isDarkMode ? 'text-gray-500 hover:text-gray-300' : 'text-neutral-500 hover:text-neutral-700',
     accentButton: isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-neutral-900/10 hover:bg-neutral-800/10 text-neutral-900',
   };

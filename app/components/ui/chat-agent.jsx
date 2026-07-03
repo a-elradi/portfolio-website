@@ -92,15 +92,34 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate }) {
     setInput('');
   };
 
+  const label = 'ASK ME';
+
   return (
     <>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
-        className="fixed bottom-6 right-6 z-[60] inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition-all"
-      >
-        {open ? <X size={22} /> : <Bot size={22} />}
-      </button>
+      <div className={`fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
+        {!open && (
+          <div className={`px-4 py-2 rounded-full shadow-lg ${themeClasses.card}`}>
+            <span className="text-[11px] font-black uppercase tracking-[0.15em] text-emerald-400">
+              {label.split('').map((ch, i) => (
+                <span
+                  key={i}
+                  className="loader-letter"
+                  style={{ animationDelay: `${i * 0.08}s` }}
+                >
+                  {ch === ' ' ? ' ' : ch}
+                </span>
+              ))}
+            </span>
+          </div>
+        )}
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
+          className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition-all"
+        >
+          {open ? <X size={22} /> : <Bot size={22} />}
+        </button>
+      </div>
 
       {open && (
         <div className={`fixed bottom-24 right-6 z-[60] w-[22rem] max-w-[calc(100vw-3rem)] h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>

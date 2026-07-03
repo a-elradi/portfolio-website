@@ -7,6 +7,7 @@ import {
   GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Sun, Moon 
 } from 'lucide-react';
 import { IntroScreen } from './components/ui/intro-screen';
+import TubesCursorBackground from './components/ui/tubes-cursor-background';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
@@ -157,10 +158,14 @@ const Portfolio = () => {
     <>
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
       <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
-      {/* BACKGROUND: Dot Pattern */}
-      <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none" 
-           style={{ backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#171717 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
-      </div>
+      {/* BACKGROUND */}
+      {isDarkMode ? (
+        <TubesCursorBackground />
+      ) : (
+        <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none"
+             style={{ backgroundImage: 'radial-gradient(#171717 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+        </div>
+      )}
 
       {/* FLOATING NAV */}
       <nav className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>

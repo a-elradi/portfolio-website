@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Sparkles } from 'lucide-react';
+import { Send, X, Sparkles } from 'lucide-react';
 
 const KNOWLEDGE_BASE = [
   {
@@ -115,9 +115,10 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate }) {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
-          className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 transition-all"
+          className="ai-orb relative inline-flex items-center justify-center w-16 h-16 rounded-full text-white transition-transform hover:scale-105"
         >
-          {open ? <X size={22} /> : <Bot size={22} />}
+          <span className="ai-orb-shine" aria-hidden="true" />
+          {open ? <X size={22} className="relative z-10" /> : <Sparkles size={22} className="relative z-10" />}
         </button>
       </div>
 

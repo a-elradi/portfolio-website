@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { IntroScreen } from './components/ui/intro-screen';
 import TubesCursorBackground from './components/ui/tubes-cursor-background';
+import LightBackground from './components/ui/light-background';
 import ChatAgent from './components/ui/chat-agent';
 import AvailabilityCalendar from './components/ui/availability-calendar';
 import ServicesGrid from './components/ui/services-grid';
@@ -22,6 +23,7 @@ const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [request, setRequest] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
   const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
@@ -89,6 +91,7 @@ const Portfolio = () => {
 
   const handleNavClick = (tab) => {
     setActiveTab(tab);
+    setMobileNavOpen(false);
     const target = document.getElementById(sectionIds[tab]);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -98,9 +101,17 @@ const Portfolio = () => {
 
   const experiences = [
     {
+      title: 'AI Automation Engineer',
+      company: 'Glam Moda WLL',
+      period: 'Apr 2026 - Present',
+      highlights: [
+        '"AI-driven workflow automation", "Process optimization", "Systems integration"',
+      ],
+    },
+    {
       title: 'IT Technical Support & Web Developer',
       company: 'Glam Moda',
-      period: '2024 - 2026',
+      period: 'Oct 2024 - Jan 2026',
       highlights: [
         '"Shopify specialization", "System optimization","Digital Marketing"',
       ],
@@ -151,12 +162,12 @@ const Portfolio = () => {
 
   const themeClasses = {
     root: isDarkMode ? 'bg-[#0a0a0a] text-white' : 'bg-neutral-50 text-neutral-900',
-    nav: isDarkMode ? 'bg-[#121212]/70 backdrop-blur-xl border border-white/5 text-white' : 'bg-white/80 border border-neutral-200 text-neutral-900',
-    card: isDarkMode ? 'bg-[#111111]/60 backdrop-blur-xl border border-white/10 text-white' : 'bg-white border border-neutral-200 text-neutral-900',
-    panel: isDarkMode ? 'bg-[#161616]/60 backdrop-blur-xl border border-white/5 text-white' : 'bg-neutral-100 border border-neutral-200 text-neutral-900',
+    nav: isDarkMode ? 'bg-[#121212]/70 backdrop-blur-xl border border-white/5 text-white' : 'bg-white/70 backdrop-blur-xl border border-neutral-200/70 text-neutral-900',
+    card: isDarkMode ? 'bg-[#111111]/60 backdrop-blur-xl border border-white/10 text-white' : 'bg-white/70 backdrop-blur-xl border border-neutral-200/70 text-neutral-900',
+    panel: isDarkMode ? 'bg-[#161616]/60 backdrop-blur-xl border border-white/5 text-white' : 'bg-white/50 backdrop-blur-xl border border-neutral-200/70 text-neutral-900',
     accentText: isDarkMode ? 'text-emerald-400' : 'text-emerald-600',
     mutedText: isDarkMode ? 'text-gray-400' : 'text-neutral-600',
-    subCard: isDarkMode ? 'bg-[#1c1c1c]/60 backdrop-blur-md border border-white/10' : 'bg-neutral-200 border border-neutral-300',
+    subCard: isDarkMode ? 'bg-[#1c1c1c]/60 backdrop-blur-md border border-white/10' : 'bg-neutral-100/70 backdrop-blur-md border border-neutral-300/70',
     navButtonText: isDarkMode ? 'text-gray-500 hover:text-gray-300' : 'text-neutral-500 hover:text-neutral-700',
     accentButton: isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-neutral-900/10 hover:bg-neutral-800/10 text-neutral-900',
   };
@@ -167,22 +178,20 @@ const Portfolio = () => {
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
       <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
       {/* BACKGROUND */}
-      {isDarkMode ? (
-        <TubesCursorBackground />
-      ) : (
-        <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none"
-             style={{ backgroundImage: 'radial-gradient(#171717 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
-        </div>
-      )}
+      {isDarkMode ? <TubesCursorBackground /> : <LightBackground />}
 
-      {/* FLOATING NAV */}
-      <nav className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
+      {/* FLOATING NAV — desktop */}
+      <nav className={`hidden md:flex fixed top-8 left-1/2 -translate-x-1/2 z-50 items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
         {['Home', 'Projects', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
           <button
             key={tab}
             onClick={() => handleNavClick(tab)}
-            className={`px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all ${
-              activeTab === tab ? 'bg-white/10 text-white shadow-inner' : themeClasses.navButtonText
+            className={`px-5 lg:px-6 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-full transition-all whitespace-nowrap ${
+              activeTab === tab
+                ? isDarkMode
+                  ? 'bg-white/10 text-white shadow-inner'
+                  : 'bg-neutral-900/10 text-neutral-900 shadow-inner'
+                : themeClasses.navButtonText
             }`}
           >
             {tab}
@@ -197,13 +206,51 @@ const Portfolio = () => {
         </button>
       </nav>
 
-      <main id="home" className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-20">
+      {/* MOBILE NAV */}
+      <nav className={`md:hidden fixed top-4 left-4 right-4 z-50 rounded-2xl shadow-2xl ${themeClasses.nav}`}>
+        <div className="flex items-center justify-between px-4 py-3">
+          <span className={`text-xs font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>AE</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsDarkMode((current) => !current)}
+              className={`inline-flex items-center justify-center rounded-full w-9 h-9 transition ${themeClasses.accentButton}`}
+              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+            <button
+              onClick={() => setMobileNavOpen((v) => !v)}
+              className={`inline-flex items-center justify-center rounded-full w-9 h-9 transition ${themeClasses.accentButton}`}
+              aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+            >
+              {mobileNavOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
+          </div>
+        </div>
+        {mobileNavOpen && (
+          <div className={`px-3 pb-3 flex flex-col gap-1 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
+            {['Home', 'Projects', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => handleNavClick(tab)}
+                className={`text-left px-4 py-2.5 mt-1 text-xs font-black uppercase tracking-[0.15em] rounded-xl transition-all ${
+                  activeTab === tab ? 'bg-emerald-500/15 text-emerald-400' : themeClasses.navButtonText
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      <main id="home" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-20">
         
         {/* HERO GRID */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 items-start">
           
           {/* NAME CARD */}
-          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
             <span aria-hidden="true" className={`pointer-events-none select-none absolute -right-4 -bottom-12 text-[9rem] font-black leading-none ${isDarkMode ? 'text-white/[0.04]' : 'text-neutral-900/[0.04]'}`}>
               AE
             </span>
@@ -221,7 +268,7 @@ const Portfolio = () => {
           </div>
 
           {/* MAIN PHOTO */}
-          <div className={`md:col-span-4 md:col-start-5 md:row-span-1 h-[550px] rounded-[2.5rem] overflow-hidden shadow-[0_10px_50px_rgba(0,_0,_0,_0.3)] relative ${themeClasses.panel}`}>
+          <div className={`md:col-span-4 md:col-start-5 md:row-span-1 h-[320px] md:h-[550px] rounded-[2.5rem] overflow-hidden shadow-[0_10px_50px_rgba(0,_0,_0,_0.3)] relative ${themeClasses.panel}`}>
             <img
               src={photoSources[photoIndex]}
               className="w-full h-full object-cover"
@@ -231,9 +278,9 @@ const Portfolio = () => {
           </div>
 
           {/* CRAFT */}
-          <div className={`md:col-span-4 md:col-start-9 md:row-span-1 min-h-[550px] rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_10px_35px_rgba(0,_0,_0,_0.3)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-9 md:row-span-1 md:min-h-[550px] rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between shadow-[0_10px_35px_rgba(0,_0,_0,_0.3)] ${themeClasses.card}`}>
             <div>
-              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-white">
+              <h3 className={`text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
                 <Cpu size={22} className="text-emerald-400" /> CRAFT
               </h3>
               <p className={`${themeClasses.mutedText} text-sm leading-relaxed mb-8`}>
@@ -248,9 +295,9 @@ const Portfolio = () => {
           </div>
 
           {/* MINDSET */}
-          <div className={`md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-[300px] h-[550px] rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-[300px] rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
             <div>
-              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-white">
+              <h3 className={`text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
                 <Dribbble size={22} className="text-emerald-400" /> MINDSET
               </h3>
               <p className={`${themeClasses.mutedText} text-sm leading-relaxed`}>
@@ -261,13 +308,13 @@ const Portfolio = () => {
               <img
                 src={mindsetSources[mindsetIndex]}
                 alt={`Mindset image ${mindsetIndex + 1}`}
-                className="w-full h-[360px] object-cover"
+                className="w-full h-[220px] sm:h-[360px] object-cover"
               />
             </div>
           </div>
 
           {/* QUOTE */}
-          <div className={`md:col-span-4 md:col-start-5md:row-span-1 min-h-[170px] rounded-[2.5rem] p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-5 md:row-span-1 min-h-[170px] rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
             <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400">
               <Quote size={28} />
             </div>
@@ -277,7 +324,7 @@ const Portfolio = () => {
           </div>
 
           {/* LOCATION */}
-          <div className={`md:col-span-4 md:col-start-9 md:row-start-2 min-h-[160px] rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-9 md:row-start-2 min-h-[160px] rounded-[2.5rem] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
             <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">
@@ -296,26 +343,26 @@ const Portfolio = () => {
         <section id="projects" className="mb-32">
           <div className="text-center mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>PORTFOLIO</p>
-            <h2 className="text-5xl font-black mt-4">Featured <span className="text-emerald-500">projects</span></h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4">Featured <span className="text-emerald-500">projects</span></h2>
           </div>
 
           <ProjectsGallery isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
+      <section id="skills" className="py-14 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
           <SkillsIcons isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6">
+      <section id="services" className="py-14 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>WHAT I OFFER</p>
-            <h2 className={`text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Services</h2>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Services</h2>
           </div>
           <ServicesGrid
             isDarkMode={isDarkMode}
@@ -326,8 +373,8 @@ const Portfolio = () => {
       </section>
 
       {/* Availability Section */}
-      <section id="availability" className="py-20 px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
+      <section id="availability" className="py-14 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
           <div className="mb-8">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>SCHEDULE</p>
             <h2 className={`text-4xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Availability</h2>
@@ -341,11 +388,11 @@ const Portfolio = () => {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-20 px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
+      <section id="certificates" className="py-14 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
           <div className="text-center mb-12">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>CREDENTIALS</p>
-            <h2 className={`text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Certificates</h2>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Certificates</h2>
           </div>
           <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-center max-w-3xl mx-auto mb-10`}>
             These certifications show my learning progress in AI, robotics, web development, and systems engineering. I keep the verified files in <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-semibold`}>/public/certificates</span>.
@@ -393,9 +440,9 @@ const Portfolio = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Professional Experience</h2>
+      <section id="experience" className="py-14 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Professional Experience</h2>
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
               <div key={idx} className={`rounded-[2rem] p-6 ${themeClasses.card}`}>
@@ -415,9 +462,9 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 text-center ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let's Work Together</h2>
+      <section id="contact" className="py-14 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 text-center ${themeClasses.panel}`}>
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let's Work Together</h2>
           <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let's build the future together.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 

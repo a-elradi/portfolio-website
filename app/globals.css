@@ -68,3 +68,30 @@ button {
   animation: letter-wave 1.4s ease-in-out infinite;
 }
 
+@keyframes orb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px 6px rgba(16, 185, 129, 0.45), 0 0 40px 16px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(16, 185, 129, 0.65), 0 0 60px 24px rgba(16, 185, 129, 0.32);
+  }
+}
+
+@keyframes orb-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ai-orb {
+  background: radial-gradient(circle at 32% 28%, #6ee7b7 0%, #10b981 45%, #065f46 100%);
+  animation: orb-pulse 3s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.ai-orb-shine {
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 255, 0.35) 40deg, transparent 90deg, transparent 360deg);
+  animation: orb-spin 4s linear infinite;
+}
+

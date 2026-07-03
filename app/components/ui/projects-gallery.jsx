@@ -10,7 +10,6 @@ const PROJECTS = [
     image: '/1.png',
     description: 'Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.',
     tags: ['ROS', 'SLAM', 'PYTHON', 'OPENCV', 'YOLO'],
-    feature: true,
   },
   {
     id: 'techtrap',
@@ -64,7 +63,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
           <button
             key={project.id}
             onClick={() => setActive(project)}
-            className={`group relative overflow-hidden rounded-[2rem] text-left ${project.feature ? 'sm:col-span-2 lg:col-span-2 lg:row-span-2 aspect-[16/11]' : 'aspect-[4/5]'}`}
+            className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5]"
           >
             <img
               src={project.image}

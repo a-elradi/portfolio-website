@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ParticleTextEffect } from "./particle-text-effect";
 
-const INTRO_WORDS = ["WELCOME", "TO", "ABDALLA'S PORTFOLIO"];
+const INTRO_WORDS = ["WELCOME TO", "ABDALLA'S PORTFOLIO"];
 
 export function IntroScreen({ onFinish }) {
   const [isFading, setIsFading] = useState(false);
@@ -36,7 +36,7 @@ export function IntroScreen({ onFinish }) {
       tabIndex={0}
       aria-label="Skip intro"
     >
-      <ParticleTextEffect words={INTRO_WORDS} playOnce frameInterval={130} onComplete={finish} />
+      <ParticleTextEffect words={INTRO_WORDS} playOnce frameInterval={85} onComplete={finish} />
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">
         Click anywhere to skip
       </div>

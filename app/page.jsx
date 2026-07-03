@@ -140,26 +140,26 @@ const Portfolio = () => {
   };
 
   const themeClasses = {
-    root: isDarkMode ? 'bg-[#030014] text-white' : 'bg-slate-50 text-slate-900',
-    nav: isDarkMode ? 'bg-[#0a0a0f]/80 border border-white/5 text-white' : 'bg-white/80 border border-slate-200 text-slate-900',
-    card: isDarkMode ? 'bg-[#04050b] border border-white/10 text-white' : 'bg-white border border-slate-200 text-slate-900',
-    panel: isDarkMode ? 'bg-[#0a0a0f] border border-white/5 text-white' : 'bg-slate-100 border border-slate-200 text-slate-900',
-    accentText: isDarkMode ? 'text-cyan-200' : 'text-cyan-700',
-    mutedText: isDarkMode ? 'text-gray-400' : 'text-slate-600',
-    subCard: isDarkMode ? 'bg-[#06070d] border border-white/10' : 'bg-slate-200 border border-slate-300',
-    navButtonText: isDarkMode ? 'text-gray-500 hover:text-gray-300' : 'text-slate-500 hover:text-slate-700',
-    accentButton: isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-slate-900/10 hover:bg-slate-800/10 text-slate-900',
+    root: isDarkMode ? 'bg-[#0a0a0a] text-white' : 'bg-neutral-50 text-neutral-900',
+    nav: isDarkMode ? 'bg-[#121212]/80 border border-white/5 text-white' : 'bg-white/80 border border-neutral-200 text-neutral-900',
+    card: isDarkMode ? 'bg-[#111111] border border-white/10 text-white' : 'bg-white border border-neutral-200 text-neutral-900',
+    panel: isDarkMode ? 'bg-[#161616] border border-white/5 text-white' : 'bg-neutral-100 border border-neutral-200 text-neutral-900',
+    accentText: isDarkMode ? 'text-emerald-400' : 'text-emerald-600',
+    mutedText: isDarkMode ? 'text-gray-400' : 'text-neutral-600',
+    subCard: isDarkMode ? 'bg-[#1c1c1c] border border-white/10' : 'bg-neutral-200 border border-neutral-300',
+    navButtonText: isDarkMode ? 'text-gray-500 hover:text-gray-300' : 'text-neutral-500 hover:text-neutral-700',
+    accentButton: isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-neutral-900/10 hover:bg-neutral-800/10 text-neutral-900',
   };
 
-  const tagClass = isDarkMode ? 'bg-[#111118] border border-white/5 text-gray-400' : 'bg-slate-100 border border-slate-300 text-slate-700';
+  const tagClass = isDarkMode ? 'bg-[#141414] border border-white/5 text-gray-400' : 'bg-neutral-100 border border-neutral-300 text-neutral-700';
 
   return (
     <>
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
-      <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-purple-500/30 overflow-x-hidden`}>
+      <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
       {/* BACKGROUND: Dot Pattern */}
       <div className="fixed inset-0 z-0 opacity-[0.15] pointer-events-none" 
-           style={{ backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+           style={{ backgroundImage: isDarkMode ? 'radial-gradient(#ffffff 1px, transparent 1px)' : 'radial-gradient(#171717 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
       </div>
 
       {/* FLOATING NAV */}
@@ -190,23 +190,23 @@ const Portfolio = () => {
         <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 items-start">
           
           {/* NAME CARD */}
-          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_0_45px_rgba(56,_189,_248,_0.18)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-8 flex flex-col justify-between shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
             <div>
-              <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-cyan-200 drop-shadow-[0_0_28px_rgba(56,_189,_248,_0.90)]">
+              <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none mb-3 text-white">
                 ABDALLA<br />
                 <span className="text-gray-400">Elradi</span>
               </h1>
             </div>
-            <div className="mt-8 flex items-center justify-center px-4 py-3 bg-[#02050c] border border-white/10 rounded-[1.75rem]">
-              <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-cyan-200 font-black">
-                <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse shadow-[0_0_12px_rgba(56,_189,_248,_0.6)]" />
+            <div className="mt-8 flex items-center justify-center px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-[1.75rem]">
+              <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-black">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_12px_rgba(16,_185,_129,_0.6)]" />
                 Informatics Engineer
               </span>
             </div>
           </div>
 
           {/* MAIN PHOTO */}
-          <div className={`md:col-span-4 md:col-start-5 md:row-span-1 h-[550px] rounded-[2.5rem] overflow-hidden shadow-[0_0_55px_rgba(59,_130,_246,_0.12)] relative ${themeClasses.panel}`}>
+          <div className={`md:col-span-4 md:col-start-5 md:row-span-1 h-[550px] rounded-[2.5rem] overflow-hidden shadow-[0_10px_50px_rgba(0,_0,_0,_0.3)] relative ${themeClasses.panel}`}>
             <img
               src={photoSources[photoIndex]}
               className="w-full h-full object-cover"
@@ -216,18 +216,18 @@ const Portfolio = () => {
           </div>
 
           {/* CRAFT */}
-          <div className={`md:col-span-4 md:col-start-9 md:row-span-1 min-h-[550px] rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_0_30px_rgba(59,_130,_246,_0.12)] ${themeClasses.card}`}>
+          <div className={`md:col-span-4 md:col-start-9 md:row-span-1 min-h-[550px] rounded-[2.5rem] p-10 flex flex-col justify-between shadow-[0_10px_35px_rgba(0,_0,_0,_0.3)] ${themeClasses.card}`}>
             <div>
-              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-cyan-300">
-                <Cpu size={22} className="text-cyan-300" /> CRAFT
+              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-white">
+                <Cpu size={22} className="text-emerald-400" /> CRAFT
               </h3>
               <p className={`${themeClasses.mutedText} text-sm leading-relaxed mb-8`}>
-                Demonstrated expertise in <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-medium`}>artificial intelligence, computer vision, IoT, and robotics</span>, with <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-medium`}>1.5+ years of professional experience</span> building innovative systems.
+                Demonstrated expertise in <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-medium`}>artificial intelligence, computer vision, IoT, and robotics</span>, with <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-medium`}>1.5+ years of professional experience</span> building innovative systems.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               {['AI', 'Python', 'OpenCV', 'Automation'].map((t) => (
-                <span key={t} className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase ${isDarkMode ? 'bg-white/5 border border-white/10 text-gray-300' : 'bg-slate-100 border border-slate-200 text-slate-700'}`}>{t}</span>
+                <span key={t} className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase ${isDarkMode ? 'bg-white/5 border border-white/10 text-gray-300' : 'bg-neutral-100 border border-neutral-200 text-neutral-700'}`}>{t}</span>
               ))}
             </div>
           </div>
@@ -235,11 +235,11 @@ const Portfolio = () => {
           {/* MINDSET */}
           <div className={`md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-[300px] h-[550px] rounded-[2.5rem] p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
             <div>
-              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-orange-400">
-                <Dribbble size={22} /> MINDSET
+              <h3 className="text-2xl md:text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 text-white">
+                <Dribbble size={22} className="text-emerald-400" /> MINDSET
               </h3>
               <p className={`${themeClasses.mutedText} text-sm leading-relaxed`}>
-                Excellence is a habit. <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-medium italic`}>Basketball</span> taught me discipline, focus, and leadership — qualities I apply to every engineering challenge.
+                Excellence is a habit. <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-medium italic`}>Basketball</span> taught me discipline, focus, and leadership — qualities I apply to every engineering challenge.
               </p>
             </div>
             <div className={`rounded-[2rem] overflow-hidden shadow-inner ${themeClasses.subCard}`}>
@@ -253,25 +253,25 @@ const Portfolio = () => {
 
           {/* QUOTE */}
           <div className={`md:col-span-4 md:col-start-5md:row-span-1 min-h-[170px] rounded-[2.5rem] p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
-            <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-300">
+            <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-400">
               <Quote size={28} />
             </div>
-            <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-xl md:text-2xl font-black leading-tight`}>
+            <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-xl md:text-2xl font-black leading-tight`}>
               “Build with purpose. Lead with vision.”
             </p>
           </div>
 
           {/* LOCATION */}
           <div className={`md:col-span-4 md:col-start-9 md:row-start-2 min-h-[160px] rounded-[2.5rem] p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
             <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
-                <MapPin className="text-purple-400" size={22} />
+                <MapPin className="text-emerald-400" size={22} />
                 <span className={`text-[10px] uppercase tracking-[0.35em] ${themeClasses.mutedText}`}>Location</span>
               </div>
-              <h3 className={`text-2xl md:text-3xl font-black uppercase tracking-tight mb-3 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Manama, Bahrain</h3>
-              <p className={`${isDarkMode ? 'text-gray-400' : 'text-slate-600'} text-[12px] md:text-[13px] uppercase font-semibold tracking-[0.25em]`}>
+              <h3 className={`text-2xl md:text-3xl font-black uppercase tracking-tight mb-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Manama, Bahrain</h3>
+              <p className={`${isDarkMode ? 'text-gray-400' : 'text-neutral-600'} text-[12px] md:text-[13px] uppercase font-semibold tracking-[0.25em]`}>
                 26.2235°N, 50.5876°E
               </p>
             </div>
@@ -281,16 +281,16 @@ const Portfolio = () => {
         <section id="projects" className="mb-32">
           <div className="text-center mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>PORTFOLIO</p>
-            <h2 className="text-5xl font-black mt-4">Featured <span className="text-purple-500">projects</span></h2>
+            <h2 className="text-5xl font-black mt-4">Featured <span className="text-emerald-500">projects</span></h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="group">
               <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>01 — Robotics</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AMR Warehouse Robot</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>AMR Warehouse Robot</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/1.png" alt="AMR Warehouse Robot" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -303,10 +303,10 @@ const Portfolio = () => {
 
             <div className="group">
               <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>02 — AI Healthcare</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TECHTRAP</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>TECHTRAP</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>TECHTRAP AI-Powered Rehabilitation & Educational System.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>TECHTRAP AI-Powered Rehabilitation & Educational System.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/Huawie.png" alt="TECHTRAP" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -319,10 +319,10 @@ const Portfolio = () => {
 
             <div className="group">
               <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>03 — Robotics</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>FireX Robot</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>FireX Robot</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/7.jpeg" alt="FireX Robot" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -335,10 +335,10 @@ const Portfolio = () => {
 
             <div className="group">
               <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>04 — Computer Vision</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}> Computer Vision Projects</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}> Computer Vision Projects</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Computer Vision Projects with AI-powered image processing and analysis.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Computer Vision Projects with AI-powered image processing and analysis.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/MV.jpeg" alt="CV Projects" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -351,10 +351,10 @@ const Portfolio = () => {
 
             <div className="group">
               <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>05 — IoT Systems</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>IoT-Based Automation Systems</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>IoT-Based Automation Systems</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>IoT-Based Automation Systems with real-time monitoring and control capabilities.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>IoT-Based Automation Systems with real-time monitoring and control capabilities.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/8.jpeg" alt="IoT Projects" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -367,10 +367,10 @@ const Portfolio = () => {
 
             <div className="group">
               <p className={`text-[10px] font-black ${themeClasses.mutedText} uppercase tracking-[0.35em] mb-3`}>06 — World champion Robotics Competition</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Robonexus</h3>
+              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Robonexus</h3>
               <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-slate-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Combat Robotics Competition with innovative robot design and battle strategies.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-slate-300'}`}>
+                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Combat Robotics Competition with innovative robot design and battle strategies.</p>
+                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
                   <img src="/9.jpeg" alt="Robotics Projects" className="w-full h-[280px] object-cover" />
                 </div>
               </div>
@@ -386,15 +386,15 @@ const Portfolio = () => {
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Technical Skills</h2>
+          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {skills.map((skill, idx) => (
               <div key={idx} className={`rounded-[2rem] p-6 ${themeClasses.card}`}>
-                <h3 className={`font-bold mb-4 uppercase text-xs tracking-widest ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{skill.category}</h3>
+                <h3 className={`font-bold mb-4 uppercase text-xs tracking-widest ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{skill.category}</h3>
                 <div className="space-y-2">
                   {skill.items.map((item, iidx) => (
-                    <div key={iidx} className={`${isDarkMode ? 'text-gray-300' : 'text-slate-700'} text-sm flex items-center gap-2`}>
-                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_5px_rgba(139,92,246,0.45)]"></div> {item}
+                    <div key={iidx} className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-sm flex items-center gap-2`}>
+                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.45)]"></div> {item}
                     </div>
                   ))}
                 </div>
@@ -409,10 +409,10 @@ const Portfolio = () => {
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
           <div className="text-center mb-12">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>CREDENTIALS</p>
-            <h2 className={`text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Certificates</h2>
+            <h2 className={`text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Certificates</h2>
           </div>
-          <p className={`${isDarkMode ? 'text-gray-300' : 'text-slate-700'} text-center max-w-3xl mx-auto mb-10`}>
-            These certifications show my learning progress in AI, robotics, web development, and systems engineering. I keep the verified files in <span className={`${isDarkMode ? 'text-white' : 'text-slate-900'} font-semibold`}>/public/certificates</span>.
+          <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-center max-w-3xl mx-auto mb-10`}>
+            These certifications show my learning progress in AI, robotics, web development, and systems engineering. I keep the verified files in <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-semibold`}>/public/certificates</span>.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {certificateFiles.map((certificate) => (
@@ -420,7 +420,7 @@ const Portfolio = () => {
                 {certificate.type === 'image' ? (
                   <img src={`/certificates/${certificate.file}`} alt={certificate.title} className="h-64 w-full object-cover" />
                 ) : (
-                  <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-slate-900 via-[#06070d] to-slate-800 p-6">
+                  <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-neutral-900 via-[#06070d] to-neutral-800 p-6">
                     <img
                       src={getCertificateBadgePath(certificate)}
                       alt={`${certificate.title} badge`}
@@ -434,8 +434,8 @@ const Portfolio = () => {
                   </div>
                 )}
                 <div className="p-5">
-                  <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{certificate.title}</p>
-                  <p className={`${isDarkMode ? 'text-gray-400' : 'text-slate-600'} text-xs mt-2`}>
+                  <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{certificate.title}</p>
+                  <p className={`${isDarkMode ? 'text-gray-400' : 'text-neutral-600'} text-xs mt-2`}>
                     {certificate.type === 'pdf'
                       ? 'Click to open or download the certificate.'
                       : 'Image preview of the certificate.'}
@@ -444,7 +444,7 @@ const Portfolio = () => {
                     href={`/certificates/${certificate.file}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-300 hover:text-purple-200"
+                    className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 hover:text-emerald-300"
                   >
                     View Certificate
                     <ArrowUpRight size={12} />
@@ -459,16 +459,16 @@ const Portfolio = () => {
       {/* Experience Section */}
       <section id="experience" className="py-20 px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Professional Experience</h2>
+          <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Professional Experience</h2>
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
               <div key={idx} className={`rounded-[2rem] p-6 ${themeClasses.card}`}>
-                <h3 className={`text-2xl font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{exp.title}</h3>
-                <p className={`${isDarkMode ? 'text-gray-400' : 'text-slate-600'} mb-4 text-sm uppercase tracking-wider`}>{exp.company} • {exp.period}</p>
+                <h3 className={`text-2xl font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{exp.title}</h3>
+                <p className={`${isDarkMode ? 'text-gray-400' : 'text-neutral-600'} mb-4 text-sm uppercase tracking-wider`}>{exp.company} • {exp.period}</p>
                 <ul className="space-y-2">
                   {exp.highlights.map((highlight, hidx) => (
-                    <li key={hidx} className={`${isDarkMode ? 'text-gray-300' : 'text-slate-700'} text-sm flex items-start gap-2`}>
-                      <ChevronRight size={14} className="mt-1 text-purple-500 min-w-[14px]" /> {highlight}
+                    <li key={hidx} className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-sm flex items-start gap-2`}>
+                      <ChevronRight size={14} className="mt-1 text-emerald-500 min-w-[14px]" /> {highlight}
                     </li>
                   ))}
                 </ul>
@@ -481,12 +481,12 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 text-center ${themeClasses.panel}`}>
-          <h2 className={`text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Let's Work Together</h2>
-          <p className={`${isDarkMode ? 'text-gray-300' : 'text-slate-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let's build the future together.</p>
+          <h2 className={`text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let's Work Together</h2>
+          <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let's build the future together.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="mailto:Abdallaelsiddig.m@gmail.com" 
-              className="bg-teal-500 hover:bg-teal-600 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-emerald-500/20"
             >
               <Mail size={20} /> Get In Touch
             </a>
@@ -501,12 +501,12 @@ const Portfolio = () => {
             <a
               href="/Abdalla-Elsiddig.Resume.pdf"
               download
-              className="bg-slate-800 hover:bg-slate-700 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-teal-500/20 shadow-lg shadow-teal-500/20"
+              className="bg-neutral-800 hover:bg-neutral-700 text-white px-10 py-3 rounded-xl font-bold transition-all flex items-center gap-2 border border-emerald-500/20 shadow-lg shadow-emerald-500/20"
             >
               <FileText size={20} /> Download Resume
             </a>
           </div>
-          <div className={`mt-16 pt-8 border-t ${isDarkMode ? 'border-white/5 text-gray-500' : 'border-slate-200 text-slate-500'} text-xs tracking-widest uppercase`}>
+          <div className={`mt-16 pt-8 border-t ${isDarkMode ? 'border-white/5 text-gray-500' : 'border-neutral-200 text-neutral-500'} text-xs tracking-widest uppercase`}>
             <p className="mb-2 tracking-normal text-sm lowercase">✉️ Abdallaelsiddig.m@gmail.com • Bahrain</p>
             <p>© 2026 Abdalla Elradi. All rights reserved.</p>
           </div>
@@ -515,15 +515,15 @@ const Portfolio = () => {
     </main>
 
       {/* FOOTER */}
-      <footer className={`border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#030014]' : 'border-slate-200 bg-slate-50'}`}>
+      <footer className={`border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#030014]' : 'border-neutral-200 bg-neutral-50'}`}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className={`${isDarkMode ? 'text-gray-500' : 'text-slate-500'} text-xs font-black uppercase tracking-[0.2em]`}>
+            <div className={`${isDarkMode ? 'text-gray-500' : 'text-neutral-500'} text-xs font-black uppercase tracking-[0.2em]`}>
                 © 2026 Abdalla Elradi
             </div>
             <div className="flex gap-8">
-                <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-slate-500 hover:text-slate-900'} cursor-pointer`} />
-                <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-slate-500 hover:text-slate-900'} cursor-pointer`} />
-                <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-slate-500 hover:text-slate-900'} cursor-pointer`} />
+                <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
+                <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
+                <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
             </div>
         </div>
       </footer>

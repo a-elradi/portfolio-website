@@ -24,6 +24,7 @@ const Portfolio = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [request, setRequest] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [bgAccentColor, setBgAccentColor] = useState('#10b981');
 
   const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
   const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
@@ -178,7 +179,7 @@ const Portfolio = () => {
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
       <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
       {/* BACKGROUND */}
-      {isDarkMode ? <TubesCursorBackground /> : <LightBackground />}
+      {isDarkMode ? <TubesCursorBackground onColorChange={setBgAccentColor} /> : <LightBackground />}
 
       {/* FLOATING NAV — desktop */}
       <nav className={`hidden md:flex fixed top-8 left-1/2 -translate-x-1/2 z-50 items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
@@ -511,7 +512,12 @@ const Portfolio = () => {
         </div>
       </footer>
 
-      <ChatAgent isDarkMode={isDarkMode} themeClasses={themeClasses} onNavigate={scrollToSection} />
+      <ChatAgent
+        isDarkMode={isDarkMode}
+        themeClasses={themeClasses}
+        onNavigate={scrollToSection}
+        accentColor={isDarkMode ? bgAccentColor : '#10b981'}
+      />
       <RequestModal
         request={request}
         onClose={() => setRequest(null)}

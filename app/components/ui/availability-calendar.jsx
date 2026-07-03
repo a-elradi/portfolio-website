@@ -2,27 +2,6 @@
 import React, { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 
-// Edit this list to reflect real projects, workshops, and open days.
-// type: 'available' (bookable), 'project', or 'workshop' (informational only).
-const CALENDAR_EVENTS = [
-  { date: '2026-07-08', type: 'available', label: 'Open for meetings' },
-  { date: '2026-07-09', type: 'available', label: 'Open for meetings' },
-  { date: '2026-07-10', type: 'workshop', label: 'IoT & Robotics Workshop' },
-  { date: '2026-07-14', type: 'available', label: 'Open for meetings' },
-  { date: '2026-07-15', type: 'project', label: 'AMR Robot demo day' },
-  { date: '2026-07-21', type: 'available', label: 'Open for meetings' },
-  { date: '2026-07-22', type: 'available', label: 'Open for meetings' },
-  { date: '2026-07-28', type: 'project', label: 'Client delivery deadline' },
-  { date: '2026-08-04', type: 'available', label: 'Open for meetings' },
-  { date: '2026-08-05', type: 'available', label: 'Open for meetings' },
-  { date: '2026-08-12', type: 'workshop', label: 'Robotics Club Workshop' },
-];
-
-const eventsByDate = CALENDAR_EVENTS.reduce((acc, ev) => {
-  acc[ev.date] = ev;
-  return acc;
-}, {});
-
 const WEEKDAY_LABELS = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 function formatDateKey(year, month, day) {
@@ -31,9 +10,26 @@ function formatDateKey(year, month, day) {
   return `${year}-${mm}-${dd}`;
 }
 
+// Recurring monthly availability rule:
+// available every Saturday, Sunday, and Tuesday, plus the 21st and the
+// 23rd-30th stretch — except the 14th, which is never available.
+function isAvailableDay(day, weekday) {
+  if (day === 14) return false;
+  if (weekday === 0 || weekday === 2 || weekday === 6) return true;
+  if (day === 21) return true;
+  if (day >= 23 && day <= 30) return true;
+  return false;
+}
+
 function nextAvailableDate() {
-  const todayKey = formatDateKey(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-  return CALENDAR_EVENTS.find((ev) => ev.type === 'available' && ev.date >= todayKey) || CALENDAR_EVENTS.find((ev) => ev.type === 'available');
+  const cursor = new Date();
+  for (let i = 0; i < 60; i++) {
+    if (isAvailableDay(cursor.getDate(), cursor.getDay())) {
+      return formatDateKey(cursor.getFullYear(), cursor.getMonth(), cursor.getDate());
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return null;
 }
 
 export default function AvailabilityCalendar({ isDarkMode, themeClasses, onRequestDate }) {
@@ -55,7 +51,7 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
     return arr;
   }, [firstWeekday, daysInMonth]);
 
-  const upcoming = nextAvailableDate();
+  const upcoming = useMemo(() => nextAvailableDate(), []);
 
   return (
     <div>
@@ -64,9 +60,9 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
           <h3 className={`text-2xl font-black ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Any questions about a project?</h3>
           <p className={`text-sm ${themeClasses.mutedText}`}>Feel free to reach out — book a 30 min call.</p>
         </div>
-        <div className="hidden sm:flex items-center gap-5 text-[11px] font-bold uppercase tracking-wider">
-          <span className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /><span className={themeClasses.mutedText}>Open</span></span>
-          <span className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-gray-400" /><span className={themeClasses.mutedText}>Project / workshop</span></span>
+        <div className="hidden sm:flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+          <span className={themeClasses.mutedText}>Open for meetings</span>
         </div>
       </div>
 
@@ -103,23 +99,20 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
         <div className="grid grid-cols-7 gap-1.5">
           {cells.map((day, idx) => {
             if (!day) return <div key={idx} />;
+            const weekday = (firstWeekday + (day - 1)) % 7;
             const dateKey = formatDateKey(year, month, day);
-            const event = eventsByDate[dateKey];
-            const isAvailable = event?.type === 'available';
-            const isInfo = event && !isAvailable;
+            const available = isAvailableDay(day, weekday);
 
             return (
               <div key={idx} className="flex items-center justify-center py-1">
                 <button
                   type="button"
-                  disabled={!isAvailable}
-                  onClick={() => isAvailable && onRequestDate(dateKey)}
-                  title={event?.label}
+                  disabled={!available}
+                  onClick={() => available && onRequestDate(dateKey)}
+                  title={available ? 'Open for meetings' : undefined}
                   className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                    isAvailable
+                    available
                       ? 'bg-emerald-500 text-white hover:bg-emerald-600 cursor-pointer shadow-[0_0_16px_rgba(16,185,129,0.35)]'
-                      : isInfo
-                      ? `${themeClasses.subCard} ${themeClasses.mutedText} cursor-default`
                       : `${isDarkMode ? 'text-gray-500' : 'text-neutral-400'} cursor-default`
                   }`}
                 >
@@ -132,9 +125,9 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
 
         {upcoming && (
           <button
-            onClick={() => onRequestDate(upcoming.date)}
+            onClick={() => onRequestDate(upcoming)}
             aria-label="Request the next open slot"
-            title={`Request ${upcoming.date}`}
+            title={`Request ${upcoming}`}
             className="absolute -bottom-5 -right-5 w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30 transition-transform hover:scale-105"
           >
             <ArrowUpRight size={20} />

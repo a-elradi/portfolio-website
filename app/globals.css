@@ -58,22 +58,14 @@ button {
   animation: gentle-float 7s ease-in-out infinite;
 }
 
-@keyframes letter-wave {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-4px); }
-}
-
-.loader-letter {
-  display: inline-block;
-  animation: letter-wave 1.4s ease-in-out infinite;
-}
-
 @keyframes orb-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px 6px rgba(16, 185, 129, 0.45), 0 0 40px 16px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 20px 6px color-mix(in srgb, var(--orb-color) 45%, transparent),
+      0 0 40px 16px color-mix(in srgb, var(--orb-color) 20%, transparent);
   }
   50% {
-    box-shadow: 0 0 30px 10px rgba(16, 185, 129, 0.65), 0 0 60px 24px rgba(16, 185, 129, 0.32);
+    box-shadow: 0 0 30px 10px color-mix(in srgb, var(--orb-color) 65%, transparent),
+      0 0 60px 24px color-mix(in srgb, var(--orb-color) 32%, transparent);
   }
 }
 
@@ -83,9 +75,16 @@ button {
 }
 
 .ai-orb {
-  background: radial-gradient(circle at 32% 28%, #6ee7b7 0%, #10b981 45%, #065f46 100%);
+  --orb-color: #10b981;
+  background: radial-gradient(
+    circle at 32% 28%,
+    color-mix(in srgb, var(--orb-color) 65%, white) 0%,
+    var(--orb-color) 45%,
+    color-mix(in srgb, var(--orb-color) 65%, black) 100%
+  );
   animation: orb-pulse 3s ease-in-out infinite;
   overflow: hidden;
+  transition: background 0.6s ease;
 }
 
 .ai-orb-shine {

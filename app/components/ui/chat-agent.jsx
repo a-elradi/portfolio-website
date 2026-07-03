@@ -62,7 +62,7 @@ function matchReply(text) {
   return { reply: FALLBACK_REPLY };
 }
 
-export default function ChatAgent({ isDarkMode, themeClasses, onNavigate }) {
+export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accentColor = '#10b981' }) {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
@@ -92,29 +92,13 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate }) {
     setInput('');
   };
 
-  const label = 'ASK ME';
-
   return (
     <>
       <div className={`fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
-        {!open && (
-          <div className={`px-4 py-2 rounded-full shadow-lg ${themeClasses.card}`}>
-            <span className="text-[11px] font-black uppercase tracking-[0.15em] text-emerald-400">
-              {label.split('').map((ch, i) => (
-                <span
-                  key={i}
-                  className="loader-letter"
-                  style={{ animationDelay: `${i * 0.08}s` }}
-                >
-                  {ch === ' ' ? ' ' : ch}
-                </span>
-              ))}
-            </span>
-          </div>
-        )}
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
+          style={{ '--orb-color': accentColor }}
           className="ai-orb relative inline-flex items-center justify-center w-16 h-16 rounded-full text-white transition-transform hover:scale-105"
         >
           <span className="ai-orb-shine" aria-hidden="true" />

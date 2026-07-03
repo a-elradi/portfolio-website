@@ -7,7 +7,7 @@ const randomColors = (count) => {
     .map(() => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0'));
 };
 
-export default function TubesCursorBackground() {
+export default function TubesCursorBackground({ onColorChange }) {
   const canvasRef = useRef(null);
   const appRef = useRef(null);
 
@@ -19,15 +19,17 @@ export default function TubesCursorBackground() {
         .then((module) => {
           const TubesCursor = module.default;
           if (canvasRef.current) {
+            const initialColors = ['#10b981', '#065f46', '#34d399'];
             appRef.current = TubesCursor(canvasRef.current, {
               tubes: {
-                colors: ['#10b981', '#065f46', '#34d399'],
+                colors: initialColors,
                 lights: {
                   intensity: 200,
                   colors: ['#10b981', '#34d399', '#6ee7b7', '#065f46'],
                 },
               },
             });
+            onColorChange?.(initialColors[0]);
           }
         })
         .catch((err) => console.error('Failed to load TubesCursor module:', err));
@@ -39,12 +41,14 @@ export default function TubesCursorBackground() {
         appRef.current.dispose();
       }
     };
-  }, []);
+  }, [onColorChange]);
 
   const handleClick = () => {
     if (appRef.current) {
-      appRef.current.tubes.setColors(randomColors(3));
+      const newTubeColors = randomColors(3);
+      appRef.current.tubes.setColors(newTubeColors);
       appRef.current.tubes.setLightsColors(randomColors(4));
+      onColorChange?.(newTubeColors[0]);
     }
   };
 

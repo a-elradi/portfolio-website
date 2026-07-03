@@ -53,27 +53,7 @@ portfolio-website/
 - Icons: lucide-react, react-icons
 - Content model: single-page portfolio with focused, componentized sections
 
-## Why it is strong for GitHub Education
-
-This repository is curated for education and community use by providing:
-
-- professional portfolio structure that peers and mentors can follow
-- certificate proof points in a dedicated section with direct PDF access
-- documented project and learning context for classroom review
-- a codebase that can be adapted and forked for student showcase use
-
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-Then open `http://localhost:3000`.
-
 ## Contact
 
 - Email: Abdallaelsiddig.m@gmail.com
-- Phone: +973 35025445
-
 © 2026 Abdalla Elradi

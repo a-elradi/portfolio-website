@@ -12,6 +12,8 @@ import ChatAgent from './components/ui/chat-agent';
 import AvailabilityCalendar from './components/ui/availability-calendar';
 import ServicesGrid from './components/ui/services-grid';
 import RequestModal from './components/ui/request-modal';
+import ProjectsGallery from './components/ui/projects-gallery';
+import SkillsIcons from './components/ui/skills-icons';
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
@@ -93,11 +95,6 @@ const Portfolio = () => {
     }
   };
 
-  const skills = [
-    { category: 'Languages', items: ['Python', 'C++', 'JavaScript', 'SQL'] },
-    { category: 'Robotics', items: ['MQTT', 'Embedded Systems Development', 'Automation'] },
-    { category: 'AI & CV', items: ['OpenCV', 'TensorFlow', 'YOLO', 'MindSpore'] },
-  ];
 
   const experiences = [
     {
@@ -164,7 +161,6 @@ const Portfolio = () => {
     accentButton: isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-neutral-900/10 hover:bg-neutral-800/10 text-neutral-900',
   };
 
-  const tagClass = isDarkMode ? 'bg-[#141414] border border-white/5 text-gray-400' : 'bg-neutral-100 border border-neutral-300 text-neutral-700';
 
   return (
     <>
@@ -303,123 +299,14 @@ const Portfolio = () => {
             <h2 className="text-5xl font-black mt-4">Featured <span className="text-emerald-500">projects</span></h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="group">
-              <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>01 — Robotics</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>AMR Warehouse Robot</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/1.png" alt="AMR Warehouse Robot" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['ROS', 'SLAM', 'PYTHON', 'OPENCV', 'YOLO'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="group">
-              <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>02 — AI Healthcare</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>TECHTRAP</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>TECHTRAP AI-Powered Rehabilitation & Educational System.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/Huawie.png" alt="TECHTRAP" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['Machine Learning', 'MindSpore', 'PYTHON', 'OPENCV', 'AI'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="group">
-              <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>03 — Robotics</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>FireX Robot</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Firefighter Robot with AI-powered navigation and rescue capabilities.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/7.jpeg" alt="FireX Robot" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['ESP32', 'C++', 'UI Dashboard', 'MQTT', 'AI'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="group">
-              <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>04 — Computer Vision</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}> Computer Vision Projects</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Advanced Computer Vision Projects with AI-powered image processing and analysis.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/MV.jpeg" alt="CV Projects" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['Computer Vision', 'Deep Learning', 'PYTHON', 'OPENCV', 'TensorFlow'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="group">
-              <p className={`text-[10px] font-black uppercase tracking-[0.35em] mb-3 ${themeClasses.mutedText}`}>05 — IoT Systems</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>IoT-Based Automation Systems</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>IoT-Based Automation Systems with real-time monitoring and control capabilities.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/8.jpeg" alt="IoT Projects" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['Embedded Systems Development', 'Automation', 'PLC Basics', 'Cloud IoT Platform', 'Sensor Integration'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="group">
-              <p className={`text-[10px] font-black ${themeClasses.mutedText} uppercase tracking-[0.35em] mb-3`}>06 — World champion Robotics Competition</p>
-              <h3 className={`text-4xl font-black mb-6 tracking-tight ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Robonexus</h3>
-              <div className={`relative rounded-[2.5rem] overflow-hidden p-8 hover:scale-[1.01] transition-all duration-500 ${themeClasses.panel}`}>
-                <p className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} text-lg font-medium leading-relaxed max-w-[480px] mb-8`}>Combat Robotics Competition with innovative robot design and battle strategies.</p>
-                <div className={`rounded-[1.5rem] overflow-hidden shadow-2xl ${isDarkMode ? 'border border-black/30' : 'border border-neutral-300'}`}>
-                  <img src="/9.jpeg" alt="Robotics Projects" className="w-full h-[280px] object-cover" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-3 mt-5">
-                {['Embedded Systems', 'PCB Design', 'Battle Tactics', 'Combat Robotics', 'Mechanical Engineering'].map((tech) => (
-                  <span key={tech} className={`px-4 py-2 rounded-full ${tagClass} text-[11px] font-bold uppercase tracking-wide`}>{tech}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ProjectsGallery isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-10 ${themeClasses.panel}`}>
           <h2 className={`text-4xl font-black mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {skills.map((skill, idx) => (
-              <div key={idx} className={`rounded-[2rem] p-6 ${themeClasses.card}`}>
-                <h3 className={`font-bold mb-4 uppercase text-xs tracking-widest ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{skill.category}</h3>
-                <div className="space-y-2">
-                  {skill.items.map((item, iidx) => (
-                    <div key={iidx} className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-sm flex items-center gap-2`}>
-                      <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.45)]"></div> {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <SkillsIcons isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </div>
       </section>
 

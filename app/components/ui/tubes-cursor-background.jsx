@@ -15,7 +15,9 @@ export default function TubesCursorBackground({ onColorChange }) {
     // Delaying init lets the canvas settle to its final size first —
     // initializing immediately produces "Computed radius is NaN" from the lib.
     const initTimer = setTimeout(() => {
-      import(/* webpackIgnore: true */ 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js')
+      // Self-hosted copy of threejs-components@0.0.19 tubes1 (was loaded from
+      // jsdelivr; vendored locally so no third-party code runs on the page).
+      import(/* webpackIgnore: true */ '/vendor/tubes1.min.js')
         .then((module) => {
           const TubesCursor = module.default;
           if (canvasRef.current) {

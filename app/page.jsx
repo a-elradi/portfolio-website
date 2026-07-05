@@ -16,6 +16,19 @@ import RequestModal from './components/ui/request-modal';
 import ProjectsGallery from './components/ui/projects-gallery';
 import SkillsIcons from './components/ui/skills-icons';
 
+const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
+const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
+const sectionIds = {
+  Home: 'home',
+  Projects: 'projects',
+  Skills: 'skills',
+  Services: 'services',
+  Availability: 'availability',
+  Certificates: 'certificates',
+  Experience: 'experience',
+  Contact: 'contact',
+};
+
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState('Home');
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -25,19 +38,6 @@ const Portfolio = () => {
   const [request, setRequest] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [bgAccentColor, setBgAccentColor] = useState('#10b981');
-
-  const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
-  const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
-  const sectionIds = {
-    Home: 'home',
-    Projects: 'projects',
-    Skills: 'skills',
-    Services: 'services',
-    Availability: 'availability',
-    Certificates: 'certificates',
-    Experience: 'experience',
-    Contact: 'contact',
-  };
 
   const scrollToSection = (id) => {
     const target = document.getElementById(id);
@@ -106,7 +106,9 @@ const Portfolio = () => {
       company: 'Glam Moda WLL',
       period: 'Apr 2026 - Present',
       highlights: [
-        '"AI-driven workflow automation", "Process optimization", "Systems integration"',
+        'AI-driven workflow automation',
+        'Process optimization',
+        'Systems integration',
       ],
     },
     {
@@ -114,7 +116,9 @@ const Portfolio = () => {
       company: 'Glam Moda',
       period: 'Oct 2024 - Jan 2026',
       highlights: [
-        '"Shopify specialization", "System optimization","Digital Marketing"',
+        'Shopify specialization',
+        'System optimization',
+        'Digital Marketing',
       ],
     },
     {
@@ -122,15 +126,19 @@ const Portfolio = () => {
       company: 'University of Technology Bahrain',
       period: '2023 - Present (3 Years)',
       highlights: [
-        'Led 150+ active members", "Organized quarterly innovation challenges", "Award-winning projects',
+        'Led 150+ active members',
+        'Organized quarterly innovation challenges',
+        'Award-winning projects',
       ],
     },
     {
-      title: 'Robotics& IoT Workshop Instructor',
+      title: 'Robotics & IoT Workshop Instructor',
       company: 'University of Technology Bahrain',
       period: '2023 - Present (3 Years)',
       highlights: [
-        '"Led workshops", " Robot Competition ", "Mentored 40+ students"',
+        'Led workshops',
+        'Robot Competition',
+        'Mentored 40+ students',
       ],
     },
   ];
@@ -309,6 +317,7 @@ const Portfolio = () => {
               <img
                 src={mindsetSources[mindsetIndex]}
                 alt={`Mindset image ${mindsetIndex + 1}`}
+                loading="lazy"
                 className="w-full h-[220px] sm:h-[360px] object-cover"
               />
             </div>
@@ -327,7 +336,7 @@ const Portfolio = () => {
           {/* LOCATION */}
           <div className={`md:col-span-4 md:col-start-9 md:row-start-2 min-h-[160px] rounded-[2.5rem] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
-            <img src="/manama.png" alt="Manama" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+            <img src="/manama.jpg" alt="Manama" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
                 <MapPin className="text-emerald-400" size={22} />
@@ -402,12 +411,13 @@ const Portfolio = () => {
             {certificateFiles.map((certificate) => (
               <div key={certificate.file} className={`overflow-hidden rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${themeClasses.card}`}>
                 {certificate.type === 'image' ? (
-                  <img src={`/certificates/${certificate.file}`} alt={certificate.title} className="h-64 w-full object-cover" />
+                  <img src={`/certificates/${certificate.file}`} alt={certificate.title} loading="lazy" className="h-64 w-full object-cover" />
                 ) : (
                   <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-neutral-900 via-[#06070d] to-neutral-800 p-6">
                     <img
                       src={getCertificateBadgePath(certificate)}
                       alt={`${certificate.title} badge`}
+                      loading="lazy"
                       className="max-h-36 max-w-full object-contain"
                       onError={(event) => {
                         const target = event.currentTarget;
@@ -465,8 +475,8 @@ const Portfolio = () => {
       {/* Contact Section */}
       <section id="contact" className="py-14 sm:py-20 px-4 sm:px-6">
         <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 text-center ${themeClasses.panel}`}>
-          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let's Work Together</h2>
-          <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let's build the future together.</p>
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let&apos;s Work Together</h2>
+          <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let&apos;s build the future together.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="mailto:Abdallaelsiddig.m@gmail.com" 
@@ -505,9 +515,21 @@ const Portfolio = () => {
                 © 2026 Abdalla Elradi
             </div>
             <div className="flex gap-8">
-                <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
-                <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
-                <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'} cursor-pointer`} />
+                <a
+                  href="https://github.com/a-elradi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub profile"
+                >
+                  <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
+                </a>
+                {/* TODO: add the LinkedIn profile URL, then restore this link:
+                <a href="https://www.linkedin.com/in/..." target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                  <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
+                </a> */}
+                <a href="mailto:Abdallaelsiddig.m@gmail.com" aria-label="Send email">
+                  <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
+                </a>
             </div>
         </div>
       </footer>

@@ -9,10 +9,10 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['experience', 'work', 'job', 'career', 'background'],
-    reply: "He's currently IT Technical Support & Web Developer at Glam Moda, President & Founder of the IoT Club at University of Technology Bahrain, and a Robotics & IoT Workshop Instructor there too. See the Experience section for details.",
+    reply: "He's currently AI Automation Engineer at Glam Moda WLL (previously IT Technical Support & Web Developer there), President & Founder of the IoT Club at University of Technology Bahrain, and a Robotics & IoT Workshop Instructor there too. See the Experience section for details.",
   },
   {
-    keywords: ['project', 'built', 'built', 'robot', 'portfolio', 'work you'],
+    keywords: ['project', 'built', 'robot', 'portfolio', 'work you'],
     reply: "Highlights include an AMR warehouse robot with SLAM navigation, TECHTRAP (an AI rehab & education system), the FireX firefighting robot, several computer vision projects, IoT automation systems, and Robonexus combat robotics. They're all in the Projects section with images.",
   },
   {

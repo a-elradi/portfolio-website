@@ -18,7 +18,12 @@ export function IntroScreen({ onFinish }) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    const handleKeyDown = () => finish();
+    const handleKeyDown = (e) => {
+      // Ignore Tab and lone modifier presses so keyboard users can start
+      // navigating without instantly dismissing the intro.
+      if (e.key === "Tab" || e.key === "Shift" || e.key === "Control" || e.key === "Alt" || e.key === "Meta") return;
+      finish();
+    };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";

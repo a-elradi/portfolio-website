@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, ArrowUpRight } from 'lucide-react';
 
 const PROJECTS = [
@@ -15,7 +15,7 @@ const PROJECTS = [
     id: 'techtrap',
     category: '02 — AI Healthcare',
     title: 'TECHTRAP',
-    image: '/Huawie.png',
+    image: '/Huawie.jpg',
     description: 'AI-powered rehabilitation and educational system built for the Huawei ICT Competition.',
     tags: ['Machine Learning', 'MindSpore', 'PYTHON', 'OPENCV', 'AI'],
   },
@@ -56,6 +56,15 @@ const PROJECTS = [
 export default function ProjectsGallery({ isDarkMode, themeClasses }) {
   const [active, setActive] = useState(null);
 
+  useEffect(() => {
+    if (!active) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActive(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [active]);
+
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -68,6 +77,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             <img
               src={project.image}
               alt={project.title}
+              loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
@@ -83,7 +93,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
       </div>
 
       {active && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center px-4">
+        <div role="dialog" aria-modal="true" aria-label={active.title} className="fixed inset-0 z-[70] flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setActive(null)} />
           <div className={`relative z-10 w-full max-w-2xl rounded-[2rem] overflow-hidden shadow-2xl ${themeClasses.card}`}>
             <button

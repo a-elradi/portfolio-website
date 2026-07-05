@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle2 } from 'lucide-react';
 
 const CONTACT_EMAIL = 'Abdallaelsiddig.m@gmail.com';
@@ -9,6 +9,27 @@ export default function RequestModal({ request, onClose, isDarkMode, themeClasse
   const [email, setEmail] = useState('');
   const [details, setDetails] = useState('');
   const [sent, setSent] = useState(false);
+
+  // Reset the form whenever a new request opens — the component stays mounted
+  // between requests, so without this a past submission leaves the modal stuck
+  // on the confirmation screen.
+  useEffect(() => {
+    if (request) {
+      setName('');
+      setEmail('');
+      setDetails('');
+      setSent(false);
+    }
+  }, [request]);
+
+  useEffect(() => {
+    if (!request) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [request, onClose]);
 
   if (!request) return null;
 
@@ -36,7 +57,7 @@ export default function RequestModal({ request, onClose, isDarkMode, themeClasse
   };
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center px-4">
+    <div role="dialog" aria-modal="true" aria-label={title} className="fixed inset-0 z-[70] flex items-center justify-center px-4">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className={`relative z-10 w-full max-w-md rounded-[2rem] p-8 shadow-2xl ${themeClasses.card}`}>
         <button

@@ -37,8 +37,8 @@ const PROJECTS = [
   },
   {
     id: 'iot',
-    category: '05 — IoT Systems',
-    title: 'IoT-Based Automation',
+    category: '05 — Robotics',
+    title: 'Sumo X Competition',
     image: '/8.jpeg',
     description: 'IoT-based automation systems with real-time monitoring and control capabilities.',
     tags: ['Embedded Systems', 'Automation', 'PLC Basics', 'Cloud IoT', 'Sensors'],

@@ -253,6 +253,44 @@ const Portfolio = () => {
         )}
       </nav>
 
+      {/* SOCIAL RAIL — fixed, visible on every screen regardless of scroll */}
+      <div className={`fixed bottom-6 left-4 sm:left-6 z-50 flex flex-col items-center gap-1 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
+        <a
+          href="https://github.com/a-elradi"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub profile"
+          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+        >
+          <Github size={16} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/abdalla-elsiddig/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn profile"
+          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+        >
+          <Linkedin size={16} />
+        </a>
+        <a
+          href="https://linktr.ee/Abdallaelsiddig"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Linktree"
+          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+        >
+          <LinkIcon size={16} />
+        </a>
+        <a
+          href="mailto:Abdallaelsiddig.m@gmail.com"
+          aria-label="Send email"
+          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+        >
+          <Mail size={16} />
+        </a>
+      </div>
+
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-20">
         
         {/* HERO GRID */}
@@ -510,39 +548,8 @@ const Portfolio = () => {
 
       {/* FOOTER */}
       <footer className={`relative z-10 border-t py-16 px-6 text-center ${isDarkMode ? 'border-white/5 bg-[#0a0a0a]' : 'border-neutral-200 bg-neutral-50'}`}>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className={`${isDarkMode ? 'text-gray-500' : 'text-neutral-500'} text-xs font-black uppercase tracking-[0.2em]`}>
-                © 2026 Abdalla Elradi
-            </div>
-            <div className="flex gap-8">
-                <a
-                  href="https://github.com/a-elradi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub profile"
-                >
-                  <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/abdalla-elsiddig/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn profile"
-                >
-                  <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
-                </a>
-                <a
-                  href="https://linktr.ee/Abdallaelsiddig"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Linktree"
-                >
-                  <LinkIcon size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
-                </a>
-                <a href="mailto:Abdallaelsiddig.m@gmail.com" aria-label="Send email">
-                  <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
-                </a>
-            </div>
+        <div className={`${isDarkMode ? 'text-gray-500' : 'text-neutral-500'} text-xs font-black uppercase tracking-[0.2em]`}>
+            © 2026 Abdalla Elradi
         </div>
       </footer>
 

@@ -253,41 +253,41 @@ const Portfolio = () => {
         )}
       </nav>
 
-      {/* SOCIAL RAIL — fixed, visible on every screen regardless of scroll */}
-      <div className={`fixed bottom-6 left-4 sm:left-6 z-50 flex flex-col items-center gap-1 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
+      {/* SOCIAL RAIL — fixed, vertically centered, visible on every screen regardless of scroll */}
+      <div className={`fixed top-1/2 -translate-y-1/2 left-4 sm:left-6 z-50 flex flex-col items-center gap-2 p-2 backdrop-blur-2xl rounded-full shadow-2xl border ${isDarkMode ? 'border-emerald-500/20' : 'border-emerald-600/20'} ${themeClasses.nav}`}>
         <a
           href="https://github.com/a-elradi"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub profile"
-          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+          className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 hover:bg-neutral-900/10'}`}
         >
-          <Github size={16} />
+          <Github size={20} />
         </a>
         <a
           href="https://www.linkedin.com/in/abdalla-elsiddig/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn profile"
-          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+          className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 hover:bg-neutral-900/10'}`}
         >
-          <Linkedin size={16} />
+          <Linkedin size={20} />
         </a>
         <a
           href="https://linktr.ee/Abdallaelsiddig"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Linktree"
-          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+          className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 hover:bg-neutral-900/10'}`}
         >
-          <LinkIcon size={16} />
+          <LinkIcon size={20} />
         </a>
         <a
           href="mailto:Abdallaelsiddig.m@gmail.com"
           aria-label="Send email"
-          className={`inline-flex items-center justify-center w-9 h-9 rounded-full transition ${themeClasses.navButtonText}`}
+          className={`inline-flex items-center justify-center w-11 h-11 rounded-full transition ${isDarkMode ? 'text-gray-300 hover:text-white hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 hover:bg-neutral-900/10'}`}
         >
-          <Mail size={16} />
+          <Mail size={20} />
         </a>
       </div>
 

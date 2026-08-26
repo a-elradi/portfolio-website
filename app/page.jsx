@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { 
-  Github, Linkedin, Mail, MapPin, 
+  Github, Linkedin, Mail, MapPin, Link as LinkIcon,
   Cpu, Brain, Trophy, MessageSquare, Menu,
-  ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink, 
-  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Sun, Moon 
+  ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink,
+  GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Sun, Moon
 } from 'lucide-react';
 import { IntroScreen } from './components/ui/intro-screen';
 import TubesCursorBackground from './components/ui/tubes-cursor-background';
@@ -523,10 +523,22 @@ const Portfolio = () => {
                 >
                   <Github size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
                 </a>
-                {/* TODO: add the LinkedIn profile URL, then restore this link:
-                <a href="https://www.linkedin.com/in/..." target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                <a
+                  href="https://www.linkedin.com/in/abdalla-elsiddig/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
+                >
                   <Linkedin size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
-                </a> */}
+                </a>
+                <a
+                  href="https://linktr.ee/Abdallaelsiddig"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Linktree"
+                >
+                  <LinkIcon size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
+                </a>
                 <a href="mailto:Abdallaelsiddig.m@gmail.com" aria-label="Send email">
                   <Mail size={20} className={`${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-500 hover:text-neutral-900'}`} />
                 </a>

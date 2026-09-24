@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { X, ArrowUpRight, Github, ShieldCheck, Instagram, MessageCircle, Mail, Clock } from 'lucide-react';
+import { X, ArrowUpRight, Github, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
 
 const SYSTEMS = [
   {
@@ -9,6 +9,8 @@ const SYSTEMS = [
     icon: ShieldCheck,
     category: 'Enterprise AI Governance',
     title: 'WAZIR — Agent Department',
+    image: '/wazir-cover.jpg',
+    video: '/wazir-demo.mp4',
     tagline: 'A supervisor AI that runs six specialist agents — with a kill switch.',
     description:
       "A multi-agent orchestration platform deployed in a live e-commerce operation running three regional stores. One supervisor agent (WAZIR) coordinates six specialists — automation & system health, support memory, market intelligence, SEO & content, sales & retention, and ad platform management — each locked to a Read / Recommend / Execute permission tier so no agent can act beyond its mandate. Every decision is written to a full audit trail, and a Telegram-based kill switch lets an operator pause every agent's write access instantly, no code deploy required.",
@@ -27,6 +29,8 @@ const SYSTEMS = [
     icon: Instagram,
     category: 'AI Customer Service — Instagram',
     title: 'Instagram Support Agent',
+    image: '/instagram-cover.jpg',
+    video: '/instagram-demo.mp4',
     tagline: 'One AI, four brand accounts, zero public order leaks.',
     description:
       "An always-on AI support agent handling DMs and comments across four Instagram business accounts for a multi-brand retailer. It looks up live order status across three regional Shopify stores and replies in a fixed persona per account. Comments get a friendly public acknowledgement while the real answer — order numbers, shipping details — goes out privately. Built-in loop protection stops the bot from ever replying to itself, and anything it can't resolve is escalated straight into a Telegram group where a human can take over mid-conversation with a single command.",
@@ -45,6 +49,8 @@ const SYSTEMS = [
     icon: MessageCircle,
     category: 'AI Customer Service — WhatsApp',
     title: 'WhatsApp Support Agent',
+    image: '/whatsapp-cover.jpg',
+    video: '/whatsapp-demo.mp4',
     tagline: 'Region-aware support that knows which store your order is in.',
     description:
       "A WhatsApp support bot that detects a customer's region from their phone number, pulls their order from the matching Shopify store out of three, and resolves shipping, sizing, returns and promo questions on its own. Requests that need a human — a damage claim, a return decision, an explicit ask — get handed to the team on Telegram, and the bot goes quiet while a person is handling the chat. An automatic daily digest at close of business summarizes every conversation, escalation and flagged issue for the team.",
@@ -63,6 +69,8 @@ const SYSTEMS = [
     icon: Mail,
     category: 'AI Customer Service — Email',
     title: 'Email Support Agent',
+    image: '/email-cover.jpg',
+    video: '/email-demo.mp4',
     tagline: 'Reads the inbox, checks three stores, drafts before it ever sends.',
     description:
       "An inbox-monitoring agent that checks a shared support mailbox every minute, filters out noise — newsletters, bounces, system senders — and answers real customer emails with full order context pulled from three Shopify stores in parallel, so the AI never has to guess which store an order belongs to. Confident answers go out as threaded replies with the company signature; anything uncertain becomes a draft and pings the support team on Telegram instead of guessing. A mail-loop safeguard automatically pauses the bot if it starts replying too fast to the same address.",
@@ -99,34 +107,44 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
             <button
               key={system.id}
               onClick={() => setActive(system)}
-              className={`group relative overflow-hidden rounded-[2rem] text-left p-6 sm:p-8 flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
+              className={`group relative overflow-hidden rounded-[2rem] text-left flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                  <Icon size={26} />
-                </div>
-                <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight size={16} />
+              <div className="relative aspect-video overflow-hidden">
+                <img
+                  src={system.image}
+                  alt={system.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play size={22} fill="currentColor" />
+                  </div>
                 </div>
               </div>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{system.category}</p>
-              <h3 className={`text-xl md:text-2xl font-black leading-tight mb-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{system.title}</h3>
-              <p className={`${themeClasses.mutedText} text-sm leading-relaxed mb-6`}>{system.tagline}</p>
-              <div className="mt-auto flex flex-wrap gap-2">
-                {system.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${themeClasses.subCard} ${themeClasses.mutedText}`}>
-                    {tag}
-                  </span>
-                ))}
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                    <Icon size={26} />
+                  </div>
+                  <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowUpRight size={16} />
+                  </div>
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{system.category}</p>
+                <h3 className={`text-xl md:text-2xl font-black leading-tight mb-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{system.title}</h3>
+                <p className={`${themeClasses.mutedText} text-sm leading-relaxed mb-6`}>{system.tagline}</p>
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {system.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${themeClasses.subCard} ${themeClasses.mutedText}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </button>
           );
         })}
-      </div>
-
-      <div className={`mt-8 flex items-center justify-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] ${themeClasses.mutedText}`}>
-        <Clock size={14} />
-        Live demo videos & screenshots coming soon
       </div>
 
       {active && (
@@ -140,6 +158,9 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
             >
               <X size={18} />
             </button>
+            <div className="aspect-video bg-black">
+              <video src={active.video} controls preload="metadata" poster={active.image} className="w-full h-full object-contain" />
+            </div>
             <div className="p-8">
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-6">
                 <active.icon size={26} />

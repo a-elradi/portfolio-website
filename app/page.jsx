@@ -12,6 +12,7 @@ import LightBackground from './components/ui/light-background';
 import ChatAgent from './components/ui/chat-agent';
 import AvailabilityCalendar from './components/ui/availability-calendar';
 import ServicesGrid from './components/ui/services-grid';
+import AutomationSystems from './components/ui/automation-systems';
 import RequestModal from './components/ui/request-modal';
 import ProjectsGallery from './components/ui/projects-gallery';
 import SkillsIcons from './components/ui/skills-icons';
@@ -21,6 +22,7 @@ const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
 const sectionIds = {
   Home: 'home',
   Projects: 'projects',
+  Automations: 'automations',
   Skills: 'skills',
   Services: 'services',
   Availability: 'availability',
@@ -191,7 +193,7 @@ const Portfolio = () => {
 
       {/* FLOATING NAV — desktop */}
       <nav className={`hidden md:flex fixed top-8 left-1/2 -translate-x-1/2 z-50 items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
-        {['Home', 'Projects', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
+        {['Home', 'Projects', 'Automations', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
           <button
             key={tab}
             onClick={() => handleNavClick(tab)}
@@ -238,7 +240,7 @@ const Portfolio = () => {
         </div>
         {mobileNavOpen && (
           <div className={`px-3 pb-3 flex flex-col gap-1 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
-            {['Home', 'Projects', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
+            {['Home', 'Projects', 'Automations', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => handleNavClick(tab)}
@@ -395,6 +397,19 @@ const Portfolio = () => {
           </div>
 
           <ProjectsGallery isDarkMode={isDarkMode} themeClasses={themeClasses} />
+        </section>
+
+        {/* AUTOMATION SYSTEMS SECTION */}
+        <section id="automations" className="mb-32">
+          <div className="text-center mb-16">
+            <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>ENTERPRISE AI SYSTEMS</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4">AI automation <span className="text-emerald-500">systems</span></h2>
+            <p className={`${themeClasses.mutedText} max-w-2xl mx-auto mt-6 leading-relaxed`}>
+              Production AI agent systems built for real business operations — customer support automation across Instagram, WhatsApp, and email, plus a governance layer that supervises them all.
+            </p>
+          </div>
+
+          <AutomationSystems isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </section>
 
       {/* Skills Section */}

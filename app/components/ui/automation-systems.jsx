@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { X, ArrowUpRight, Github, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
+import { X, ArrowUpRight, Send, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
 
 const SYSTEMS = [
   {
@@ -21,8 +21,7 @@ const SYSTEMS = [
       'Full audit trail: trigger → decision → approval → result',
       'Live ops dashboard: sales, automation health, department status',
     ],
-    tags: ['n8n', 'Multi-Agent Orchestration', 'Governance & Permissions', 'Telegram Bot', 'Ops Dashboard'],
-    repo: 'https://github.com/a-elradi/wazir-agent-department',
+    tags: ['Custom Automation Engine', 'Multi-Agent Orchestration', 'Governance & Permissions', 'Telegram Bot', 'Ops Dashboard'],
   },
   {
     id: 'instagram',
@@ -41,8 +40,7 @@ const SYSTEMS = [
       'Self-reply loop protection (dedupe + heuristic filter)',
       'Live human handoff via Telegram (/now, /done, /list)',
     ],
-    tags: ['n8n', 'Instagram Graph API', 'Gemini AI', 'Shopify API', 'Telegram Handoff'],
-    repo: 'https://github.com/a-elradi/n8n-ai-support-agent-instagram',
+    tags: ['Custom Automation Engine', 'Instagram Graph API', 'Local LLM', 'Shopify API', 'Telegram Handoff'],
   },
   {
     id: 'whatsapp',
@@ -61,8 +59,7 @@ const SYSTEMS = [
       'Automatic daily digest of conversations & escalations',
       'Handles media attachments and 12-message conversation memory',
     ],
-    tags: ['n8n', 'WhatsApp Business API', 'Gemini AI', 'Shopify GraphQL', 'Telegram Escalation'],
-    repo: 'https://github.com/a-elradi/n8n-ai-support-agent-whatsapp',
+    tags: ['Custom Automation Engine', 'WhatsApp Business API', 'Local LLM', 'Shopify GraphQL', 'Telegram Escalation'],
   },
   {
     id: 'email',
@@ -81,8 +78,7 @@ const SYSTEMS = [
       'Mail-loop protection pauses the bot after rapid-fire replies',
       'Telegram alerts for escalations and workflow failures',
     ],
-    tags: ['n8n', 'Outlook / Graph API', 'Gemini AI', 'Shopify GraphQL', 'Auto-Escalation'],
-    repo: 'https://github.com/a-elradi/n8n-ai-support-agent-outlook-',
+    tags: ['Custom Automation Engine', 'Outlook / Graph API', 'Local LLM', 'Shopify GraphQL', 'Auto-Escalation'],
   },
 ];
 
@@ -188,12 +184,11 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
               </div>
 
               <a
-                href={active.repo}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
+                onClick={() => setActive(null)}
                 className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-3 rounded-xl font-bold transition-all"
               >
-                <Github size={18} /> View Source on GitHub
+                <Send size={18} /> Request This For My Business
               </a>
             </div>
           </div>

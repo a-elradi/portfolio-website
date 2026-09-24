@@ -62,8 +62,7 @@ function matchReply(text) {
   return { reply: FALLBACK_REPLY };
 }
 
-export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accentColor = '#10b981' }) {
-  const [open, setOpen] = useState(false);
+export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accentColor = '#10b981', open, onToggle }) {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
     { role: 'bot', text: "Hi, I'm Abdalla's assistant. Ask me about his skills, projects, experience, or services — or say you'd like to book a meeting." },
@@ -94,9 +93,10 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accent
 
   return (
     <>
-      <div className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] flex flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
+      {/* Floating orb is desktop-only; on phones the same orb sits in the bottom tab bar */}
+      <div className={`hidden sm:flex fixed bottom-6 right-6 z-[60] flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
         <button
-          onClick={() => setOpen((v) => !v)}
+          onClick={onToggle}
           aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
           style={{ '--orb-color': accentColor }}
           className="ai-orb relative inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full text-white transition-transform hover:scale-105"
@@ -107,7 +107,7 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accent
       </div>
 
       {open && (
-        <div className={`fixed bottom-20 right-4 left-4 sm:bottom-24 sm:right-6 sm:left-auto z-[60] sm:w-[22rem] h-[26rem] sm:h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>
+        <div className={`fixed bottom-[5.75rem] right-3 left-3 sm:bottom-24 sm:right-6 sm:left-auto z-[60] sm:w-[22rem] h-[26rem] sm:h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>
           <div className={`px-5 py-4 flex items-center gap-3 border-b ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
             <div className="w-9 h-9 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400">
               <Sparkles size={18} />

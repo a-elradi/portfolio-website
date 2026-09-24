@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowUpRight, Send, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
+import useCarouselFocus from './use-carousel-focus';
 
 const SYSTEMS = [
   {
@@ -84,6 +85,8 @@ const SYSTEMS = [
 
 export default function AutomationSystems({ isDarkMode, themeClasses }) {
   const [active, setActive] = useState(null);
+  const railRef = useRef(null);
+  useCarouselFocus(railRef, '(max-width: 1023px)');
 
   useEffect(() => {
     if (!active) return;
@@ -96,14 +99,14 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
 
   return (
     <>
-      <div className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 lg:mx-0 lg:px-0 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div ref={railRef} className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 lg:mx-0 lg:px-0 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {SYSTEMS.map((system) => {
           const Icon = system.icon;
           return (
             <button
               key={system.id}
               onClick={() => setActive(system)}
-              className={`group relative overflow-hidden rounded-[2rem] text-left flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] shrink-0 w-[85vw] max-w-[380px] snap-center lg:w-auto lg:max-w-none lg:shrink ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
+              className={`group relative overflow-hidden rounded-[2rem] text-left flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] shrink-0 w-[85vw] max-w-[380px] snap-center lg:w-auto lg:max-w-none lg:shrink transition-[transform,opacity] duration-200 [transform:scale(var(--focus-scale,1))] active:[transform:scale(calc(var(--focus-scale,1)*0.98))] ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
             >
               <div className="relative aspect-video overflow-hidden">
                 <img

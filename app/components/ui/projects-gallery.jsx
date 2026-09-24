@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
+import useCarouselFocus from './use-carousel-focus';
 
 const PROJECTS = [
   {
@@ -65,6 +66,8 @@ const PROJECTS = [
 
 export default function ProjectsGallery({ isDarkMode, themeClasses }) {
   const [active, setActive] = useState(null);
+  const railRef = useRef(null);
+  useCarouselFocus(railRef, '(max-width: 639px)');
 
   useEffect(() => {
     if (!active) return;
@@ -77,12 +80,12 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
 
   return (
     <>
-      <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 sm:mx-0 sm:px-0 sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div ref={railRef} className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 sm:mx-0 sm:px-0 sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {PROJECTS.map((project) => (
           <button
             key={project.id}
             onClick={() => setActive(project)}
-            className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5] shrink-0 w-[78vw] max-w-[330px] snap-center sm:w-auto sm:max-w-none sm:shrink"
+            className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5] shrink-0 w-[78vw] max-w-[330px] snap-center sm:w-auto sm:max-w-none sm:shrink transition-[transform,opacity] duration-200 [transform:scale(var(--focus-scale,1))] active:[transform:scale(calc(var(--focus-scale,1)*0.97))]"
           >
             {project.image ? (
               <img

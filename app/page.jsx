@@ -294,7 +294,11 @@ const Portfolio = () => {
       {/* MOBILE NAV */}
       <nav className={`md:hidden fixed top-4 left-4 right-4 z-50 rounded-2xl shadow-2xl ${themeClasses.nav}`}>
         <div className="flex items-center justify-between px-4 py-3">
-          <span className={`text-xs font-black uppercase tracking-[0.2em] ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>AE</span>
+          <span
+            role="img"
+            aria-label="Abdalla Elradi"
+            className={`sig-mark h-10 w-40 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}
+          />
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsDarkMode((current) => !current)}

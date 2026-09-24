@@ -112,6 +112,15 @@ button {
   }
 }
 
+/* Handwritten mark: the PNG is an alpha mask, so `background: currentColor`
+   lets it take the nav's text colour in either theme. */
+.sig-mark {
+  display: block;
+  background: currentColor;
+  -webkit-mask: url('/signature.png') no-repeat left center / contain;
+  mask: url('/signature.png') no-repeat left center / contain;
+}
+
 /* Opacity only: the hero image's transform belongs to the scroll parallax. */
 @keyframes photo-settle {
   from { opacity: 0.45; }

@@ -96,14 +96,14 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="flex lg:grid lg:grid-cols-2 gap-4 lg:gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 lg:mx-0 lg:px-0 lg:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {SYSTEMS.map((system) => {
           const Icon = system.icon;
           return (
             <button
               key={system.id}
               onClick={() => setActive(system)}
-              className={`group relative overflow-hidden rounded-[2rem] text-left flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
+              className={`group relative overflow-hidden rounded-[2rem] text-left flex flex-col shadow-[0_10px_45px_rgba(0,_0,_0,_0.25)] shrink-0 w-[85vw] max-w-[380px] snap-center lg:w-auto lg:max-w-none lg:shrink ${themeClasses.card} ${system.flagship ? 'lg:col-span-2' : ''}`}
             >
               <div className="relative aspect-video overflow-hidden">
                 <img
@@ -112,8 +112,8 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-black/50 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-black/60 backdrop-blur flex items-center justify-center text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                     <Play size={22} fill="currentColor" />
                   </div>
                 </div>
@@ -123,7 +123,7 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
                   <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
                     <Icon size={26} />
                   </div>
-                  <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-9 h-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                     <ArrowUpRight size={16} />
                   </div>
                 </div>
@@ -142,6 +142,10 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
           );
         })}
       </div>
+
+      <p className={`lg:hidden mt-1 text-center text-[10px] font-bold uppercase tracking-[0.25em] ${themeClasses.mutedText}`}>
+        Swipe · {SYSTEMS.length} systems
+      </p>
 
       {active && (
         <div role="dialog" aria-modal="true" aria-label={active.title} className="fixed inset-0 z-[70] flex items-center justify-center px-4">

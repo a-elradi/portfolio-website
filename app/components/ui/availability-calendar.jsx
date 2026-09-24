@@ -76,14 +76,14 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
             <button
               onClick={() => setMonthOffset((v) => v - 1)}
               aria-label="Previous month"
-              className={`w-8 h-8 inline-flex items-center justify-center rounded-full border ${isDarkMode ? 'border-white/10 text-gray-300 hover:bg-white/5' : 'border-neutral-200 text-neutral-600 hover:bg-neutral-100'}`}
+              className={`w-11 h-11 sm:w-8 sm:h-8 inline-flex items-center justify-center rounded-full border ${isDarkMode ? 'border-white/10 text-gray-300 hover:bg-white/5' : 'border-neutral-200 text-neutral-600 hover:bg-neutral-100'}`}
             >
               <ChevronLeft size={14} />
             </button>
             <button
               onClick={() => setMonthOffset((v) => v + 1)}
               aria-label="Next month"
-              className={`w-8 h-8 inline-flex items-center justify-center rounded-full border ${isDarkMode ? 'border-white/10 text-gray-300 hover:bg-white/5' : 'border-neutral-200 text-neutral-600 hover:bg-neutral-100'}`}
+              className={`w-11 h-11 sm:w-8 sm:h-8 inline-flex items-center justify-center rounded-full border ${isDarkMode ? 'border-white/10 text-gray-300 hover:bg-white/5' : 'border-neutral-200 text-neutral-600 hover:bg-neutral-100'}`}
             >
               <ChevronRight size={14} />
             </button>

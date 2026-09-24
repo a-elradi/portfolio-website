@@ -77,12 +77,12 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory scroll-px-4 -mx-4 px-4 pb-4 sm:mx-0 sm:px-0 sm:pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {PROJECTS.map((project) => (
           <button
             key={project.id}
             onClick={() => setActive(project)}
-            className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5]"
+            className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5] shrink-0 w-[78vw] max-w-[330px] snap-center sm:w-auto sm:max-w-none sm:shrink"
           >
             {project.image ? (
               <img
@@ -100,17 +100,21 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/5" />
             <div className="absolute inset-0 p-6 flex flex-col justify-end">
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{project.category}</p>
               <h3 className="text-xl md:text-2xl font-black text-white leading-tight">{project.title}</h3>
             </div>
-            <div className="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center text-white opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
               <ArrowUpRight size={16} />
             </div>
           </button>
         ))}
       </div>
+
+      <p className={`sm:hidden mt-1 text-center text-[10px] font-bold uppercase tracking-[0.25em] ${themeClasses.mutedText}`}>
+        Swipe · {PROJECTS.length} projects
+      </p>
 
       {active && (
         <div role="dialog" aria-modal="true" aria-label={active.title} className="fixed inset-0 z-[70] flex items-center justify-center px-4">

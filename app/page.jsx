@@ -39,6 +39,7 @@ const Portfolio = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [request, setRequest] = useState(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [showAllCertificates, setShowAllCertificates] = useState(false);
   const [bgAccentColor, setBgAccentColor] = useState('#10b981');
 
   const scrollToSection = (id) => {
@@ -224,14 +225,14 @@ const Portfolio = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsDarkMode((current) => !current)}
-              className={`inline-flex items-center justify-center rounded-full w-9 h-9 transition ${themeClasses.accentButton}`}
+              className={`inline-flex items-center justify-center rounded-full w-11 h-11 transition ${themeClasses.accentButton}`}
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
             </button>
             <button
               onClick={() => setMobileNavOpen((v) => !v)}
-              className={`inline-flex items-center justify-center rounded-full w-9 h-9 transition ${themeClasses.accentButton}`}
+              className={`inline-flex items-center justify-center rounded-full w-11 h-11 transition ${themeClasses.accentButton}`}
               aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
             >
               {mobileNavOpen ? <X size={16} /> : <Menu size={16} />}
@@ -244,19 +245,38 @@ const Portfolio = () => {
               <button
                 key={tab}
                 onClick={() => handleNavClick(tab)}
-                className={`text-left px-4 py-2.5 mt-1 text-xs font-black uppercase tracking-[0.15em] rounded-xl transition-all ${
+                className={`text-left px-4 py-3.5 mt-1 text-xs font-black uppercase tracking-[0.15em] rounded-xl transition-all ${
                   activeTab === tab ? 'bg-emerald-500/15 text-emerald-400' : themeClasses.navButtonText
                 }`}
               >
                 {tab}
               </button>
             ))}
+            <div className={`mt-3 pt-3 flex items-center justify-center gap-2 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
+              {[
+                { href: 'https://github.com/a-elradi', label: 'GitHub profile', Icon: Github },
+                { href: 'https://www.linkedin.com/in/abdalla-elsiddig/', label: 'LinkedIn profile', Icon: Linkedin },
+                { href: 'https://linktr.ee/Abdallaelsiddig', label: 'Linktree', Icon: LinkIcon },
+                { href: 'mailto:Abdallaelsiddig.m@gmail.com', label: 'Send email', Icon: Mail },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                  aria-label={label}
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl transition ${isDarkMode ? 'text-gray-300 hover:text-white bg-white/5 hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 bg-neutral-900/5 hover:bg-neutral-900/10'}`}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
           </div>
         )}
       </nav>
 
-      {/* SOCIAL RAIL — fixed, vertically centered, visible on every screen regardless of scroll */}
-      <div className={`fixed top-1/2 -translate-y-1/2 left-4 sm:left-6 z-50 flex flex-col items-center gap-2 p-2 backdrop-blur-2xl rounded-full shadow-2xl border ${isDarkMode ? 'border-emerald-500/20' : 'border-emerald-600/20'} ${themeClasses.nav}`}>
+      {/* SOCIAL RAIL — desktop only; on phones these live in the mobile menu instead, where they can't cover content */}
+      <div className={`hidden md:flex fixed top-1/2 -translate-y-1/2 left-4 sm:left-6 z-50 flex-col items-center gap-2 p-2 backdrop-blur-2xl rounded-full shadow-2xl border ${isDarkMode ? 'border-emerald-500/20' : 'border-emerald-600/20'} ${themeClasses.nav}`}>
         <a
           href="https://github.com/a-elradi"
           target="_blank"
@@ -293,10 +313,10 @@ const Portfolio = () => {
         </a>
       </div>
 
-      <main id="home" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-20">
+      <main id="home" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-12 sm:pb-20">
         
         {/* HERO GRID */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-5 mb-24 items-start">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5 mb-14 sm:mb-24 items-start">
           
           {/* NAME CARD */}
           <div className={`md:col-span-4 md:col-start-1 md:row-span-1 min-h-[170px] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_10px_45px_rgba(0,_0,_0,_0.35)] ${themeClasses.card}`}>
@@ -390,8 +410,8 @@ const Portfolio = () => {
           </div>
         </section>
         {/* PROJECTS SECTION */}
-        <section id="projects" className="mb-32">
-          <div className="text-center mb-16">
+        <section id="projects" className="mb-16 sm:mb-24 lg:mb-32">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>PORTFOLIO</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4">Featured <span className="text-emerald-500">projects</span></h2>
           </div>
@@ -400,8 +420,8 @@ const Portfolio = () => {
         </section>
 
         {/* AUTOMATION SYSTEMS SECTION */}
-        <section id="automations" className="mb-32">
-          <div className="text-center mb-16">
+        <section id="automations" className="mb-16 sm:mb-24 lg:mb-32">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>ENTERPRISE AI SYSTEMS</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mt-4">AI automation <span className="text-emerald-500">systems</span></h2>
             <p className={`${themeClasses.mutedText} max-w-2xl mx-auto mt-6 leading-relaxed`}>
@@ -413,17 +433,17 @@ const Portfolio = () => {
         </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-14 sm:py-20 px-4 sm:px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
+      <section id="skills" className="py-9 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
           <SkillsIcons isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-14 sm:py-20 px-4 sm:px-6">
+      <section id="services" className="py-9 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>WHAT I OFFER</p>
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Services</h2>
           </div>
@@ -436,8 +456,8 @@ const Portfolio = () => {
       </section>
 
       {/* Availability Section */}
-      <section id="availability" className="py-14 sm:py-20 px-4 sm:px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
+      <section id="availability" className="py-9 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <div className="mb-8">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>SCHEDULE</p>
             <h2 className={`text-4xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Availability</h2>
@@ -451,27 +471,30 @@ const Portfolio = () => {
       </section>
 
       {/* Certificates Section */}
-      <section id="certificates" className="py-14 sm:py-20 px-4 sm:px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
-          <div className="text-center mb-12">
+      <section id="certificates" className="py-9 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
+          <div className="text-center mb-7 sm:mb-12">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>CREDENTIALS</p>
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Certificates</h2>
           </div>
           <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} text-center max-w-3xl mx-auto mb-10`}>
             These certifications show my learning progress in AI, robotics, web development, and systems engineering. I keep the verified files in <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-semibold`}>/public/certificates</span>.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certificateFiles.map((certificate) => (
-              <div key={certificate.file} className={`overflow-hidden rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${themeClasses.card}`}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {certificateFiles.map((certificate, index) => (
+              <div
+                key={certificate.file}
+                className={`overflow-hidden rounded-2xl sm:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${themeClasses.card} ${!showAllCertificates && index >= 6 ? 'hidden sm:block' : ''}`}
+              >
                 {certificate.type === 'image' ? (
-                  <img src={`/certificates/${certificate.file}`} alt={certificate.title} loading="lazy" className="h-64 w-full object-cover" />
+                  <img src={`/certificates/${certificate.file}`} alt={certificate.title} loading="lazy" className="h-28 sm:h-64 w-full object-cover" />
                 ) : (
-                  <div className="flex h-64 w-full items-center justify-center bg-gradient-to-br from-neutral-900 via-[#06070d] to-neutral-800 p-6">
+                  <div className="flex h-28 sm:h-64 w-full items-center justify-center bg-gradient-to-br from-neutral-900 via-[#06070d] to-neutral-800 p-3 sm:p-6">
                     <img
                       src={getCertificateBadgePath(certificate)}
                       alt={`${certificate.title} badge`}
                       loading="lazy"
-                      className="max-h-36 max-w-full object-contain"
+                      className="max-h-20 sm:max-h-36 max-w-full object-contain"
                       onError={(event) => {
                         const target = event.currentTarget;
                         target.onerror = null;
@@ -480,9 +503,9 @@ const Portfolio = () => {
                     />
                   </div>
                 )}
-                <div className="p-5">
-                  <p className={`text-sm font-semibold ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{certificate.title}</p>
-                  <p className={`${isDarkMode ? 'text-gray-400' : 'text-neutral-600'} text-xs mt-2`}>
+                <div className="p-3 sm:p-5">
+                  <p className={`text-xs sm:text-sm font-semibold leading-snug ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{certificate.title}</p>
+                  <p className={`hidden sm:block ${isDarkMode ? 'text-gray-400' : 'text-neutral-600'} text-xs mt-2`}>
                     {certificate.type === 'pdf'
                       ? 'Click to open or download the certificate.'
                       : 'Image preview of the certificate.'}
@@ -491,21 +514,29 @@ const Portfolio = () => {
                     href={`/certificates/${certificate.file}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 hover:text-emerald-300"
+                    className="mt-2 sm:mt-4 inline-flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-emerald-400 hover:text-emerald-300"
                   >
-                    View Certificate
+                    View
                     <ArrowUpRight size={12} />
                   </a>
                 </div>
               </div>
             ))}
           </div>
+          {!showAllCertificates && (
+            <button
+              onClick={() => setShowAllCertificates(true)}
+              className={`sm:hidden mt-6 w-full py-3.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition ${themeClasses.accentButton}`}
+            >
+              Show all {certificateFiles.length} certificates
+            </button>
+          )}
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-14 sm:py-20 px-4 sm:px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 ${themeClasses.panel}`}>
+      <section id="experience" className="py-9 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Professional Experience</h2>
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
@@ -526,8 +557,8 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-14 sm:py-20 px-4 sm:px-6">
-        <div className={`max-w-7xl mx-auto rounded-[2.5rem] p-6 sm:p-10 text-center ${themeClasses.panel}`}>
+      <section id="contact" className="py-9 sm:py-20 px-4 sm:px-6">
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 text-center ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let&apos;s Work Together</h2>
           <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let&apos;s build the future together.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

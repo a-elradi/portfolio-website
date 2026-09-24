@@ -94,12 +94,12 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accent
 
   return (
     <>
-      <div className={`fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
+      <div className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[60] flex flex-col items-end gap-3 ${open ? '' : 'animate-gentle-float'}`}>
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
           style={{ '--orb-color': accentColor }}
-          className="ai-orb relative inline-flex items-center justify-center w-16 h-16 rounded-full text-white transition-transform hover:scale-105"
+          className="ai-orb relative inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full text-white transition-transform hover:scale-105"
         >
           <span className="ai-orb-shine" aria-hidden="true" />
           {open ? <X size={22} className="relative z-10" /> : <Sparkles size={22} className="relative z-10" />}
@@ -107,7 +107,7 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accent
       </div>
 
       {open && (
-        <div className={`fixed bottom-24 right-6 z-[60] w-[22rem] max-w-[calc(100vw-3rem)] h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>
+        <div className={`fixed bottom-20 right-4 left-4 sm:bottom-24 sm:right-6 sm:left-auto z-[60] sm:w-[22rem] h-[26rem] sm:h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>
           <div className={`px-5 py-4 flex items-center gap-3 border-b ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
             <div className="w-9 h-9 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400">
               <Sparkles size={18} />

@@ -4,8 +4,18 @@ import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
 
 const PROJECTS = [
   {
+    id: 'door2door',
+    category: '01 — Full-Stack Web App',
+    title: 'Door2Door Delivery Platform',
+    image: '/door2door-cover.jpg',
+    video: '/door2door-demo.mp4',
+    description: 'A complete delivery platform built for Door2Door, a Kuwait-based delivery company — a public marketing site with services and pricing, a customer-facing order tracking page, and a password-protected admin panel for creating orders, updating delivery status, and managing incoming business requests.',
+    tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'Order Tracking', 'Admin Panel'],
+    liveUrl: 'https://door2door-iota.vercel.app/',
+  },
+  {
     id: 'amr',
-    category: '01 — Robotics',
+    category: '02 — Robotics',
     title: 'AMR Warehouse Robot',
     image: '/1.png',
     description: 'Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.',
@@ -13,7 +23,7 @@ const PROJECTS = [
   },
   {
     id: 'techtrap',
-    category: '02 — AI Healthcare',
+    category: '03 — AI Healthcare',
     title: 'TECHTRAP',
     image: '/Huawie.jpg',
     description: 'AI-powered rehabilitation and educational system built for the Huawei ICT Competition.',
@@ -21,7 +31,7 @@ const PROJECTS = [
   },
   {
     id: 'firex',
-    category: '03 — Robotics',
+    category: '04 — Robotics',
     title: 'FireX Robot',
     image: '/7.jpeg',
     description: 'Advanced firefighter robot with AI-powered navigation and rescue capabilities.',
@@ -29,7 +39,7 @@ const PROJECTS = [
   },
   {
     id: 'cv',
-    category: '04 — Computer Vision',
+    category: '05 — Computer Vision',
     title: 'Computer Vision Projects',
     image: '/MV.jpeg',
     description: 'A collection of computer vision projects covering AI-powered image processing and analysis.',
@@ -37,7 +47,7 @@ const PROJECTS = [
   },
   {
     id: 'iot',
-    category: '05 — Robotics',
+    category: '06 — Robotics',
     title: 'Sumo X Competition',
     image: '/8.jpeg',
     description: 'IoT-based automation systems with real-time monitoring and control capabilities.',
@@ -45,20 +55,11 @@ const PROJECTS = [
   },
   {
     id: 'robonexus',
-    category: '06 — Combat Robotics',
+    category: '07 — Combat Robotics',
     title: 'Robonexus',
     image: '/9.jpeg',
     description: 'World-championship combat robotics competition entry — innovative robot design and battle strategy.',
     tags: ['Embedded Systems', 'PCB Design', 'Battle Tactics', 'Mechanical Engineering'],
-  },
-  {
-    id: 'door2door',
-    category: '07 — Full-Stack Web App',
-    title: 'Door2Door Delivery Platform',
-    video: '/door2door-demo.mp4',
-    description: 'A complete delivery platform built for Door2Door, a Kuwait-based delivery company — a public marketing site with services and pricing, a customer-facing order tracking page, and a password-protected admin panel for creating orders, updating delivery status, and managing incoming business requests.',
-    tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'Order Tracking', 'Admin Panel'],
-    liveUrl: 'https://door2door-iota.vercel.app/',
   },
 ];
 
@@ -83,19 +84,19 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             onClick={() => setActive(project)}
             className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5]"
           >
-            {project.video ? (
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            ) : (
               <video
                 src={project.video}
                 muted
                 playsInline
                 preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            ) : (
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
             )}
@@ -124,7 +125,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             </button>
             <div className="aspect-[16/9] bg-black">
               {active.video ? (
-                <video src={active.video} controls preload="metadata" className="w-full h-full object-contain" />
+                <video src={active.video} controls preload="metadata" poster={active.image} className="w-full h-full object-contain" />
               ) : (
                 <img src={active.image} alt={active.title} className="w-full h-full object-cover" />
               )}

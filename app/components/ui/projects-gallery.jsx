@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { X, ArrowUpRight } from 'lucide-react';
+import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
 
 const PROJECTS = [
   {
@@ -51,6 +51,15 @@ const PROJECTS = [
     description: 'World-championship combat robotics competition entry — innovative robot design and battle strategy.',
     tags: ['Embedded Systems', 'PCB Design', 'Battle Tactics', 'Mechanical Engineering'],
   },
+  {
+    id: 'door2door',
+    category: '07 — Full-Stack Web App',
+    title: 'Door2Door Delivery Platform',
+    video: '/door2door-demo.mp4',
+    description: 'A complete delivery platform built for Door2Door, a Kuwait-based delivery company — a public marketing site with services and pricing, a customer-facing order tracking page, and a password-protected admin panel for creating orders, updating delivery status, and managing incoming business requests.',
+    tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'Order Tracking', 'Admin Panel'],
+    liveUrl: 'https://door2door-iota.vercel.app/',
+  },
 ];
 
 export default function ProjectsGallery({ isDarkMode, themeClasses }) {
@@ -74,12 +83,22 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             onClick={() => setActive(project)}
             className="group relative overflow-hidden rounded-[2rem] text-left aspect-[4/5]"
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+            {project.video ? (
+              <video
+                src={project.video}
+                muted
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            ) : (
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
             <div className="absolute inset-0 p-6 flex flex-col justify-end">
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{project.category}</p>
@@ -103,20 +122,34 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             >
               <X size={18} />
             </button>
-            <div className="aspect-[16/9]">
-              <img src={active.image} alt={active.title} className="w-full h-full object-cover" />
+            <div className="aspect-[16/9] bg-black">
+              {active.video ? (
+                <video src={active.video} controls preload="metadata" className="w-full h-full object-contain" />
+              ) : (
+                <img src={active.image} alt={active.title} className="w-full h-full object-cover" />
+              )}
             </div>
             <div className="p-8">
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{active.category}</p>
               <h3 className={`text-2xl md:text-3xl font-black mb-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{active.title}</h3>
               <p className={`${themeClasses.mutedText} leading-relaxed mb-6`}>{active.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {active.tags.map((tag) => (
                   <span key={tag} className={`px-3 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wide ${themeClasses.subCard} ${themeClasses.mutedText}`}>
                     {tag}
                   </span>
                 ))}
               </div>
+              {active.liveUrl && (
+                <a
+                  href={active.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-3 rounded-xl font-bold transition-all"
+                >
+                  <ExternalLink size={18} /> Visit Live Site
+                </a>
+              )}
             </div>
           </div>
         </div>

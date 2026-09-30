@@ -332,7 +332,7 @@ const Portfolio = () => {
             <div className={`mt-3 pt-3 flex items-center justify-center gap-2 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
               {[
                 { href: 'https://github.com/a-elradi', label: 'GitHub profile', Icon: Github },
-                { href: 'https://www.linkedin.com/in/abdalla-elsiddig/', label: 'LinkedIn profile', Icon: Linkedin },
+                { href: 'https://www.linkedin.com/in/abdalla-elradi/', label: 'LinkedIn profile', Icon: Linkedin },
                 { href: 'https://linktr.ee/Abdallaelsiddig', label: 'Linktree', Icon: LinkIcon },
                 { href: 'mailto:Abdallaelsiddig.m@gmail.com', label: 'Send email', Icon: Mail },
               ].map(({ href, label, Icon }) => (
@@ -403,7 +403,7 @@ const Portfolio = () => {
           <Github size={20} />
         </a>
         <a
-          href="https://www.linkedin.com/in/abdalla-elsiddig/"
+          href="https://www.linkedin.com/in/abdalla-elradi/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn profile"

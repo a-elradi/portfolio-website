@@ -63,7 +63,7 @@ export default function RequestModal({ request, onClose, isDarkMode, themeClasse
         <button
           onClick={onClose}
           aria-label="Close"
-          className={`absolute top-6 right-6 ${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-400 hover:text-neutral-900'}`}
+          className={`absolute top-4 right-4 w-11 h-11 inline-flex items-center justify-center rounded-full ${isDarkMode ? 'text-gray-500 hover:text-white' : 'text-neutral-400 hover:text-neutral-900'}`}
         >
           <X size={20} />
         </button>

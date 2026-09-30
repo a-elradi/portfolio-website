@@ -22,6 +22,7 @@ export default function useCarouselFocus(ref, media) {
       frame = 0;
       if (!mq.matches) return clear();
       const box = el.getBoundingClientRect();
+      if (!box.width) return;
       const centre = box.left + box.width / 2;
       for (const child of el.children) {
         const r = child.getBoundingClientRect();

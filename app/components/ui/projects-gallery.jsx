@@ -3,12 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowUpRight, ExternalLink } from 'lucide-react';
 import useCarouselFocus from './use-carousel-focus';
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     id: 'door2door',
     category: '01 — Full-Stack Web App',
     title: 'Door2Door Delivery Platform',
     image: '/door2door-cover.jpg',
+    // The cover is a wide title card; small crops use the phone mockup instead.
+    thumb: '/door2door-thumb.jpg',
     video: '/door2door-demo.mp4',
     description: 'A complete delivery platform built for Door2Door, a Kuwait-based delivery company — a public marketing site with services and pricing, a customer-facing order tracking page, and a password-protected admin panel for creating orders, updating delivery status, and managing incoming business requests.',
     tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'Order Tracking', 'Admin Panel'],

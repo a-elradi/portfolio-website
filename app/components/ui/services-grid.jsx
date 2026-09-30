@@ -2,7 +2,7 @@
 import React from 'react';
 import { Globe, Bot, Workflow, Rocket, Cog, ArrowUpRight } from 'lucide-react';
 
-const SERVICES = [
+export const SERVICES = [
   { icon: Globe, name: 'Websites & Web Apps' },
   { icon: Workflow, name: 'Automation & Systems' },
   { icon: Cog, name: 'Robotics' },

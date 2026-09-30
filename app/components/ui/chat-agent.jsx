@@ -25,7 +25,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['contact', 'email', 'reach', 'phone'],
-    reply: `You can reach him directly at Abdallaelsiddig.m@gmail.com, or use the Contact section at the bottom of the page.`,
+    reply: `You can reach him directly at Abdallaelsiddig.m@gmail.com, or use the Contact section.`,
   },
   {
     keywords: ['resume', 'cv'],
@@ -38,7 +38,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['book', 'meeting', 'schedule', 'call', 'available', 'availability', 'talk', 'chat with him'],
-    reply: "Happy to help you set that up. Scroll down to the Availability calendar — pick an open day and it'll open a quick request form, or I can open it for you now.",
+    reply: "Happy to help you set that up. I'm opening the Availability calendar for you — pick an open day and it'll open a quick request form.",
     action: 'availability',
   },
   {
@@ -107,15 +107,27 @@ export default function ChatAgent({ isDarkMode, themeClasses, onNavigate, accent
       </div>
 
       {open && (
-        <div className={`fixed bottom-[5.75rem] right-3 left-3 sm:bottom-24 sm:right-6 sm:left-auto z-[60] sm:w-[22rem] h-[26rem] sm:h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${themeClasses.card}`}>
+        <div onClick={onToggle} className="sm:hidden fixed inset-0 z-[59] bg-black/60 backdrop-blur-[2px] touch-none" aria-hidden="true" />
+      )}
+
+      {open && (
+        <div className={`fixed bottom-3 right-3 left-3 sm:bottom-24 sm:right-6 sm:left-auto z-[60] sm:w-[22rem] h-[min(78svh,36rem)] sm:h-[28rem] rounded-[1.75rem] shadow-2xl flex flex-col overflow-hidden ${isDarkMode ? 'max-sm:bg-[#0c0c0c]' : 'max-sm:bg-neutral-50'} ${themeClasses.card}`}>
           <div className={`px-5 py-4 flex items-center gap-3 border-b ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
             <div className="w-9 h-9 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400">
               <Sparkles size={18} />
             </div>
-            <div>
+            <div className="flex-1">
               <p className={`text-sm font-black ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Ask about Abdalla</p>
               <p className="text-[11px] text-emerald-400 uppercase tracking-widest font-bold">FAQ assistant</p>
             </div>
+            {/* Phones have no orb to close with, so the panel carries its own */}
+            <button
+              onClick={onToggle}
+              aria-label="Close chat assistant"
+              className={`sm:hidden w-10 h-10 inline-flex items-center justify-center rounded-full ${isDarkMode ? 'bg-white/5 text-gray-300' : 'bg-neutral-900/5 text-neutral-700'}`}
+            >
+              <X size={18} />
+            </button>
           </div>
 
           <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-3">

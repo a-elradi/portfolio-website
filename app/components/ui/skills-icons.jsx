@@ -3,7 +3,7 @@ import React from 'react';
 import { SiPython, SiCplusplus, SiJavascript, SiMysql, SiMqtt, SiOpencv, SiTensorflow, SiYolo } from 'react-icons/si';
 import { Workflow, CircuitBoard, BrainCircuit } from 'lucide-react';
 
-const SKILL_GROUPS = [
+export const SKILL_GROUPS = [
   {
     category: 'Languages',
     items: [

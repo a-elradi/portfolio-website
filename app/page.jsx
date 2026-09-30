@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { 
-  Github, Linkedin, Mail, MapPin, Link as LinkIcon, Home,
-  Cpu, Brain, Trophy, MessageSquare, Menu,
-  ArrowUpRight, BookOpen, Sparkles, Dribbble, X, ExternalLink,
+  Github, Linkedin, Mail, MapPin, Link as LinkIcon,
+  Cpu, Brain, Trophy, MessageSquare, ArrowUpRight, BookOpen, Dribbble, ExternalLink,
   GraduationCap,  Briefcase, Folder, Award, ChevronRight, FileText, Quote, Sun, Moon
 } from 'lucide-react';
 import { IntroScreen } from './components/ui/intro-screen';
@@ -16,6 +15,7 @@ import AutomationSystems from './components/ui/automation-systems';
 import RequestModal from './components/ui/request-modal';
 import ProjectsGallery from './components/ui/projects-gallery';
 import SkillsIcons from './components/ui/skills-icons';
+import MobileApp, { useMobileSheet } from './components/ui/mobile-app';
 
 const photoSources = ['/profile.png','/p1.jpeg', '/p2.jpeg', '/p3.jpeg', '/p4.jpeg', '/p5.jpeg'];
 const mindsetSources = ['/c1.jpg', '/c2.jpg', '/c3.jpg', '/c4.jpg'];
@@ -38,12 +38,9 @@ const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
   const [request, setRequest] = useState(null);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [showAllCertificates, setShowAllCertificates] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [sectionMarks, setSectionMarks] = useState([]);
   const [chatOpen, setChatOpen] = useState(false);
   const [bgAccentColor, setBgAccentColor] = useState('#10b981');
+  const mobileSheet = useMobileSheet();
 
   const scrollToSection = (id) => {
     const target = document.getElementById(id);
@@ -90,59 +87,10 @@ const Portfolio = () => {
         return Math.abs(entry.top - 120) < Math.abs(closest.top - 120) ? entry : closest;
       }, entries[0]);
       setActiveTab(nearest.tab);
-
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
-
-      // Drives the phone hero's parallax without a React re-render per frame.
-      const root = document.documentElement.style;
-      root.setProperty('--hero-shift', `${Math.min(window.scrollY, 900)}px`);
-      root.setProperty('--hero-progress', Math.min(window.scrollY / 520, 1).toFixed(3));
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Tick positions for the mobile progress rail, taken from where the sections
-  // actually sit so the scale reads as the real shape of the page.
-  useEffect(() => {
-    const measure = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollable <= 0) return;
-      setSectionMarks(
-        Object.values(sectionIds)
-          .map((id) => document.getElementById(id))
-          .filter(Boolean)
-          .map((el) => ((el.getBoundingClientRect().top + window.scrollY) / scrollable) * 100)
-          .filter((pct) => pct > 0 && pct < 100)
-      );
-    };
-    const timer = window.setTimeout(measure, 600);
-    window.addEventListener('resize', measure);
-    return () => {
-      window.clearTimeout(timer);
-      window.removeEventListener('resize', measure);
-    };
-  }, []);
-
-  // Phones get no hover, so motion is what keeps the page feeling responsive.
-  useEffect(() => {
-    document.documentElement.classList.add('reveal-armed');
-    const targets = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
-    );
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   // The background tubes follow the pointer via body `pointermove`, which the
@@ -166,9 +114,39 @@ const Portfolio = () => {
     };
   }, []);
 
+  // On phones the request form gets its own history entry, so the back button
+  // closes the form first instead of the sheet sitting underneath it.
+  const openRequest = (payload) => {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      const state = window.history.state || {};
+      window.history.pushState({ ...state, requestModal: true, depth: (state.depth || 0) + 1 }, '');
+    }
+    setRequest(payload);
+  };
+  const closeRequest = () => {
+    if (window.history.state?.requestModal) window.history.back();
+    else setRequest(null);
+  };
+  useEffect(() => {
+    const onPop = () => {
+      if (!window.history.state?.requestModal) setRequest(null);
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // Chat actions scroll to a section on desktop; on phones they open the sheet.
+  const handleChatNavigate = (sectionId) => {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setChatOpen(false);
+      mobileSheet.open(sectionId === 'availability' ? 'book' : sectionId);
+      return;
+    }
+    scrollToSection(sectionId);
+  };
+
   const handleNavClick = (tab) => {
     setActiveTab(tab);
-    setMobileNavOpen(false);
     const target = document.getElementById(sectionIds[tab]);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -261,10 +239,31 @@ const Portfolio = () => {
   return (
     <>
       {showIntro && <IntroScreen onFinish={() => setShowIntro(false)} />}
-      <div className={`min-h-screen pb-24 md:pb-0 ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
+      <div className={`min-h-screen ${themeClasses.root} font-sans selection:bg-emerald-500/30 overflow-x-hidden`}>
       {/* BACKGROUND */}
       {isDarkMode ? <TubesCursorBackground onColorChange={setBgAccentColor} /> : <LightBackground />}
 
+      {/* PHONE — its own app: a home screen of tiles, each opening a full-screen sheet */}
+      <MobileApp
+        className="md:hidden"
+        ready={!showIntro}
+        isDarkMode={isDarkMode}
+        onToggleTheme={() => setIsDarkMode((current) => !current)}
+        themeClasses={themeClasses}
+        photo={photoSources[photoIndex]}
+        photoKey={photoIndex}
+        mindsetPhoto={mindsetSources[mindsetIndex]}
+        experiences={experiences}
+        certificateFiles={certificateFiles}
+        getCertificateBadgePath={getCertificateBadgePath}
+        accentColor={isDarkMode ? bgAccentColor : '#10b981'}
+        sheetNav={mobileSheet}
+        onRequest={openRequest}
+        onOpenChat={() => setChatOpen(true)}
+      />
+
+      {/* DESKTOP & TABLET */}
+      <div className="hidden md:block">
       {/* FLOATING NAV — desktop */}
       <nav className={`hidden md:flex fixed top-8 left-1/2 -translate-x-1/2 z-50 items-center gap-2 p-1.5 backdrop-blur-2xl rounded-full shadow-2xl ${themeClasses.nav}`}>
         {['Home', 'Projects', 'Automations', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
@@ -289,106 +288,6 @@ const Portfolio = () => {
         >
           {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
         </button>
-      </nav>
-
-      {/* MOBILE NAV */}
-      <nav className={`md:hidden fixed top-4 left-4 right-4 z-50 rounded-2xl shadow-2xl ${themeClasses.nav}`}>
-        <div className="flex items-center justify-between px-4 py-3">
-          <span
-            role="img"
-            aria-label="Abdalla Elradi"
-            className={`sig-mark h-10 w-40 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}
-          />
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsDarkMode((current) => !current)}
-              className={`inline-flex items-center justify-center rounded-full w-11 h-11 transition ${themeClasses.accentButton}`}
-              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
-              {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
-            </button>
-            <button
-              onClick={() => setMobileNavOpen((v) => !v)}
-              className={`inline-flex items-center justify-center rounded-full w-11 h-11 transition ${themeClasses.accentButton}`}
-              aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
-            >
-              {mobileNavOpen ? <X size={16} /> : <Menu size={16} />}
-            </button>
-          </div>
-        </div>
-        {mobileNavOpen && (
-          <div className={`px-3 pb-3 flex flex-col gap-1 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
-            {['Home', 'Projects', 'Automations', 'Skills', 'Services', 'Availability', 'Certificates', 'Experience', 'Contact'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => handleNavClick(tab)}
-                className={`text-left px-4 py-3.5 mt-1 text-xs font-black uppercase tracking-[0.15em] rounded-xl transition-all ${
-                  activeTab === tab ? 'bg-emerald-500/15 text-emerald-400' : themeClasses.navButtonText
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-            <div className={`mt-3 pt-3 flex items-center justify-center gap-2 border-t ${isDarkMode ? 'border-white/10' : 'border-neutral-200'}`}>
-              {[
-                { href: 'https://github.com/a-elradi', label: 'GitHub profile', Icon: Github },
-                { href: 'https://www.linkedin.com/in/abdalla-elradi/', label: 'LinkedIn profile', Icon: Linkedin },
-                { href: 'https://linktr.ee/Abdallaelsiddig', label: 'Linktree', Icon: LinkIcon },
-                { href: 'mailto:Abdallaelsiddig.m@gmail.com', label: 'Send email', Icon: Mail },
-              ].map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith('mailto:') ? undefined : '_blank'}
-                  rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                  aria-label={label}
-                  className={`inline-flex items-center justify-center w-12 h-12 rounded-2xl transition ${isDarkMode ? 'text-gray-300 hover:text-white bg-white/5 hover:bg-white/10' : 'text-neutral-700 hover:text-neutral-900 bg-neutral-900/5 hover:bg-neutral-900/10'}`}
-                >
-                  <Icon size={20} />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* BOTTOM TAB BAR — phone only. Thumb-reach navigation with the AI orb as the centre action. */}
-      <nav aria-label="Primary" className={`md:hidden fixed bottom-3 left-3 right-3 z-50 rounded-[1.75rem] shadow-2xl ${themeClasses.nav}`}>
-        <div className="grid grid-cols-5 items-end px-1 pt-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
-          {[
-            { tab: 'Home', label: 'Home', Icon: Home },
-            { tab: 'Projects', label: 'Projects', Icon: Folder },
-            null,
-            { tab: 'Automations', label: 'Systems', Icon: Cpu },
-            { tab: 'Contact', label: 'Contact', Icon: Mail },
-          ].map((item) =>
-            item ? (
-              <button
-                key={item.tab}
-                onClick={() => {
-                  setChatOpen(false);
-                  handleNavClick(item.tab);
-                }}
-                className={`flex flex-col items-center justify-center gap-1 h-14 rounded-2xl text-[9px] font-black uppercase tracking-[0.18em] transition ${activeTab === item.tab ? 'text-emerald-400' : themeClasses.navButtonText}`}
-              >
-                <item.Icon size={19} strokeWidth={activeTab === item.tab ? 2.4 : 1.8} />
-                {item.label}
-              </button>
-            ) : (
-              <div key="chat" className="flex items-end justify-center">
-                <button
-                  onClick={() => setChatOpen((v) => !v)}
-                  aria-label={chatOpen ? 'Close chat assistant' : 'Open chat assistant'}
-                  style={{ '--orb-color': isDarkMode ? bgAccentColor : '#10b981' }}
-                  className={`ai-orb relative -mt-7 inline-flex items-center justify-center w-16 h-16 rounded-full text-white ring-4 transition-transform active:scale-95 ${isDarkMode ? 'ring-[#0a0a0a]' : 'ring-neutral-50'}`}
-                >
-                  <span className="ai-orb-shine" aria-hidden="true" />
-                  {chatOpen ? <X size={22} className="relative z-10" /> : <Sparkles size={22} className="relative z-10" />}
-                </button>
-              </div>
-            )
-          )}
-        </div>
       </nav>
 
       {/* SOCIAL RAIL — desktop only; on phones these live in the mobile menu instead, where they can't cover content */}
@@ -429,60 +328,7 @@ const Portfolio = () => {
         </a>
       </div>
 
-      {/* SCROLL RAIL — phone only. Ticks sit at the real section offsets, so the
-          scale shows the shape of the page, not just how far you've come. */}
-      <div aria-hidden="true" className="md:hidden fixed left-0 top-0 bottom-[5.5rem] w-[3px] z-40 pointer-events-none">
-        <div className={`absolute inset-0 ${isDarkMode ? 'bg-white/[0.07]' : 'bg-neutral-900/[0.07]'}`} />
-        {sectionMarks.map((pct) => (
-          <div
-            key={pct}
-            style={{ top: `${pct}%` }}
-            className={`absolute left-0 w-full h-px ${isDarkMode ? 'bg-white/25' : 'bg-neutral-900/25'}`}
-          />
-        ))}
-        <div
-          style={{ height: `${scrollProgress}%` }}
-          className="absolute left-0 top-0 w-full bg-gradient-to-b from-emerald-300 via-emerald-400 to-emerald-600 shadow-[0_0_12px_rgba(16,185,129,0.8)]"
-        />
-      </div>
-
       <main id="home" className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-12 sm:pb-20">
-
-        {/* MOBILE HERO — one full-bleed portrait instead of a name card stacked on a
-            photo card. Desktop keeps its bento; this block is phone-only. */}
-        <section className="md:hidden -mx-4 -mt-24 mb-12 relative h-[86svh] min-h-[540px] overflow-hidden">
-          <img
-            key={photoIndex}
-            src={photoSources[photoIndex]}
-            alt={`Abdalla Elradi, portrait ${photoIndex + 1}`}
-            style={{ transform: 'translate3d(0, calc(var(--hero-shift, 0px) * 0.38), 0) scale(calc(1 + var(--hero-progress, 0) * 0.1))' }}
-            className="absolute inset-0 w-full h-full object-cover object-top animate-photo-settle will-change-transform"
-          />
-          <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/45 to-[#0a0a0a]/60' : 'bg-gradient-to-t from-neutral-50 via-neutral-50/40 to-neutral-50/50'}`} />
-
-          <div
-            style={{ opacity: 'calc(1 - var(--hero-progress, 0) * 1.25)', transform: 'translate3d(0, calc(var(--hero-shift, 0px) * 0.18), 0)' }}
-            className="absolute inset-x-0 bottom-0 px-5 pb-9 will-change-transform"
-          >
-            <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-emerald-400 font-black mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Informatics Engineer
-            </span>
-            <h1 className={`text-[3.25rem] font-black uppercase tracking-tighter leading-[0.85] ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
-              Abdalla<br />
-              <span className="text-gray-400">Elradi</span>
-            </h1>
-            <div className={`mt-5 h-px w-full bg-gradient-to-r from-emerald-500 ${isDarkMode ? 'via-white/15' : 'via-neutral-900/15'} to-transparent`} />
-            <div className="mt-3 flex items-end justify-between gap-4">
-              <p className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${isDarkMode ? 'text-gray-400' : 'text-neutral-600'}`}>
-                AI · Computer Vision · Robotics
-              </p>
-              <p className={`text-[9px] font-semibold tracking-[0.18em] whitespace-nowrap ${isDarkMode ? 'text-gray-500' : 'text-neutral-500'}`}>
-                26.2235°N 50.5876°E
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* HERO GRID */}
         <section className="grid grid-cols-2 md:grid-cols-12 gap-4 sm:gap-5 mb-14 sm:mb-24 items-start">
@@ -516,7 +362,7 @@ const Portfolio = () => {
           </div>
 
           {/* CRAFT */}
-          <div className={`col-span-2 reveal md:col-span-4 md:col-start-9 md:row-span-1 md:min-h-[550px] rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between shadow-[0_10px_35px_rgba(0,_0,_0,_0.3)] ${themeClasses.card}`}>
+          <div className={`col-span-2 md:col-span-4 md:col-start-9 md:row-span-1 md:min-h-[550px] rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between shadow-[0_10px_35px_rgba(0,_0,_0,_0.3)] ${themeClasses.card}`}>
             <div>
               <h3 className={`text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
                 <Cpu size={22} className="text-emerald-400" /> CRAFT
@@ -533,7 +379,7 @@ const Portfolio = () => {
           </div>
 
           {/* MINDSET */}
-          <div className={`col-span-2 reveal md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-[300px] rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
+          <div className={`col-span-2 md:col-span-4 md:row-start-2 md:row-span-1 md:-mt-[300px] rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 flex flex-col justify-between gap-6 shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
             <div>
               <h3 className={`text-xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
                 <Dribbble size={22} className="text-emerald-400" /> MINDSET
@@ -553,7 +399,7 @@ const Portfolio = () => {
           </div>
 
           {/* QUOTE */}
-          <div className={`col-span-1 reveal md:col-span-4 md:col-start-5 md:row-span-1 min-h-[150px] md:min-h-[170px] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
+          <div className={`col-span-1 md:col-span-4 md:col-start-5 md:row-span-1 min-h-[150px] md:min-h-[170px] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 flex flex-col justify-center shadow-[0_0_35px_rgba(255,_255,_255,_0.06)] ${themeClasses.card}`}>
             <div className="mb-3 sm:mb-4 inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-500/10 text-emerald-400">
               <Quote size={22} className="sm:hidden" /><Quote size={28} className="hidden sm:block" />
             </div>
@@ -563,7 +409,7 @@ const Portfolio = () => {
           </div>
 
           {/* LOCATION */}
-          <div className={`col-span-1 reveal md:col-span-4 md:col-start-9 md:row-start-2 min-h-[150px] md:min-h-[160px] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
+          <div className={`col-span-1 md:col-span-4 md:col-start-9 md:row-start-2 min-h-[150px] md:min-h-[160px] rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-[0_0_35px_rgba(255,_255,_255,_0.05)] ${themeClasses.card}`}>
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full -mr-10 -mt-10"></div>
             <img src="/manama.jpg" alt="Manama" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-15" />
             <div className="relative z-10">
@@ -580,17 +426,17 @@ const Portfolio = () => {
         </section>
         {/* PROJECTS SECTION */}
         <section id="projects" className="mb-16 sm:mb-24 lg:mb-32">
-          <div className="reveal text-center mb-8 sm:mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>PORTFOLIO</p>
             <h2 className="text-[2.6rem] leading-[0.95] sm:text-4xl md:text-5xl font-black mt-3 sm:mt-4">Featured <span className="text-emerald-500">projects</span></h2>
           </div>
 
-          <div className="reveal"><ProjectsGallery isDarkMode={isDarkMode} themeClasses={themeClasses} /></div>
+          <ProjectsGallery isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </section>
 
         {/* AUTOMATION SYSTEMS SECTION */}
         <section id="automations" className="mb-16 sm:mb-24 lg:mb-32">
-          <div className="reveal text-center mb-8 sm:mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>ENTERPRISE AI SYSTEMS</p>
             <h2 className="text-[2.6rem] leading-[0.95] sm:text-4xl md:text-5xl font-black mt-3 sm:mt-4">AI automation <span className="text-emerald-500">systems</span></h2>
             <p className={`${themeClasses.mutedText} max-w-2xl mx-auto mt-6 leading-relaxed`}>
@@ -598,12 +444,12 @@ const Portfolio = () => {
             </p>
           </div>
 
-          <div className="reveal"><AutomationSystems isDarkMode={isDarkMode} themeClasses={themeClasses} /></div>
+          <AutomationSystems isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-9 sm:py-20 px-4 sm:px-6">
-        <div className={`reveal max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Technical Skills</h2>
           <SkillsIcons isDarkMode={isDarkMode} themeClasses={themeClasses} />
         </div>
@@ -612,7 +458,7 @@ const Portfolio = () => {
       {/* Services Section */}
       <section id="services" className="py-9 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="reveal text-center mb-8 sm:mb-16">
+          <div className="text-center mb-8 sm:mb-16">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>WHAT I OFFER</p>
             <h2 className={`text-[2.6rem] leading-[0.95] sm:text-4xl md:text-5xl font-black mt-3 sm:mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Services</h2>
           </div>
@@ -626,7 +472,7 @@ const Portfolio = () => {
 
       {/* Availability Section */}
       <section id="availability" className="py-9 sm:py-20 px-4 sm:px-6">
-        <div className={`reveal max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <div className="mb-8">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>SCHEDULE</p>
             <h2 className={`text-4xl font-black mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Availability</h2>
@@ -641,7 +487,7 @@ const Portfolio = () => {
 
       {/* Certificates Section */}
       <section id="certificates" className="py-9 sm:py-20 px-4 sm:px-6">
-        <div className={`reveal max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <div className="text-center mb-7 sm:mb-12">
             <p className={`text-[10px] font-black uppercase tracking-[0.5em] ${themeClasses.mutedText}`}>CREDENTIALS</p>
             <h2 className={`text-[2.6rem] leading-[0.95] sm:text-4xl md:text-5xl font-black mt-3 sm:mt-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Certificates</h2>
@@ -650,10 +496,10 @@ const Portfolio = () => {
             These certifications show my learning progress in AI, robotics, web development, and systems engineering. I keep the verified files in <span className={`${isDarkMode ? 'text-white' : 'text-neutral-900'} font-semibold`}>/public/certificates</span>.
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {certificateFiles.map((certificate, index) => (
+            {certificateFiles.map((certificate) => (
               <div
                 key={certificate.file}
-                className={`overflow-hidden rounded-2xl sm:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${themeClasses.card} ${!showAllCertificates && index >= 6 ? 'hidden sm:block' : ''}`}
+                className={`overflow-hidden rounded-2xl sm:rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.25)] ${themeClasses.card}`}
               >
                 {certificate.type === 'image' ? (
                   <img src={`/certificates/${certificate.file}`} alt={certificate.title} loading="lazy" className="h-28 sm:h-64 w-full object-cover" />
@@ -692,20 +538,12 @@ const Portfolio = () => {
               </div>
             ))}
           </div>
-          {!showAllCertificates && (
-            <button
-              onClick={() => setShowAllCertificates(true)}
-              className={`sm:hidden mt-6 w-full py-3.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition ${themeClasses.accentButton}`}
-            >
-              Show all {certificateFiles.length} certificates
-            </button>
-          )}
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="py-9 sm:py-20 px-4 sm:px-6">
-        <div className={`reveal max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-black mb-8 md:mb-12 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Professional Experience</h2>
           <div className="space-y-8">
             {experiences.map((exp, idx) => (
@@ -727,7 +565,7 @@ const Portfolio = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-9 sm:py-20 px-4 sm:px-6">
-        <div className={`reveal max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 text-center ${themeClasses.panel}`}>
+        <div className={`max-w-7xl mx-auto rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-10 text-center ${themeClasses.panel}`}>
           <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 uppercase tracking-wide ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Let&apos;s Work Together</h2>
           <p className={`${isDarkMode ? 'text-gray-300' : 'text-neutral-700'} mb-8 text-lg max-w-2xl mx-auto`}>Open to exciting opportunities in AI, computer vision, robotics, and education community collaborations. Let&apos;s build the future together.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -767,18 +605,19 @@ const Portfolio = () => {
             © 2026 Abdalla Elradi
         </div>
       </footer>
+      </div>
 
       <ChatAgent
         isDarkMode={isDarkMode}
         themeClasses={themeClasses}
-        onNavigate={scrollToSection}
+        onNavigate={handleChatNavigate}
         accentColor={isDarkMode ? bgAccentColor : '#10b981'}
         open={chatOpen}
         onToggle={() => setChatOpen((v) => !v)}
       />
       <RequestModal
         request={request}
-        onClose={() => setRequest(null)}
+        onClose={closeRequest}
         isDarkMode={isDarkMode}
         themeClasses={themeClasses}
       />

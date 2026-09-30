@@ -21,7 +21,7 @@ function isAvailableDay(day, weekday) {
   return false;
 }
 
-function nextAvailableDate() {
+export function nextAvailableDate() {
   const cursor = new Date();
   for (let i = 0; i < 60; i++) {
     if (isAvailableDay(cursor.getDate(), cursor.getDay())) {
@@ -32,7 +32,7 @@ function nextAvailableDate() {
   return null;
 }
 
-export default function AvailabilityCalendar({ isDarkMode, themeClasses, onRequestDate }) {
+export default function AvailabilityCalendar({ isDarkMode, themeClasses, onRequestDate, showQuickRequest = true }) {
   const base = new Date();
   const [monthOffset, setMonthOffset] = useState(0);
 
@@ -123,7 +123,7 @@ export default function AvailabilityCalendar({ isDarkMode, themeClasses, onReque
           })}
         </div>
 
-        {upcoming && (
+        {showQuickRequest && upcoming && (
           <button
             onClick={() => onRequestDate(upcoming)}
             aria-label="Request the next open slot"

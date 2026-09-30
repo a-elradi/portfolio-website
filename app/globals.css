@@ -94,22 +94,15 @@ button {
   animation: orb-spin 4s linear infinite;
 }
 
-/* Scroll reveal — phones only, where there is no hover to carry the interaction.
-   Gated behind .reveal-armed so content stays visible if JS never runs. */
-@media (max-width: 767px) {
-  .reveal-armed .reveal {
-    opacity: 0;
-    transform: translateY(22px);
-  }
+/* Phone home screen: tiles settle in one after another once the intro clears. */
+@keyframes tile-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
 
-  .reveal-armed .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-    transition:
-      opacity 0.7s cubic-bezier(0.22, 0.7, 0.3, 1),
-      transform 0.7s cubic-bezier(0.22, 0.7, 0.3, 1);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
+.tile-in {
+  animation: tile-in 0.62s cubic-bezier(0.22, 0.7, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
 }
 
 /* Handwritten mark: the PNG is an alpha mask, so `background: currentColor`
@@ -121,7 +114,6 @@ button {
   mask: url('/signature.png') no-repeat left center / contain;
 }
 
-/* Opacity only: the hero image's transform belongs to the scroll parallax. */
 @keyframes photo-settle {
   from { opacity: 0.45; }
   to { opacity: 1; }
@@ -134,13 +126,7 @@ button {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .reveal-armed .reveal,
-  .reveal-armed .reveal.is-visible {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
+  .tile-in,
   .animate-photo-settle,
   .animate-gentle-float,
   .animate-spin-slow,

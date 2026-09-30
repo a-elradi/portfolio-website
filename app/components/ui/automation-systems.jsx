@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, ArrowUpRight, Send, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
 import useCarouselFocus from './use-carousel-focus';
 
-const SYSTEMS = [
+export const SYSTEMS = [
   {
     id: 'wazir',
     flagship: true,
@@ -11,12 +11,13 @@ const SYSTEMS = [
     category: 'Enterprise AI Governance',
     title: 'WAZIR — Agent Department',
     image: '/wazir-cover.jpg',
+    still: '/wazir-still.jpg',
     video: '/wazir-demo.mp4',
-    tagline: 'A supervisor AI that runs six specialist agents — with a kill switch.',
+    tagline: 'A supervisor AI that runs eight specialist agents — with a kill switch.',
     description:
-      "A multi-agent orchestration platform deployed in a live e-commerce operation running three regional stores. One supervisor agent (WAZIR) coordinates six specialists — automation & system health, support memory, market intelligence, SEO & content, sales & retention, and ad platform management — each locked to a Read / Recommend / Execute permission tier so no agent can act beyond its mandate. Every decision is written to a full audit trail, and a Telegram-based kill switch lets an operator pause every agent's write access instantly, no code deploy required.",
+      "A multi-agent orchestration platform deployed in a live e-commerce operation running three regional stores. One supervisor agent (WAZIR) coordinates eight specialists — automation & system health, support memory, market intelligence, SEO & content, technical QA, shopping experience, sales & retention, and Google Ads — each locked to a Read / Recommend / Execute permission tier so no agent can act beyond its mandate. Every decision is written to a full audit trail, and a Telegram-based kill switch lets an operator pause every agent's write access instantly, no code deploy required.",
     highlights: [
-      '6 specialist agents under one supervisor',
+      '9 agents: one supervisor, eight specialists',
       '3-tier permission model: Read / Recommend / Execute',
       'Telegram kill switch — /pause, /resume, /status',
       'Full audit trail: trigger → decision → approval → result',
@@ -30,6 +31,7 @@ const SYSTEMS = [
     category: 'AI Customer Service — Instagram',
     title: 'Instagram Support Agent',
     image: '/instagram-cover.jpg',
+    still: '/instagram-still.jpg',
     video: '/instagram-demo.mp4',
     tagline: 'One AI, four brand accounts, zero public order leaks.',
     description:
@@ -49,6 +51,7 @@ const SYSTEMS = [
     category: 'AI Customer Service — WhatsApp',
     title: 'WhatsApp Support Agent',
     image: '/whatsapp-cover.jpg',
+    still: '/whatsapp-still.jpg',
     video: '/whatsapp-demo.mp4',
     tagline: 'Region-aware support that knows which store your order is in.',
     description:
@@ -68,6 +71,7 @@ const SYSTEMS = [
     category: 'AI Customer Service — Email',
     title: 'Email Support Agent',
     image: '/email-cover.jpg',
+    still: '/email-still.jpg',
     video: '/email-demo.mp4',
     tagline: 'Reads the inbox, checks three stores, drafts before it ever sends.',
     description:

@@ -308,7 +308,7 @@ export default function MobileApp({
 
   const project = shownSheet?.startsWith('project:') ? PROJECTS.find((p) => `project:${p.id}` === shownSheet) : null;
   const current = experiences[0];
-  const awarded = PROJECTS.find((p) => p.award);
+  const awarded = PROJECTS.find((p) => p.award?.short);
 
   const request = (payload) => onRequest(payload);
 
@@ -329,7 +329,7 @@ export default function MobileApp({
           )}
           <Eyebrow className="text-emerald-400 mb-2">{project.category}</Eyebrow>
           <h3 className={`text-3xl font-black leading-[1.05] mb-4 ${strong}`}>{project.title}</h3>
-          {project.award && <AwardBanner award={project.award} isDarkMode={isDarkMode} className="mb-5" />}
+          {project.award?.title && <AwardBanner award={project.award} isDarkMode={isDarkMode} className="mb-5" />}
           <p className={`${soft} leading-relaxed mb-6`}>{project.description}</p>
           {project.team && (
             <div className="mb-6">
@@ -472,7 +472,7 @@ export default function MobileApp({
                 onClick={() => open(`project:${p.id}`)}
                 className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden text-left active:scale-[0.97] transition-transform"
               >
-                <img src={p.thumb ?? p.image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={p.card ?? p.thumb ?? p.image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 <span className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                 {p.award ? (
                   <AwardChip award={p.award} className="absolute top-3 left-3" />
@@ -675,7 +675,7 @@ export default function MobileApp({
           >
             <span className="absolute inset-0 flex items-center gap-3.5 px-3.5">
               <span className="relative w-[60px] h-[60px] shrink-0">
-                <img src={awarded.image} alt="" className="w-full h-full rounded-2xl object-cover" />
+                <img src={awarded.card ?? awarded.image} alt="" className="w-full h-full rounded-2xl object-cover" />
                 <span className={`absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-emerald-500 text-black flex items-center justify-center ring-[3px] ${isDarkMode ? 'ring-[#111111]' : 'ring-white'}`}>
                   <Trophy size={13} strokeWidth={2.25} />
                 </span>
@@ -713,7 +713,7 @@ export default function MobileApp({
             {projectLayers.map(({ project: p, current, previous }) => (
               <img
                 key={p.id}
-                src={p.thumb ?? p.image}
+                src={p.card ?? p.thumb ?? p.image}
                 alt=""
                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${current ? 'opacity-100 z-[2]' : previous ? 'opacity-100 z-[1]' : 'opacity-0 z-0'}`}
               />

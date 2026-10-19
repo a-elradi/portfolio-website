@@ -9,9 +9,11 @@ export const PROJECTS = [
     id: 'tarakum',
     category: '01 — Islamic FinTech',
     title: 'Tarakum',
-    // Card art: the full team photo (tarakum-team.jpg), uncropped, centred over
-    // a blurred copy of itself so it fills the 4:5 card without losing anyone.
-    image: '/tarakum-card.jpg',
+    // `card` is 4:5 card art: the whole photo, uncropped, centred over a blurred
+    // copy of itself, so a wide group shot fills the card without losing anyone.
+    // `image` stays the plain photo for the detail view.
+    image: '/tarakum-team.jpg',
+    card: '/tarakum-card.jpg',
     gallery: ['/tarakum-team.jpg', '/tarakum-winners.jpg', '/tarakum-stage.jpg'],
     award: {
       badge: '1st Place',
@@ -40,15 +42,19 @@ export const PROJECTS = [
     category: '03 — Robotics',
     title: 'AMR Warehouse Robot',
     image: '/1.png',
+    card: '/amr-card.jpg',
+    award: { badge: '1st Place' },
     description: 'Autonomous mobile robot with SLAM navigation, computer vision, and warehouse automation for smart logistics.',
     tags: ['ROS', 'SLAM', 'PYTHON', 'OPENCV', 'YOLO'],
   },
   {
     id: 'techtrap',
     category: '04 — AI Healthcare',
-    title: 'TECHTRAP',
+    title: 'Huawei Innovation Competition',
     image: '/Huawie.jpg',
-    description: 'AI-powered rehabilitation and educational system built for the Huawei ICT Competition.',
+    card: '/techtrap-card.jpg',
+    award: { badge: '5th · National', title: '5th Place · National Level' },
+    description: 'TECHTRAP, an AI-powered rehabilitation and educational system, placed 5th at the national level in the Huawei Innovation Competition.',
     tags: ['Machine Learning', 'MindSpore', 'PYTHON', 'OPENCV', 'AI'],
   },
   {
@@ -145,7 +151,7 @@ export function AwardBanner({ award, isDarkMode, className = '' }) {
       </span>
       <div>
         <p className={`text-sm font-black ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{award.title}</p>
-        <p className={`text-xs leading-snug mt-0.5 ${isDarkMode ? 'text-gray-400' : 'text-neutral-600'}`}>{award.event}</p>
+        {award.event && <p className={`text-xs leading-snug mt-0.5 ${isDarkMode ? 'text-gray-400' : 'text-neutral-600'}`}>{award.event}</p>}
       </div>
     </div>
   );
@@ -187,7 +193,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
           >
             {project.image ? (
               <img
-                src={project.image}
+                src={project.card ?? project.image}
                 alt={project.title}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -244,7 +250,7 @@ export default function ProjectsGallery({ isDarkMode, themeClasses }) {
             <div className="p-8">
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">{active.category}</p>
               <h3 className={`text-2xl md:text-3xl font-black mb-4 ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>{active.title}</h3>
-              {active.award && <AwardBanner award={active.award} isDarkMode={isDarkMode} className="mb-5" />}
+              {active.award?.title && <AwardBanner award={active.award} isDarkMode={isDarkMode} className="mb-5" />}
               <p className={`${themeClasses.mutedText} leading-relaxed mb-6`}>{active.description}</p>
               {active.team && (
                 <p className={`text-sm leading-relaxed mb-6 ${themeClasses.mutedText}`}>

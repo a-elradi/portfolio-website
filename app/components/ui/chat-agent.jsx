@@ -18,7 +18,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['project', 'built', 'robot', 'portfolio', 'work you'],
-    reply: "Highlights include Tarakum (1st place at the BisB Islamic Investment Hackathon), the Door2Door delivery platform, an AMR warehouse robot with SLAM navigation, TECHTRAP (an AI rehab & education system), the FireX firefighting robot, computer vision projects, and Robonexus combat robotics. They're all in the Projects section.",
+    reply: "Highlights include Tarakum (1st place at the BisB Islamic Investment Hackathon), the Door2Door delivery platform, an AMR warehouse robot with SLAM navigation, TECHTRAP (an AI rehab & education system that placed 5th nationally in the Huawei Innovation Competition), the FireX firefighting robot, computer vision projects, and Robonexus combat robotics. They're all in the Projects section.",
   },
   {
     keywords: ['certificate', 'certification', 'credential', 'course'],

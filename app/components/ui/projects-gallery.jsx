@@ -9,9 +9,10 @@ export const PROJECTS = [
     id: 'tarakum',
     category: '01 — Islamic FinTech',
     title: 'Tarakum',
-    // Card art: the award ceremony on stage (12.jpeg), cropped to exactly 4:5.
+    // Card art: the full team photo (tarakum-team.jpg), uncropped, centred over
+    // a blurred copy of itself so it fills the 4:5 card without losing anyone.
     image: '/tarakum-card.jpg',
-    gallery: ['/11.jpeg', '/tarakum-stage.jpg', '/10.jpeg'],
+    gallery: ['/tarakum-team.jpg', '/tarakum-winners.jpg', '/tarakum-stage.jpg'],
     award: {
       badge: '1st Place',
       title: '1st Place · BD 5,000 prize',

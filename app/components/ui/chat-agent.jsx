@@ -4,6 +4,11 @@ import { Send, X, Sparkles } from 'lucide-react';
 
 const KNOWLEDGE_BASE = [
   {
+    keywords: ['hackathon', 'award', 'winner', '1st place', 'first place', 'prize', 'tarakum', 'bisb', 'fintech', 'islamic'],
+    reply: "Abdalla's team won 1st place (BD 5,000) at the Bahrain Islamic Bank (BisB) Next-Gen Islamic Investment Innovation Product Hackathon with Tarakum — an Islamic fintech idea that turns everyday merchant discounts into Sharia-compliant investments for Bahrain's youth. It's the first card in the Projects section.",
+    action: 'projects',
+  },
+  {
     keywords: ['skill', 'tech', 'stack', 'language', 'know', 'good at'],
     reply: "Abdalla works across Python, C++, JavaScript, and SQL, with hands-on robotics experience in MQTT, embedded systems, and automation, plus AI/computer vision work in OpenCV, TensorFlow, YOLO, and MindSpore. Check the Skills section for the full breakdown.",
   },
@@ -13,7 +18,7 @@ const KNOWLEDGE_BASE = [
   },
   {
     keywords: ['project', 'built', 'robot', 'portfolio', 'work you'],
-    reply: "Highlights include an AMR warehouse robot with SLAM navigation, TECHTRAP (an AI rehab & education system), the FireX firefighting robot, several computer vision projects, IoT automation systems, and Robonexus combat robotics. They're all in the Projects section with images.",
+    reply: "Highlights include Tarakum (1st place at the BisB Islamic Investment Hackathon), the Door2Door delivery platform, an AMR warehouse robot with SLAM navigation, TECHTRAP (an AI rehab & education system), the FireX firefighting robot, computer vision projects, and Robonexus combat robotics. They're all in the Projects section.",
   },
   {
     keywords: ['certificate', 'certification', 'credential', 'course'],

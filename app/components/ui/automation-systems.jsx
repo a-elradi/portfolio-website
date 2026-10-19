@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ArrowUpRight, Send, ShieldCheck, Instagram, MessageCircle, Mail, Play } from 'lucide-react';
 import useCarouselFocus from './use-carousel-focus';
 
@@ -154,7 +155,7 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
         Swipe · {SYSTEMS.length} systems
       </p>
 
-      {active && (
+      {active && createPortal(
         <div role="dialog" aria-modal="true" aria-label={active.title} className="fixed inset-0 z-[70] flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setActive(null)} />
           <div className={`relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-[2rem] overflow-hidden shadow-2xl ${themeClasses.card}`}>
@@ -204,7 +205,7 @@ export default function AutomationSystems({ isDarkMode, themeClasses }) {
             </div>
           </div>
         </div>
-      )}
+      , document.body)}
     </>
   );
 }

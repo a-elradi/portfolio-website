@@ -3,9 +3,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   X, ChevronLeft, ArrowUpRight, Play, Sun, Moon, CalendarDays, Briefcase, Award,
   Github, Linkedin, Mail, Link as LinkIcon, FileText, Download, ExternalLink,
-  MapPin, Cpu, Dribbble, Quote, Send,
+  MapPin, Cpu, Dribbble, Quote, Send, Trophy,
 } from 'lucide-react';
-import { PROJECTS } from './projects-gallery';
+import { PROJECTS, PhotoGallery, AwardBanner, AwardChip } from './projects-gallery';
 import { SYSTEMS } from './automation-systems';
 import SkillsIcons, { SKILL_GROUPS } from './skills-icons';
 import ServicesGrid, { SERVICES } from './services-grid';
@@ -273,7 +273,11 @@ export default function MobileApp({
   // Keep rendering the last sheet while it animates out; `sheet` is already
   // null by then and the panel would slide down empty.
   const lastSheet = useRef(null);
-  if (sheet) lastSheet.current = sheet;
+  const lastDepth = useRef(0);
+  if (sheet) {
+    lastSheet.current = sheet;
+    lastDepth.current = window.history.state?.depth ?? 1;
+  }
   const shownSheet = sheet ?? lastSheet.current;
 
   useEffect(() => {
@@ -304,6 +308,7 @@ export default function MobileApp({
 
   const project = shownSheet?.startsWith('project:') ? PROJECTS.find((p) => `project:${p.id}` === shownSheet) : null;
   const current = experiences[0];
+  const awarded = PROJECTS.find((p) => p.award);
 
   const request = (payload) => onRequest(payload);
 
@@ -311,16 +316,31 @@ export default function MobileApp({
     if (project) {
       return (
         <article>
-          <div className="aspect-video -mx-4 -mt-5 mb-6 bg-black">
-            {project.video ? (
-              <video src={project.video} poster={project.image} controls playsInline preload="metadata" className="w-full h-full object-contain" />
-            ) : (
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-            )}
-          </div>
+          {project.gallery ? (
+            <PhotoGallery photos={project.gallery} alt={project.title} className="aspect-[4/3] -mx-4 -mt-5 mb-6" />
+          ) : (
+            <div className="aspect-video -mx-4 -mt-5 mb-6 bg-black">
+              {project.video ? (
+                <video src={project.video} poster={project.image} controls playsInline preload="metadata" className="w-full h-full object-contain" />
+              ) : (
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+              )}
+            </div>
+          )}
           <Eyebrow className="text-emerald-400 mb-2">{project.category}</Eyebrow>
           <h3 className={`text-3xl font-black leading-[1.05] mb-4 ${strong}`}>{project.title}</h3>
+          {project.award && <AwardBanner award={project.award} isDarkMode={isDarkMode} className="mb-5" />}
           <p className={`${soft} leading-relaxed mb-6`}>{project.description}</p>
+          {project.team && (
+            <div className="mb-6">
+              <Eyebrow className={`mb-2.5 ${strong}`}>Team</Eyebrow>
+              <div className="flex flex-wrap gap-1.5">
+                {project.team.map((name) => (
+                  <span key={name} className={`px-2.5 py-1 rounded-lg text-xs ${themeClasses.subCard} ${soft}`}>{name}</span>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="flex flex-wrap gap-2 mb-8">
             {project.tags.map((tag) => (
               <span key={tag} className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide ${themeClasses.subCard} ${soft}`}>{tag}</span>
@@ -454,7 +474,9 @@ export default function MobileApp({
               >
                 <img src={p.thumb ?? p.image} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 <span className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                {p.video && (
+                {p.award ? (
+                  <AwardChip award={p.award} className="absolute top-3 left-3" />
+                ) : p.video && (
                   <span className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 rounded-full bg-black/50 backdrop-blur text-[9px] font-black uppercase tracking-wider text-white">
                     <Play size={9} fill="currentColor" /> Demo
                   </span>
@@ -641,6 +663,33 @@ export default function MobileApp({
           </span>
         </Tile>
 
+        {/* Award — the strongest single proof point, one tap from home */}
+        {awarded && (
+          <Tile
+            index={++i}
+            ready={ready}
+            span
+            label={`${awarded.award.badge}: ${awarded.award.short} — ${awarded.title}`}
+            onClick={() => open(`project:${awarded.id}`)}
+            className={`h-[88px] ${tileGlass}`}
+          >
+            <span className="absolute inset-0 flex items-center gap-3.5 px-3.5">
+              <span className="relative w-[60px] h-[60px] shrink-0">
+                <img src={awarded.image} alt="" className="w-full h-full rounded-2xl object-cover" />
+                <span className={`absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-emerald-500 text-black flex items-center justify-center ring-[3px] ${isDarkMode ? 'ring-[#111111]' : 'ring-white'}`}>
+                  <Trophy size={13} strokeWidth={2.25} />
+                </span>
+              </span>
+              <span className="flex-1 min-w-0">
+                <span className={`block text-[9px] font-black uppercase tracking-[0.22em] ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>{awarded.award.title}</span>
+                <span className={`block text-[15px] font-black leading-tight mt-1 ${strong}`}>{awarded.award.short}</span>
+                <span className={`block text-[11px] font-semibold mt-0.5 truncate ${soft}`}>{awarded.title} · {awarded.category.replace(/^\d+\s*—\s*/, '')}</span>
+              </span>
+              <ArrowUpRight size={18} className={`shrink-0 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} />
+            </span>
+          </Tile>
+        )}
+
         {/* AI systems — the flagship: the systems themselves, working, on loop.
             Caption sits below the video, never on it — the frames carry their own type. */}
         <Tile index={++i} ready={ready} span label="AI automation systems — watch the demos" onClick={() => open('systems')} className={tileGlass}>
@@ -781,7 +830,7 @@ export default function MobileApp({
         title={project ? project.category.replace(/^\d+\s*—\s*/, '') : SHEET_TITLES[shownSheet] ?? ''}
         contentKey={shownSheet ?? 'none'}
         onClose={close}
-        onBack={project ? back : undefined}
+        onBack={project && lastDepth.current > 1 ? back : undefined}
         isDarkMode={isDarkMode}
       >
         {renderSheet()}
